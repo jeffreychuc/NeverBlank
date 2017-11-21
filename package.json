@@ -1,5 +1,5 @@
 {
-  "name": "evernote",
+  "name": "neverblank",
   "private": true,
   "dependencies": {
     "babel-core": "^6.26.0",
