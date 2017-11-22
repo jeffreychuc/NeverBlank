@@ -27,16 +27,17 @@ class Home extends React.Component{
   render()  {
     return(
       <div>
-        <div className='top'>
-          <a className='login-link' href='/#/signin'>Login</a>
-        </div>
         <div className='flexWrapper'>
+          <div className='top'>
+            <img className='logo' src='assets/Evernote-logo.svg'></img>
+            <a className='login-link' href='/#/signin'>Login</a>
+          </div>
           <div className='splash-row'>
             <div className='splashText'>
               <h2>Welcome to NeverBlank</h2>
             </div>
-            <div class="divider-wrapper">
-              <div class="divider"></div>
+            <div className="divider-wrapper">
+              <div className="divider"></div>
             </div>
             <div className = "signup-form">
               <h2>Sign Up</h2>
