@@ -2,12 +2,12 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import HomeContainer from './home/home_container';
-import SignupContainer from './session/signup_container';
+import SigninContainer from './session/signin_container';
 
 export default () => (
   <div>
     <Route exact path="/" component={HomeContainer} />
-    <Route path="/signup" component={SignupContainer}/>
+    <Route path="/signin" component={SigninContainer}/>
   </div>
 );
 

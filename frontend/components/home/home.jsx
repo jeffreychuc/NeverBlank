@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class Home extends React.Component{
   constructor(props) {
@@ -25,24 +26,27 @@ class Home extends React.Component{
 
   render()  {
     return(
-      <div className='flexWrapper'>
-        <div className='splashText'>
-          <h2>Welcome to NeverBlank</h2>
+      <div>
+        <div className='top'>
+          <a className='login-link' href='/#/signin'>Login</a>
         </div>
-        <div class="divider-wrapper">
-          <div class="divider"></div>
-        </div>
-        <div className = "signup-form">
-          <h2>Sign Up</h2>
-            <form className = "signup-form-element">
-              <label>Email:
-                <input className='signup-element' type="email" onChange={this.handleChange('email')}/>
-              </label>
-              <label>Password: 
-                <input className='signup-element' type="password" onChange={this.handleChange('password')}/>
-              </label>
-              <button className='signup-element signup-button' onClick ={this.handleSubmit}>Sign up for free</button>
-            </form>
+        <div className='flexWrapper'>
+          <div className='splash-row'>
+            <div className='splashText'>
+              <h2>Welcome to NeverBlank</h2>
+            </div>
+            <div class="divider-wrapper">
+              <div class="divider"></div>
+            </div>
+            <div className = "signup-form">
+              <h2>Sign Up</h2>
+                <form className = "signup-form-element">
+                  <input placeholder='Email' className='signup-element' type="email" onChange={this.handleChange('email')}/>
+                  <input placeholder='Password' className='signup-element' type="password" onChange={this.handleChange('password')}/>
+                  <button className='signup-element signup-button' onClick ={this.handleSubmit}>Sign up for free</button>
+                </form>
+            </div>
+          </div>
         </div>
       </div>
     );

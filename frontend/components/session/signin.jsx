@@ -19,7 +19,7 @@ class Signin extends React.Component{
   handleSubmit(event) {
     console.log(this.props);
     event.preventDefault();
-    this.props.createNewUser(this.state)
+    this.props.login(this.state)
       .then(() => this.props.history.push('/')); //acts as redirect
   }
 
