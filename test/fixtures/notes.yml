@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: notes
+#
+#  id          :integer          not null, primary key
+#  author_id   :integer          not null
+#  notebook_id :integer
+#  title       :string
+#  body        :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
