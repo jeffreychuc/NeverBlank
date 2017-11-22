@@ -7,17 +7,9 @@
 
 @font-face {
   font-family: 'webfont';
-  src: url("/fonts/english_only/caecilialtstd-roman.eot");
+  src: url("/fonts/caecilialtstd-roman.eot");
   font-weight: normal;
   font-style: normal; 
-}
-
-.jumbotron {
-  margin-top: 50px;
-  position: relative;
-  left: -10px;
-  background-color:transparent;
-  font-family: "Gotham_SSm_5r", Helvetica, Arial, sans-serif;
 }
 
 .signup-form h2 {
@@ -25,34 +17,43 @@
   font-size: 23px;
   font-weight: bold;
 }
-.jumbotron h1 {
+
+
+.navlink a{
+  color: black;
+}
+
+a:hover,
+a:focus {
+  color: #2dbe60;
+  transition: .1s color ease-in-out;
+  text-decoration: none;    
+}
+
+.jumbotron {
+  margin-top: 50px;
+  position: relative;
+  left: -40px;
+  top: 50px;
+  background-color:transparent;
+  font-family: "Gotham_SSm_5r", Helvetica, Arial, sans-serif;
+}
+
+.jumbotron .rotator {
   position: relative;
   width: 500px;
   left: -60px;
   font-size: 60px;
   color: black;
   font-weight: bold;
-  
 }
 
-.navlink a{
-  color: black;
-}
-.navlink  {
-  a:hover,
-  a:focus {
-    color: #2dbe60;
-    transition: .1s color ease-in-out;
-    text-decoration: none;    
-  }
-}
-
-
-.jumbotron p {
+.jumbotron .subtext {
   position: relative;
-  left: -60px;
+  top: 125px;
   width: 450px;
   font-family: 'webfont';
+  font-weight: normal;
   margin-top: 25px;
   font-size: 18px;
   line-height: 28px;
@@ -68,8 +69,9 @@
 .navbar {
   background-color:white;
   height: 80px;
-  padding-top: 1.5%;
+  padding-top: 2%;
   padding-bottom: 1%;
+  height: 100px;
 }
 
 li  {
@@ -146,9 +148,78 @@ li  {
 .top-buffer {
   left: 0px;
   height: 140px;
-  width: 100vw;
 }
 
 .ALOTOFROOM {
   height: 10000px;
+}
+
+@keyframes heading-rotation-animation {
+  0% {
+    transform: translate3d(0, 80px, 0);
+    opacity: 0; }
+  20%, 80% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1; }
+  100% {
+    transform: translate3d(0, -80px, 0);
+    opacity: 0; } }
+
+@keyframes heading-rotation-last-animation {
+  0% {
+    transform: translate3d(0, 80px, 0);
+    opacity: 0; }
+  20%, 80% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+.register .heading-rotation-container {
+  position: relative; }
+  .register .heading-rotation-container .rotator {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; }
+    .register .heading-rotation-container .rotator.h1-like {
+      font-size: 60px;
+      line-height: 70px; }
+      @media only screen and (max-width: 960px) {
+        .register .heading-rotation-container .rotator.h1-like {
+          font-size: 50px;
+          line-height: 60px; } }
+      @media only screen and (max-width: 600px) {
+        .register .heading-rotation-container .rotator.h1-like {
+          font-size: 30px;
+          line-height: 40px; } }
+    .dom-content-loaded .register .heading-rotation-container .rotator {
+      display: flex;
+      align-items: center;
+      bottom: 0; }
+    .dom-content-loaded .register .heading-rotation-container .rotator.heading-1 {
+      animation: heading-rotation-animation 1.5s 0.5s; }
+    .dom-content-loaded .register .heading-rotation-container .rotator.heading-2 {
+      animation: heading-rotation-animation 1.5s 1.75s; }
+    .dom-content-loaded .register .heading-rotation-container .rotator.heading-3 {
+      animation: heading-rotation-last-animation 1.5s 3s; }
+
+
+@keyframes heading1-rotation-animation {
+  0% {
+    transform: translate3d(0, 80px, 0);
+    opacity: 0; }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1; }
+ }
+
+.rotator.heading-4 {
+  opacity:0;
+  
+  animation: heading1-rotation-animation;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 5s;
 }

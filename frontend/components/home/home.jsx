@@ -64,8 +64,25 @@ class Home extends React.Component{
           <div className='splash-row'>
             <Col md={6}>
               <Jumbotron>
-                <h1>Meet Evernote, your second brain.</h1>
-                <p>Capture, organize, and share notes from anywhere. Your best ideas are always with you and always in sync.</p>
+              <div className="dom-content-loaded">
+                  <section className="register">
+                      <div className="row">
+                        <div className="container">
+                          <div className="content">
+                            <div className="heading-rotation-container">
+                              <h2 className="rotator h1-like heading-1">Remember everything.</h2>
+                              <h2 className="rotator h1-like heading-2">Get organized.</h2>
+                              <h2 className="rotator h1-like heading-3">Succeed together.</h2>
+                              <h1 className="rotator h1-like heading-4">
+                              NeverBlank.
+                              </h1>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                <p className ='subtext'>Capture, organize, and share notes from anywhere. Your best ideas are always with you and always in sync.</p>
               </Jumbotron>
             </Col>
             <Col md={1}>
@@ -101,7 +118,7 @@ class Home extends React.Component{
                     />
                     <FormControl.Feedback />
                   </FormGroup>
-                  <Button className='button-submit' bsSize="large" block>Sign up for free</Button>
+                  <Button className='button-submit' onClick={this.handleSubmit} bsSize="large" block>Sign up for free</Button>
                 </form>
             </div>
             </Col>
