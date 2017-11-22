@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Jumbotron, Col, Navbar, NavItem } from 'react-bootstrap';
+import { Grid, Jumbotron, Col, Navbar, NavItem, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 class Home extends React.Component{
@@ -25,6 +25,27 @@ class Home extends React.Component{
       .then(() => this.props.history.push('/')); //acts as redirect
   }
 
+  getValidationStateEmail() {
+    const email = this.state.email;
+    const regex = require('regex-email');
+    if (regex.test(email)) {
+      console.log('email!');
+      return 'success';
+    }
+    else {
+      console.log('not email');
+      return 'warning';
+    } 
+  }
+
+  getValidationStatePassword() {
+    const length = this.state.password.length;
+    if (length >= 6) return 'success';
+    else if (length > 5) return 'warning';
+    else if (length > 0) return 'error';
+    return null;
+  }
+
   render()  {
     return(
       <div>
@@ -42,7 +63,7 @@ class Home extends React.Component{
           <div className='splash-row'>
             <Col md={6}>
               <Jumbotron>
-                <h1>Welcome to NeverBlank.</h1>
+                <h1>Meet Evernote, your second brain.</h1>
                 <p>Capture, organize, and share notes from anywhere. Your best ideas are always with you and always in sync.</p>
               </Jumbotron>
             </Col>
@@ -53,11 +74,26 @@ class Home extends React.Component{
             </Col>
             <Col md={5}>
             <div className = "signup-form">
-              <h2>Sign Up</h2>
+              <h2>Sign Up for Free</h2>
                 <form className = "signup-form-element">
-                  <input placeholder='Email' className='signup-element' type="email" onChange={this.handleChange('email')}/>
-                  <input placeholder='Password' className='signup-element' type="password" onChange={this.handleChange('password')}/>
-                  <button className='signup-element signup-button' onClick ={this.handleSubmit}>Sign up for free</button>
+                <FormGroup controlId="formBasicText" validationState={this.getValidationStateEmail()}>
+                    <FormControl
+                      type="email"
+                      value={this.state.email}
+                      placeholder="Email"
+                      onChange={this.handleChange('email')}
+                    />
+                    <FormControl.Feedback />
+                  </FormGroup>
+                  <FormGroup controlId="formBasicText" validationState={this.getValidationStatePassword()}>
+                    <FormControl
+                      type="password"
+                      value={this.state.password}
+                      placeholder="password"
+                      onChange={this.handleChange('password')}
+                    />
+                    <FormControl.Feedback />
+                  </FormGroup>
                 </form>
             </div>
             </Col>

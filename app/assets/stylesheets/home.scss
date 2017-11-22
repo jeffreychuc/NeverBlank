@@ -1,11 +1,39 @@
+@font-face {
+  font-family: 'Gotham_SSm_5r';
+  src: local("?"), url("/assets/gotham-medium.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: 'webfont';
+  src: url("/fonts/english_only/caecilialtstd-roman.eot");
+  font-weight: normal;
+  font-style: normal; 
+}
+
 .jumbotron {
   background-color:transparent;
   font-family: "Gotham_SSm_5r", Helvetica, Arial, sans-serif;
 }
 
 .jumbotron h1 {
+  position: relative;
+  width: 500px;
+  left: -60px;
   font-size: 60px;
   font-weight: bold;
+  
+}
+
+.jumbotron p {
+  position: relative;
+  left: -60px;
+  padding-top: 10px;
+  width: 450px;
+  font-family: 'webfont';
+  font-size: 19px;
+  font-weight:lighter;
 }
 
 .navbar {
@@ -25,4 +53,8 @@ li  {
 
 .splash-row {
   padding-top: 80px;
+}
+
+.signup-form  {
+  font-size: 25px;
 }
