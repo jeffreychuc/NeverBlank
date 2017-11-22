@@ -17,7 +17,7 @@ class User < ApplicationRecord
   before_validation :ensure_session_token
 
   attr_reader :password
-
+  
   # password=
   # sets password to instance variable so that 
   # model level validations can check for length and presence
@@ -58,9 +58,9 @@ class User < ApplicationRecord
   # and the plain text password matches with the stored
   # password digest. Returns nil if user not found or if the password
   # does not match the user's password_digest
-  def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
-    return user if !user.nil? and user.is_password(password)
+  def self.find_by_credentials(email, password)
+    user = User.find_by(email: email)
+    return user if !user.nil? and user.is_password?(password)
     nil
   end
 
