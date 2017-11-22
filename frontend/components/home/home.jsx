@@ -50,7 +50,7 @@ class Home extends React.Component{
     return(
       <div>
         <Grid>
-          <Navbar>
+          <Navbar className='navbar-fixed-top'>
             <Col md={10}>
             <Navbar.Header>
               <img className='logo' src='assets/Evernote-logo.svg'></img>
@@ -60,7 +60,7 @@ class Home extends React.Component{
               <NavItem className='navlink' href='#/signin'> Log in </NavItem>
             </Col>
           </Navbar>
-          <div className='top-border' />
+          <div className='top-buffer' />
           <div className='splash-row'>
             <Col md={6}>
               <Jumbotron>

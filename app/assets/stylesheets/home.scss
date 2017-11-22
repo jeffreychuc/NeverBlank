@@ -66,10 +66,10 @@
   background-color: #f3f3f3;
 }
 .navbar {
-  background-color:transparent;
-  height: 100px;
-  padding-top: 3%;
-  border: none;
+  background-color:white;
+  height: 80px;
+  padding-top: 1.5%;
+  padding-bottom: 1%;
 }
 
 li  {
@@ -143,11 +143,9 @@ li  {
   padding: 18px 20px 17px;
 }
 
-.top-border {
-  position: absolute;
+.top-buffer {
   left: 0px;
-  height: 1px;
-  background: #f3f3f3;
+  height: 140px;
   width: 100vw;
 }
 
