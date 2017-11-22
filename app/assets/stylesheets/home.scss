@@ -1,93 +1,28 @@
-.flexWrapper  {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+.jumbotron {
+  background-color:transparent;
   font-family: "Gotham_SSm_5r", Helvetica, Arial, sans-serif;
 }
 
-.splash-row {
-  display: flex;
-  justify-content: center;
-}
-.splashText {
-  width: 500px;
+.jumbotron h1 {
   font-size: 60px;
+  font-weight: bold;
+}
+
+.navbar {
+  background-color:transparent;
+  height: 100px;
+  padding-top: 3%;
+  border: none;
+}
+
+li  {
+  list-style: none;
 }
 
 .logo {
-  height: 32.88px;
+  height: 35px;
 }
 
-.top {
-  background: #fff;
-  padding: 30px 0 24px;
-  width: 100%;
-  z-index: 997; 
-  display: flex;
-  justify-content: space-around;
-  border-bottom: 1px solid #f3f3f3;
-  
+.splash-row {
+  padding-top: 80px;
 }
-
-a:link, a:visited {
-  font-family: "Gotham_SSm_3r", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  line-height: 28px;
-  text-decoration: none;
-  color: #000;
-  transition: .1s color ease-in-out; 
-}
-
-a:hover, a:focus {
-  color: #2dbe60;
-  transition: .1s color ease-in-out; 
-}
-
-.signup-form  {
-  width: 500px;
-  margin: 20px 20px 20px 20px;
-  padding: 20px 20px 20px 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  background-color: red;
-}
-
-.signup-form-element  {
-  display: flex;
-  flex-direction: column;
-}
-
-.divider-wrapper {
-  margin: 0 60px 0 60px;
-  align-self: stretch;
-  display: flex;
-  justify-content: center; 
-}
-  
-
-.divider {
-  width: 1px;
-  background-color: #f3f3f3;
-  margin: 50px 0; 
-}
-
-.signup-form form input {
-  width: 360px;
-  margin-top: 15px; }
-  .signup-form form input[type=email], .signup-form form input[type=password] {
-    display: block;
-    background: #eef2f3;
-    border: 1px solid #eef2f3;
-    border-radius: 4px;
-    padding: 16px 12px 15px;
-    font-family: "Gotham_SSm_5r", Helvetica, Arial, sans-serif;
-    font-size: 13px; }
-    
-  .signup-form form input[type=submit] {
-    cursor: pointer; }
-  .signup-form form input.active-error {
-    border: 1px solid #ff415f;
-    color: #ff415f; }
-    .signup-form form input.active-error::placeholder {
-      color: #ff415f; }
