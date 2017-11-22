@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Jumbotron, Col, Navbar, NavItem, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { Grid, Jumbotron, Col, Navbar, NavItem, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 import { Link } from 'react-router';
 
 class Home extends React.Component{
@@ -57,9 +57,10 @@ class Home extends React.Component{
             </Navbar.Header>
             </Col>
             <Col md={2}>
-              <NavItem href='#/login'> Login </NavItem>
+              <NavItem className='navlink' href='#/signin'> Log in </NavItem>
             </Col>
           </Navbar>
+          <div className='top-border' />
           <div className='splash-row'>
             <Col md={6}>
               <Jumbotron>
@@ -75,6 +76,12 @@ class Home extends React.Component{
             <Col md={5}>
             <div className = "signup-form">
               <h2>Sign Up for Free</h2>
+                <Button className='button-demo' bsSize="large" block>Sign in Demo</Button>
+                <div className="or-row">
+                  <div className="or-line"></div>
+                  <div className="or-text">Or</div>
+                  <div className="or-line"></div>
+                </div>
                 <form className = "signup-form-element">
                 <FormGroup controlId="formBasicText" validationState={this.getValidationStateEmail()}>
                     <FormControl
@@ -94,9 +101,13 @@ class Home extends React.Component{
                     />
                     <FormControl.Feedback />
                   </FormGroup>
+                  <Button className='button-submit' bsSize="large" block>Sign up for free</Button>
                 </form>
             </div>
             </Col>
+          </div>
+          <div className='ALOTOFROOM'>
+            
           </div>
         </Grid>
       </div>
