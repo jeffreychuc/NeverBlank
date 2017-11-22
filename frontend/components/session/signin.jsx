@@ -20,7 +20,7 @@ class Signin extends React.Component{
     console.log(this.props);
     event.preventDefault();
     this.props.login(this.state)
-      .then(() => this.props.history.push('/')); //acts as redirect
+      .then(() => this.props.history.push('/editor')); //acts as redirect
   }
 
   render()  {
