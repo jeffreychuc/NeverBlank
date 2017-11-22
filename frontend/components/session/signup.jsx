@@ -7,6 +7,7 @@ class Signup extends React.Component{
       email: '',
       password: ''
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   handleChange(field)  {
@@ -25,13 +26,14 @@ class Signup extends React.Component{
     return(
       <div className = "session-form">
         <h2>Sign Up</h2>
-          <form onSubmit={this.handleSubmit}>
+          <form>
             <label>email: 
               <input type="text" onChange={this.handleChange('email')}/>
             </label>
             <label>password: 
               <input type="password" onChange={this.handleChange('password')}/>
             </label>
+            <button onClick ={this.handleSubmit}>Sign Up</button>
           </form>
       </div>
     );
