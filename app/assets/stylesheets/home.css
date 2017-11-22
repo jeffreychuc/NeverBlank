@@ -7,7 +7,14 @@
 
 @font-face {
   font-family: 'webfont';
-  src: url("/fonts/caecilialtstd-roman.eot");
+  src: url("/assets/caecilialtstd-roman.eot") format("eot");
+  font-weight: normal;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: 'Gotham_SSm_3r';
+  src: url("/assets/gotham-light.woff") format("woff");
   font-weight: normal;
   font-style: normal; 
 }
@@ -80,7 +87,7 @@ li  {
 
 .form-control  {
   background: #eef2f3;
-  height: 50px;
+  height: 45px;
 }
 
 .logo {
@@ -222,4 +229,10 @@ li  {
   animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-delay: 5s;
+}
+
+.fa {
+  width: 200px;
+  height: 200px;
+  z-index: 9999999;
 }

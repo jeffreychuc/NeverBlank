@@ -124,7 +124,6 @@ class Home extends React.Component{
             </Col>
           </div>
           <div className='ALOTOFROOM'>
-            
           </div>
         </Grid>
       </div>

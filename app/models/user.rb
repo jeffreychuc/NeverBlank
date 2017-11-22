@@ -60,7 +60,7 @@ class User < ApplicationRecord
   # does not match the user's password_digest
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
-    return user if !user.nil? and user.is_password?(password)
+    return user if !user.nil? && user.is_password?(password)
     nil
   end
 
