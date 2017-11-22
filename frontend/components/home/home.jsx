@@ -36,7 +36,7 @@ class Home extends React.Component{
           <h2>Sign Up</h2>
             <form className = "signup-form-element">
               <label>Email:
-                <input className='signup-element' type="text" onChange={this.handleChange('email')}/>
+                <input className='signup-element' type="email" onChange={this.handleChange('email')}/>
               </label>
               <label>Password: 
                 <input className='signup-element' type="password" onChange={this.handleChange('password')}/>
