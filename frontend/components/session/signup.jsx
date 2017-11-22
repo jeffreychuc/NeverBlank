@@ -17,6 +17,7 @@ class Signup extends React.Component{
   }
 
   handleSubmit(event) {
+    console.log(this.props);
     event.preventDefault();
     this.props.createNewUser(this.state)
       .then(() => this.props.history.push('/')); //acts as redirect
