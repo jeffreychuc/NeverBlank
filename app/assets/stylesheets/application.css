@@ -12,6 +12,6 @@
  *
  *= require_self
  */
-@import './reset.scss';
+@import './reset.css';
 @import './bootstrap.scss';
 @import './home.scss'
