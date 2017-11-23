@@ -30,6 +30,7 @@ class Home extends React.Component{
 
   componentWillUnmount()  {
     this.props.clearErrors();
+    this.clearTimer();
   }
 
   handleChange(field)  {
@@ -45,12 +46,19 @@ class Home extends React.Component{
       .then(() => this.props.history.push('/editor')); //acts as redirect
   }
 
+  clearTimer() {
+    if (this.demoLogin) {
+      clearTimeout(this.demoLogin);
+      this.demoLogin = null;
+    }
+  }
+
   handleDemo(event) {
     console.log("logging in as demo?");
     console.log(this);
     this.simType('demo@app-academy.io', 'email');
     this.simType('gibjobpls', 'password');
-    setTimeout(this.handleDemoLogin, 2000);
+    this.demoLogin = setTimeout(this.handleDemoLogin, 2000);
   }
 
   simType (input, field) {
