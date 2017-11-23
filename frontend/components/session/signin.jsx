@@ -146,7 +146,7 @@ class Signin extends React.Component{
               />
               <FormControl.Feedback />
             </FormGroup>
-            <Button className='button-submit' onClick={this.handleSubmit} bsSize="large" block>Continue</Button>
+            <Button className='button-submit' type="submit" onClick={this.handleSubmit} bsSize="large" block>Continue</Button>
             <div className ='session-error-container'>
               <ul className = 'session-error'>
                 {this.renderErrors()}

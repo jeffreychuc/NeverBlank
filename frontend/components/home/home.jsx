@@ -167,7 +167,7 @@ class Home extends React.Component{
             />
             <FormControl.Feedback />
           </FormGroup>
-          <Button className='button-submit' onClick={this.handleSubmit} bsSize="large" block>Sign up for free</Button>
+          <Button className='button-submit' type="submit" onClick={this.handleSubmit} bsSize="large" block>Sign up for free</Button>
           <div className ='session-error-container'>
             <ul className = 'session-error'>
               {this.renderErrors()}

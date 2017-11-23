@@ -1,5 +1,4 @@
 class NotesController < ApplicationController
-  
   def create
     @note = Note.new(note_params)
     @note.author_id = current_user.id
@@ -10,13 +9,10 @@ class NotesController < ApplicationController
     end
   end
 
+  def destroy
+
   def show
-    @note = Note.find(params[:id])
-    if @note
-      render :show
-    else
-      render json: @chirp.errors.full_messages, status: 404
-    end
+    
   end
 
   def index
