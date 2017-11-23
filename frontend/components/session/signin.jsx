@@ -119,39 +119,41 @@ class Signin extends React.Component{
 
   renderSignInForm () {
     return (
-      <div className = "signin-form">
-        <Button className='sign-in-button-top' onClick={this.handleDemo} bsSize="large" block>Sign in Demo</Button>
-        <div className="or-row">
-          <div className="or-line"></div>
-          <div className="or-text">Or</div>
-          <div className="or-line"></div>
-        </div>
-        <form className = "signin-form-element">
-        <FormGroup controlId="formBasicText" validationState={this.getValidationStateEmail()}>
-            <FormControl
-              type="email"
-              value={this.state.email}
-              placeholder="Email"
-              onChange={this.handleChange('email')}
-            />
-            <FormControl.Feedback />
-          </FormGroup>
-          <FormGroup controlId="formBasicText" validationState={this.getValidationStatePassword()}>
-            <FormControl
-              type="password"
-              value={this.state.password}
-              placeholder="Password"
-              onChange={this.handleChange('password')}
-            />
-            <FormControl.Feedback />
-          </FormGroup>
-          <Button className='button-submit' onClick={this.handleSubmit} bsSize="large" block>Continue</Button>
-          <div className ='session-error-container'>
-            <ul className = 'session-error'>
-              {this.renderErrors()}
-            </ul>
+      <div className = "single-session-form">
+        <div className = "signin-form">
+          <Button className='sign-in-button-top' onClick={this.handleDemo} bsSize="large" block>Sign in Demo</Button>
+          <div className="or-row">
+            <div className="or-line"></div>
+            <div className="or-text">Or</div>
+            <div className="or-line"></div>
           </div>
-        </form>
+          <form className = "signin-form-element">
+          <FormGroup controlId="formBasicText" validationState={this.getValidationStateEmail()}>
+              <FormControl
+                type="email"
+                value={this.state.email}
+                placeholder="Email"
+                onChange={this.handleChange('email')}
+              />
+              <FormControl.Feedback />
+            </FormGroup>
+            <FormGroup controlId="formBasicText" validationState={this.getValidationStatePassword()}>
+              <FormControl
+                type="password"
+                value={this.state.password}
+                placeholder="Password"
+                onChange={this.handleChange('password')}
+              />
+              <FormControl.Feedback />
+            </FormGroup>
+            <Button className='button-submit' onClick={this.handleSubmit} bsSize="large" block>Continue</Button>
+            <div className ='session-error-container'>
+              <ul className = 'session-error'>
+                {this.renderErrors()}
+              </ul>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
