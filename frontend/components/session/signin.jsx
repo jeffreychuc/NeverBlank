@@ -124,7 +124,7 @@ class Signin extends React.Component{
           <Button className='sign-in-button-top' onClick={this.handleDemo} bsSize="large" block>Sign in Demo</Button>
           <div className="or-row">
             <div className="or-line"></div>
-            <div className="or-text">Or</div>
+            <div className="or-text">or</div>
             <div className="or-line"></div>
           </div>
           <form className = "signin-form-element">

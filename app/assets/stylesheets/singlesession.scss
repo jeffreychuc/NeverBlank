@@ -59,6 +59,8 @@
   font-size: 16px;
   font-family: Gotham_SSm_5r, helvetica, arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  height: 46px;
+  margin: 0 auto;  
 }
 
 .signin-form-element  {
@@ -69,6 +71,11 @@
 .sign-in-button-top {
   width: 320px;
   margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  font-family: Gotham_SSm_5r, helvetica, arial, sans-serif;
+  font-size: 15px;
+  color: #747474;
 }
 
 .sign-in-bottom-text  {
@@ -103,4 +110,15 @@
   font-weight: 400;
   font-family: Gotham_SSm_5r, helvetica, arial, sans-serif;
   font-size: 16px;
+}
+
+.single-session-form .or-row {
+  width: 320px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin: 0 auto;
+}
+
+.single-session-form .or-line {
+  background-color: #ababab;
 }

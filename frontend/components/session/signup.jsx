@@ -125,7 +125,7 @@ class Signup extends React.Component{
           <Button className='sign-in-button-top' onClick={this.handleDemo} bsSize="large" block>Sign up Demo</Button>
           <div className="or-row">
             <div className="or-line"></div>
-            <div className="or-text">Or</div>
+            <div className="or-text">or</div>
             <div className="or-line"></div>
           </div>
           <form className = "signin-form-element">
@@ -154,9 +154,6 @@ class Signup extends React.Component{
               </ul>
             </div>
           </form>
-        
-        
-        
         </div>
       </div>
     );
