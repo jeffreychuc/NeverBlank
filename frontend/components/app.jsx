@@ -9,7 +9,7 @@ import EditorContainer from './editor/editor_container';
 export default () => (
   <div>
     <Route exact path="/" component={HomeContainer} />
-    <Route path="/signin" component={SigninContainer}/>
+    <AuthRoute path="/signin" component={SigninContainer}/>
     <Route path="/signup" component={SignupContainer}/>
     <ProtectedRoute path="/editor" component={EditorContainer}/>
   </div>
