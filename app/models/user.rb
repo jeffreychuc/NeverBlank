@@ -23,7 +23,11 @@ class User < ApplicationRecord
   validates :password_digest, presence: { message: "Password can not be blank." }
   validates :password, length: { minimum: 6, allow_nil: true }
   before_validation :ensure_session_token
-  has_many :notes
+  
+  has_many :notes,
+  primary_key: :id,
+  foreign_key: :author_id,
+  class_name: :Note
   
   attr_reader :password
   
