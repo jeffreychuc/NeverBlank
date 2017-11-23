@@ -75,7 +75,7 @@ class Home extends React.Component{
                               <h2 className="rotator h1-like heading-2">Get organized.</h2>
                               <h2 className="rotator h1-like heading-3">Succeed together.</h2>
                               <h1 className="rotator h1-like heading-4">
-                              NeverBlank.
+                              Be<br/>NeverBlank.
                               </h1>
                             </div>
                           </div>
@@ -115,7 +115,7 @@ class Home extends React.Component{
                       type="password"
                       value={this.state.password}
                       placeholder="password"
-                      onChange={this.handleChange('password')}
+                      onChange={this.handleChange('Password')}
                     />
                     <FormControl.Feedback />
                   </FormGroup>
