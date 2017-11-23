@@ -134,9 +134,6 @@ class Signin extends React.Component{
                 <Row/>
                   {this.renderSignInForm()}
               </div>
-              <ul>
-              
-              </ul>
             </div>
         </Grid>
       </div>

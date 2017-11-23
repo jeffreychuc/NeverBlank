@@ -5,5 +5,5 @@ const clearCurrentErrors = () => ({
 });
 
 export const clearErrors = () => (dispatch) => (
-  dispatch(clearCurrentErrors)
+  dispatch(clearCurrentErrors())
 );
