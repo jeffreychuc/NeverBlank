@@ -1,0 +1,30 @@
+.signin-page  {
+  background-color: rgb(243, 243, 243);
+  display: flex;
+  flex-direction: column;
+}
+
+.logoBar  {
+  background-color: #2dbe60;
+  height: 4px;
+  position: relative;
+  width: 100%;
+  z-index: 3;
+}
+
+.signin-logo {
+  padding-top: 70px;
+  height: 140px;
+  margin-bottom:19px;
+}
+
+.signin-logo img  {
+  display: block; /*for the img inside your div */ 
+  margin: 0 auto;
+  height: 70px;
+  width: 70px;
+}
+
+.signin-text h2 {
+  text-align: center;
+}

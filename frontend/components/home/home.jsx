@@ -17,6 +17,10 @@ class Home extends React.Component{
     this.simType = this.simType.bind(this);
   }
   
+  componentWillMount(){
+    document.body.style.backgroundColor = 'white';
+  }
+
   handleChange(field)  {
     return (event) => (
       this.setState({[field]: event.target.value})
