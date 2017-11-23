@@ -1,3 +1,10 @@
+@font-face {
+  font-family: caecilia;
+  src: url("https://s3-us-west-1.amazonaws.com/neverblank/fonts/clight.woff") format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
 .signin-page  {
   display: flex;
   flex-direction: column;
@@ -22,8 +29,70 @@
   margin: 0 auto;
   height: 70px;
   width: 70px;
+  margin-bottom: 10px;
 }
 
-.signin-text h2 {
+.signin-page h2 {
   text-align: center;
+  font-family: caecilia, Times, serif;
+  font-style: normal;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 30px;
+  line-height: 32px;
+  color: rgb(82, 82, 82);
+  margin-top: -4px;
+  margin-bottom: 14px;
+  padding-bottom: 16px;
+}
+
+.signin-form  {
+  border: 1px solid #dddddd;
+  padding-top: 20px;
+  width: 384px;
+  margin: 0 auto;
+  background: white;
+}
+
+.button-submit  {
+  font-size: 16px;
+  font-family: gotham, helvetica, arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.signin-form-element  {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.sign-in-button-top {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.sign-in-bottom-text  {
+  margin: 0 auto;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.sign-in-bottom-text a {
+  transition: all .2s ease;
+  font-family: Gotham_SSm_3r, helvetica, arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: #2dbe60;
+  text-decoration: none;
+}
+
+.sign-in-bottom-text p{
+  color: #747474;
+  font-size: 11px;
+  font-family: Gotham_SSm_3r, helvetica, arial, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
 }

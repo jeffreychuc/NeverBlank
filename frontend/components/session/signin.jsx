@@ -10,6 +10,9 @@ class Signin extends React.Component{
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
+    this.handleDemoLogin = this.handleDemoLogin.bind(this);
+    this.simType = this.simType.bind(this);
   }
 
   componentWillMount(){
@@ -79,11 +82,45 @@ class Signin extends React.Component{
     }
   }
 
+  clearTimer() {
+    if (this.demoLogin) {
+      clearTimeout(this.demoLogin);
+      this.demoLogin = null;
+    }
+  }
+
+  handleDemo(event) {
+    console.log("logging in as demo?");
+    console.log(this);
+    this.simType('demo@app-academy.io', 'email');
+    this.simType('gibjobpls', 'password');
+    this.demoLogin = setTimeout(this.handleDemoLogin, 2000);
+  }
+
+  simType (input, field) {
+    let chars = input.split('');
+    let finChars = "";
+    console.log(chars);
+    let i = 0;
+    let typeAction = setInterval(() => { 
+      finChars+=chars[i++];
+      this.setState({[field]: finChars});
+      console.log(finChars);
+      if (i === chars.length) { 
+        clearInterval(typeAction);  
+      } 
+    }, 80); 
+  }
+
+  handleDemoLogin() {
+    this.props.loginDemo().then(() => this.props.history.push('/editor'));
+  }
+
+
   renderSignInForm () {
     return (
       <div className = "signin-form">
-        <h2>Sign In</h2>
-        <Button className='button-demo' onClick={this.handleDemo} bsSize="large" block>Sign in Demo</Button>
+        <Button className='sign-in-button-top' onClick={this.handleDemo} bsSize="large" block>Sign in Demo</Button>
         <div className="or-row">
           <div className="or-line"></div>
           <div className="or-text">Or</div>
@@ -108,7 +145,7 @@ class Signin extends React.Component{
             />
             <FormControl.Feedback />
           </FormGroup>
-          <Button className='button-submit' onClick={this.handleSubmit} bsSize="large" block>Sign In</Button>
+          <Button className='button-submit' onClick={this.handleSubmit} bsSize="large" block>Continue</Button>
           <div className ='session-error-container'>
             <ul className = 'session-error'>
               {this.renderErrors()}
@@ -132,8 +169,13 @@ class Signin extends React.Component{
                 <Col md={12}>
                 </Col>
                 <Row/>
-                  {this.renderSignInForm()}
+                <h2>Sign In</h2>
+                {this.renderSignInForm()}
               </div>
+            </div>
+            <div className = 'sign-in-bottom-text'>
+            <p>Don't have an account? <br/> </p>
+            <a href='#/signup'> Create Account </a>
             </div>
         </Grid>
       </div>
