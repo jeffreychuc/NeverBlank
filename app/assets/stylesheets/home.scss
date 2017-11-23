@@ -143,6 +143,10 @@ li  {
   transition: .3s background ease-in-out;
 }
 
+// .btn-default  {
+//   background-color: #28a956;
+// }
+
 .button-demo  {
   font-family: "Gotham_SSm_5r", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -242,3 +246,7 @@ li  {
   animation-delay: 5s;
 }
 
+.signup-form-element .btn-default:hover  {
+  background-color: #28a956;
+  color: white;
+}
