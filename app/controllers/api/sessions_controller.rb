@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
       login(@user)
       render json: @user
     else
-      render json: { errors: ['Incorrect email or password.'] }, status: 422
+      render json: { session: ['Incorrect email or password.'] }, status: 422
     end
   end
 

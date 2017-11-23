@@ -11,7 +11,7 @@ export default (state=_nullError, action) => {
   switch(action.type) {
     case RECEIVE_SESSION_ERRORS:
       console.log('receiving session errors');
-      return merge({session: action.errors});
+      return action.errors;
     case CLEAR_ERRORS:
       return _nullError;
     default:
