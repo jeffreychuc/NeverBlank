@@ -10,6 +10,15 @@ class Home extends React.Component{
       email: '',
       password: ''
     };
+
+    //https://quickleft.com/blog/6-easy-ways-to-prevent-your-heroku-node-app-from-sleeping/
+    const http = require("http");
+    setInterval(function() {
+        http.get("http://neverblank.herokuapp.com");
+    }, 300000); 
+
+
+
     console.log(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
@@ -18,7 +27,7 @@ class Home extends React.Component{
   }
   
   componentWillMount(){
-    document.body.style.backgroundColor = 'white';
+    // document.body.style.backgroundColor = 'white';
   }
 
   handleChange(field)  {
@@ -93,9 +102,35 @@ class Home extends React.Component{
     }
   }
 
+  renderSplashText()  {
+    return (
+      <Jumbotron>
+        <div className="dom-content-loaded">
+          <section className="register">
+              <div className="row">
+                <div className="container">
+                  <div className="content">
+                    <div className="heading-rotation-container">
+                      <h2 className="rotator h1-like heading-1">Remember everything.</h2>
+                      <h2 className="rotator h1-like heading-2">Get organized.</h2>
+                      <h2 className="rotator h1-like heading-3">Succeed together.</h2>
+                      <h1 className="rotator h1-like heading-4">
+                      Be<br/>NeverBlank.
+                      </h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        <p className ='subtext'>Capture, organize, and share notes from anywhere. Your best ideas are always with you and always in sync.</p>
+      </Jumbotron>
+    );
+  }
+
   render()  {
     return(
-      <div>
+      <div className = "home-page">
         <Grid>
           <Navbar className='navbar-fixed-top'>
             <Col md={10}>
@@ -110,27 +145,7 @@ class Home extends React.Component{
           <div className='top-buffer' />
           <div className='splash-row'>
             <Col md={6}>
-              <Jumbotron>
-              <div className="dom-content-loaded">
-                  <section className="register">
-                      <div className="row">
-                        <div className="container">
-                          <div className="content">
-                            <div className="heading-rotation-container">
-                              <h2 className="rotator h1-like heading-1">Remember everything.</h2>
-                              <h2 className="rotator h1-like heading-2">Get organized.</h2>
-                              <h2 className="rotator h1-like heading-3">Succeed together.</h2>
-                              <h1 className="rotator h1-like heading-4">
-                              Be<br/>NeverBlank.
-                              </h1>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                <p className ='subtext'>Capture, organize, and share notes from anywhere. Your best ideas are always with you and always in sync.</p>
-              </Jumbotron>
+              {this.renderSplashText()}
             </Col>
             <Col md={1}>
               <div className="divider-wrapper">
