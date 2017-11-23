@@ -19,4 +19,7 @@ class NotesController < ApplicationController
     end
   end
 
+  def index
+    @notes = Note.find_by(author_id: current_user.id)
+  end
 end

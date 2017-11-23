@@ -114,8 +114,8 @@ class Home extends React.Component{
                     <FormControl
                       type="password"
                       value={this.state.password}
-                      placeholder="password"
-                      onChange={this.handleChange('Password')}
+                      placeholder="Password"
+                      onChange={this.handleChange('password')}
                     />
                     <FormControl.Feedback />
                   </FormGroup>
