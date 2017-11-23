@@ -43,12 +43,12 @@ class Home extends React.Component{
     let finChars = "";
     console.log(chars);
     let i = 0;
-    var id = setInterval(() => { 
+    let typeAction = setInterval(() => { 
       finChars+=chars[i++];
-      this.setState({[field]: finChars})
-      console.log(finChars) 
+      this.setState({[field]: finChars});
+      console.log(finChars);
       if (i === chars.length) { 
-        clearInterval(id);  
+        clearInterval(typeAction);  
       } 
     }, 80); 
   }
@@ -76,6 +76,17 @@ class Home extends React.Component{
     else if (length > 5) return 'warning';
     else if (length > 0) return 'error';
     return null;
+  }
+
+  renderErrors()  {
+    console.log(this.props.errors, 'in render errors');
+    if (this.props.errors.session)  {
+      return (
+        this.props.errors.session.map((error, i) => (
+          <li key={`error-${i}`}>{error}</li>
+        ))
+      );
+    }
   }
 
   render()  {
@@ -151,6 +162,11 @@ class Home extends React.Component{
                     <FormControl.Feedback />
                   </FormGroup>
                   <Button className='button-submit' onClick={this.handleSubmit} bsSize="large" block>Sign up for free</Button>
+                  <div className ='session-error-container'>
+                    <ul className = 'session-error'>
+                      {this.renderErrors()}
+                    </ul>
+                  </div>
                 </form>
             </div>
             </Col>

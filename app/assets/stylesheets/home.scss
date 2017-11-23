@@ -156,6 +156,15 @@ li  {
   height: 140px;
 }
 
+.session-error-container  {
+  padding-top: 20px;
+}
+
+.session-error  {
+  padding-left: 8px;
+  color: #ff415f;
+}
+
 .ALOTOFROOM {
   height: 10000px;
 }
@@ -230,8 +239,3 @@ li  {
   animation-delay: 5s;
 }
 
-.fa {
-  width: 200px;
-  height: 200px;
-  z-index: 9999999;
-}
