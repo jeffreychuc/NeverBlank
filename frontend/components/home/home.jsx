@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Jumbotron, Col, Navbar, NavItem, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 import { Link } from 'react-router';
+import { logoLink } from '../assets';
 
 class Home extends React.Component{
   constructor(props) {
@@ -53,7 +54,7 @@ class Home extends React.Component{
           <Navbar className='navbar-fixed-top'>
             <Col md={10}>
             <Navbar.Header>
-              <img className='logo' src='assets/Evernote-logo.svg'></img>
+              <img className='logo' src={ logoLink }></img>
             </Navbar.Header>
             </Col>
             <Col md={2}>
