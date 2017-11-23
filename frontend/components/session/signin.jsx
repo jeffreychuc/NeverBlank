@@ -16,6 +16,10 @@ class Signin extends React.Component{
     // document.body.style.backgroundColor = '#f3f3f3';
   }
 
+  componentWillUnmount()  {
+    this.props.clearErrors();
+  }
+
   handleChange(field)  {
     return (event) => (
       this.setState({[field]: event.target.value})

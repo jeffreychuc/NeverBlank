@@ -17,8 +17,6 @@ class Home extends React.Component{
         http.get("http://neverblank.herokuapp.com");
     }, 300000); 
 
-
-
     console.log(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
@@ -31,7 +29,7 @@ class Home extends React.Component{
   }
 
   componentWillUnmount()  {
-
+    this.props.clearErrors();
   }
 
   handleChange(field)  {
