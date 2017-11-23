@@ -10,7 +10,11 @@ class Home extends React.Component{
       email: '',
       password: ''
     };
+    console.log(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
+    this.handleDemoLogin = this.handleDemoLogin.bind(this);
+    this.simType = this.simType.bind(this);
   }
   
   handleChange(field)  {
@@ -24,6 +28,33 @@ class Home extends React.Component{
     event.preventDefault();
     this.props.createNewUser(this.state)
       .then(() => this.props.history.push('/editor')); //acts as redirect
+  }
+
+  handleDemo(event) {
+    console.log("logging in as demo?");
+    console.log(this);
+    this.simType('demo@app-academy.io', 'email');
+    this.simType('gibjobpls', 'password');
+    setTimeout(this.handleDemoLogin, 2000);
+  }
+
+  simType (input, field) {
+    let chars = input.split('');
+    let finChars = "";
+    console.log(chars);
+    let i = 0;
+    var id = setInterval(() => { 
+      finChars+=chars[i++];
+      this.setState({[field]: finChars})
+      console.log(finChars) 
+      if (i === chars.length) { 
+        clearInterval(id);  
+      } 
+    }, 80); 
+  }
+
+  handleDemoLogin() {
+    this.props.loginDemo().then(() => this.props.history.push('/editor'));
   }
 
   getValidationStateEmail() {
@@ -94,7 +125,7 @@ class Home extends React.Component{
             <Col md={5}>
             <div className = "signup-form">
               <h2>Sign Up for Free</h2>
-                <Button className='button-demo' bsSize="large" block>Sign in Demo</Button>
+                <Button className='button-demo' onClick={this.handleDemo} bsSize="large" block>Sign in Demo</Button>
                 <div className="or-row">
                   <div className="or-line"></div>
                   <div className="or-text">Or</div>
