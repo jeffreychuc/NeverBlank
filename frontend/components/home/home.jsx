@@ -142,7 +142,7 @@ class Home extends React.Component{
     return (
       <div className = "signup-form">
         <h2>Sign Up for Free</h2>
-        <Button className='button-demo' onClick={this.handleDemo} bsSize="large" block>Sign in Demo</Button>
+        <Button className='button-demo' onClick={this.handleDemo} bsSize="large" block>Sign up Demo</Button>
         <div className="or-row">
           <div className="or-line"></div>
           <div className="or-text">Or</div>
