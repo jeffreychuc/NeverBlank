@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 import HomeContainer from './home/home_container';
 import SigninContainer from './session/signin_container';
@@ -9,8 +10,6 @@ export default () => (
   <div>
     <Route exact path="/" component={HomeContainer} />
     <Route path="/signin" component={SigninContainer}/>
-    <Route path="/editor" component={EditorContainer}/>
+    <ProtectedRoute path="/editor" component={EditorContainer}/>
   </div>
 );
-
-
