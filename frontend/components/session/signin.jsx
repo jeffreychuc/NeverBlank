@@ -13,7 +13,7 @@ class Signin extends React.Component{
   }
 
   componentWillMount(){
-    document.body.style.backgroundColor = '#f3f3f3';
+    // document.body.style.backgroundColor = '#f3f3f3';
   }
 
   handleChange(field)  {
@@ -60,7 +60,6 @@ class Signin extends React.Component{
                 </Col>
                 <Row/>
                 <div className = "session-form">
-                  
                     <form>
                       <label>email: 
                         <input type="email" onChange={this.handleChange('email')}/>

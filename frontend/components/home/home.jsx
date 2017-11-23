@@ -30,6 +30,10 @@ class Home extends React.Component{
     // document.body.style.backgroundColor = 'white';
   }
 
+  componentWillUnmount()  {
+
+  }
+
   handleChange(field)  {
     return (event) => (
       this.setState({[field]: event.target.value})
@@ -92,8 +96,8 @@ class Home extends React.Component{
   }
 
   renderErrors()  {
-    console.log(this.props.errors, 'in render errors');
-    if (this.props.errors.session)  {
+    console.log(this.props, 'in render errors');
+    if (this.props.errors.session.constructor === Array)  {
       return (
         this.props.errors.session.map((error, i) => (
           <li key={`error-${i}`}>{error}</li>
