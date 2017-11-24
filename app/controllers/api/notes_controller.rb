@@ -1,21 +1,10 @@
-class NotesController < ApplicationController
-  def create
-    @note = Note.new(note_params)
-    @note.author_id = current_user.id
-    if @note.save
-      render json: @note
-    else
-      render json: @note.errors.full_messages, status: 422
-    end
-  end
-
-  def destroy
-
-  def show
-    
-  end
-
+class Api::NotesController < ApplicationController
   def index
-    @notes = Note.find_by(author_id: current_user.id)
+    if current_user
+      @notes = Note.where(author_id: current_user.id).order(:updated_at)
+      if @notes
+        render :index
+      end
+    end
   end
 end
