@@ -1,0 +1,1 @@
+export const RECEIVE_ALL_NOTES = 'RECEIVE_ALL_NOTES';

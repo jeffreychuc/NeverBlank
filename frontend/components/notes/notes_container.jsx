@@ -1,13 +1,12 @@
 import { connect } from 'react-redux';
-import Editor from './editor';
-import { logout } from '../../actions/session';
+import Notes from './notes';
 
-const mapStateToProps = (state) => ({
-  state: state
-});
+const mapStateToProps = (state) => {
+  console.log(state, 'IN MAP TO PROPS IN NOTES CONTAINER');
+  return(state);
+};
 
 const mapDispatchToProps = (dispatch) => ({
-  logout: () => dispatch(logout())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Editor);
+export default connect(mapStateToProps, null)(Notes);

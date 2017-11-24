@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import NotesContainer from '../notes/notes_container';
 
 class Editor extends React.Component  {
   constructor (props)  {
@@ -14,6 +15,7 @@ class Editor extends React.Component  {
     return (
       <div>
       <h1>Logged In</h1>
+        <NotesContainer />
         <Button className='logout' onClick={this.handleLogout.bind(this)} block>Logout</Button>
       </div>
     );
