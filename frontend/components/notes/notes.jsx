@@ -1,18 +1,12 @@
 import React from 'react';
 import Note from './note';
-import moment from 'moment';
+import shortid from 'shortid';
 
 class Notes extends React.Component  {
   constructor (props)  {
     super(props);
     console.log("IN NOTES CONSTRUCTOR");
     console.log(props);
-  }
-  
-  componentWillReceiveProps(nextProps){
-    if (nextProps !== this.props) {
-      console.log('lol');
-    }
   }
 
   componentDidMount() {
@@ -30,15 +24,8 @@ class Notes extends React.Component  {
         <h2> Notes Container </h2>
           <ol>
             {
-              this.props.notes.map((note) => 
-              (
-                <li>
-                  <ol>
-                    <li> {note.title} </li>
-                    <li> {moment(note.updated_at).fromNow()} </li>
-                    <li> {note.body} </li>
-                  </ol>
-                </li>
+              this.props.notes.map((note) => (
+                <Note key={shortid.generate()} note = {note}/>
               ))
             }
           </ol>

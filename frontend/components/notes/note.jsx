@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 class Note extends React.Component  {
   constructor (props)  {
@@ -8,9 +9,14 @@ class Note extends React.Component  {
   }
 
   render()  {
+    console.log('in render for single note');
+    console.log(this.props);
+    const { note } = this.props;
     return (
       <div>
-        <h2> Note Container </h2>
+        <li> {note.title} </li>
+        <li> {moment(note.updated_at).fromNow()} </li>
+        <li> {note.body} </li>
       </div>
     );
   }
