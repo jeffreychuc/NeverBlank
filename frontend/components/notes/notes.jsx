@@ -6,6 +6,11 @@ class Notes extends React.Component  {
     super(props);
     console.log("IN NOTES CONSTRUCTOR");
     console.log(props);
+    this.fetchNotes = props.fetchNotes;
+  }
+
+  componentDidMount() {
+    this.fetchNotes();
   }
 
   render()  {
