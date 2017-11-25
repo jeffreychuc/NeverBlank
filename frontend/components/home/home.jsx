@@ -1,6 +1,7 @@
 import React from 'react';
 import NotesContainer from '../notes/notes_container';
 import NavSidebarContainer from '../nav/nav_sidebar_container';
+import EditorContainer from '../editor/editor_container';
 
 class Home extends React.Component  {
   constructor (props)  {
@@ -15,7 +16,9 @@ class Home extends React.Component  {
         <div className = 'notes-sidebar'>
           <NotesContainer id={2} />
         </div>
-        
+        <div className = 'editor-main'>
+          <EditorContainer placeholder={'Write something...'}/>
+        </div>
       </div>
     );
   }
