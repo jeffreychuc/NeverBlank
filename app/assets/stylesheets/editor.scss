@@ -1,4 +1,4 @@
-.editor-main {
+.main-view {
   overflow-y: hidden;
   display:flex;
 }
@@ -10,6 +10,7 @@
   border-right: 1px solid #ececec;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   z-index: 200;
 }
 

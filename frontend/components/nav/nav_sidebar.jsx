@@ -1,5 +1,6 @@
 import React from 'react';
 import { smallLogo } from '../assets';
+import { Button } from 'react-bootstrap';
 
 class NavSidebar extends React.Component  {
   constructor(props)  {
@@ -9,6 +10,7 @@ class NavSidebar extends React.Component  {
   topButtonGroup()  {
     return (
       <div className = 'topButtonGroup'>
+
       </div>
     );
   }
@@ -23,9 +25,15 @@ class NavSidebar extends React.Component  {
   profileButton() {
     return (
       <div className = 'profileButton'>
+        <Button className='logout' onClick={() => this.handleLogout()} block>Logout</Button>
       </div>
     );
   }
+
+  handleLogout () {
+    this.props.logout().then(() => this.props.history.push('/'));
+  }
+
   render  ()  {
     return (
       <div className = 'nav-sidebar'>

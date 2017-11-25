@@ -1,17 +1,14 @@
 import { connect } from 'react-redux';
-import { createNewUser, loginDemo } from '../../actions/session';
-import { clearErrors } from '../../actions/errors';
 import Home from './home';
+import { logout } from '../../actions/session';
+import { slide } from '../../actions/ui';
 
-const mapStateToProps = (state) => {
-  console.log(state, 'IN MAP TO PROPS IN HOME CONTAINER');
-  return ({ errors: state.errors });
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  createNewUser: (formUser) => dispatch(createNewUser(formUser)),
-  loginDemo: () => dispatch(loginDemo()),
-  clearErrors: () => dispatch(clearErrors())
+const mapStateToProps = (state) => ({
+  state: state
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+const mapDispatchToProps = (dispatch) => ({
+
+});
+
+export default connect(mapStateToProps, null)(Home);
