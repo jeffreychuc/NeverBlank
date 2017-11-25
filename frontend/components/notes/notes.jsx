@@ -2,7 +2,7 @@ import React from 'react';
 import Note from './note';
 import shortid from 'shortid';
 import pluralize from 'pluralize';
-import { createSlideToggle } from '../../util/slide_util'; 
+import { createSlideToggle } from '../../util/css_util'; 
 
 class Notes extends React.Component  {
   constructor (props)  {
@@ -39,16 +39,18 @@ class Notes extends React.Component  {
         <div className = 'notes-subheader'>
           <p className = 'notes-count'>{noteCount} {pluralize('note', noteCount)}</p>
         </div>
-        <div className = 'notes-background'>
-          <div className = 'notes-view'>
-            <div className = 'notes-container'>
-              <ol>
-                {
-                  this.props.notes.map((note) => (
-                    <Note key={shortid.generate()} note = {note}/>
-                  ))
-                }
-              </ol>
+        <div className = 'notes-height-wrapper'>
+          <div className = 'notes-background'>
+            <div className = 'notes-view'>
+              <div className = 'notes-container'>
+                <ol>
+                  {
+                    this.props.notes.map((note) => (
+                      <Note key={shortid.generate()} note = {note}/>
+                    ))
+                  }
+                </ol>
+              </div>
             </div>
           </div>
         </div>

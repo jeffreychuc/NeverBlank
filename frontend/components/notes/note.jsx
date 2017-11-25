@@ -14,7 +14,7 @@ class Note extends React.Component  {
     const { note } = this.props;
     let timeStamp = moment(note.updated_at).fromNow();
     return (
-      <div className = 'note-card'>
+      <div className = 'note-card noselect'>
         <li className = 'note-card-title'> {note.title} </li>
         <li> {timeStamp} </li>
         <li> {note.body} </li>
