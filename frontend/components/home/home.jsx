@@ -11,12 +11,6 @@ class Home extends React.Component{
       password: ''
     };
 
-    //https://quickleft.com/blog/6-easy-ways-to-prevent-your-heroku-node-app-from-sleeping/
-    const http = require("http");
-    setInterval(function() {
-        http.get("http://neverblank.herokuapp.com");
-    }, 300000); 
-
     console.log(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
