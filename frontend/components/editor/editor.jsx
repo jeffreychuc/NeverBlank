@@ -13,9 +13,13 @@ class Editor extends React.Component  {
 
   render()  {
     return (
-      <div>
-      <h1>Logged In</h1>
-        <NotesContainer />
+      <div className = 'editor-main'>
+        <div className = 'nav-sidebar'>
+          <img src='https://imgur.com/GTBvCdV.png' />
+        </div>
+        <div className = 'notes-sidebar'>
+          <NotesContainer />
+        </div>
         <Button className='logout' onClick={this.handleLogout.bind(this)} block>Logout</Button>
       </div>
     );

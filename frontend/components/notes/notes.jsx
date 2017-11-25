@@ -1,6 +1,7 @@
 import React from 'react';
 import Note from './note';
 import shortid from 'shortid';
+import pluralize from 'pluralize';
 
 class Notes extends React.Component  {
   constructor (props)  {
@@ -19,20 +20,31 @@ class Notes extends React.Component  {
     if (!this.props.notes)  {
       return null;
     }
+    let noteCount = this.props.notes.length;
     return (
-      <div>
-        <h2> Notes Container </h2>
-          <ol>
-            {
-              this.props.notes.map((note) => (
-                <Note key={shortid.generate()} note = {note}/>
-              ))
-            }
-          </ol>
+      <div className ='notes-scroller'>
+        <div className = 'notes-header'>
+          <h2 className = 'notes-header-text'>NOTES</h2>
+        </div>
+        <div className = 'notes-subheader'>
+          <p className = 'notes-count'>{noteCount} {pluralize('note', noteCount)}</p>
+        </div>
+        <div className = 'notes-background'>
+          <div className = 'notes-view'>
+            <div className = 'notes-container'>
+              <ol>
+                {
+                  this.props.notes.map((note) => (
+                    <Note key={shortid.generate()} note = {note}/>
+                  ))
+                }
+              </ol>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 export default Notes;
-

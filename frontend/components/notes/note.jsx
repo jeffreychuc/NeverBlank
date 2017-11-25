@@ -12,10 +12,11 @@ class Note extends React.Component  {
     console.log('in render for single note');
     console.log(this.props);
     const { note } = this.props;
+    let timeStamp = moment(note.updated_at).fromNow();
     return (
-      <div>
-        <li> {note.title} </li>
-        <li> {moment(note.updated_at).fromNow()} </li>
+      <div className = 'note-card'>
+        <li className = 'note-card-title'> {note.title} </li>
+        <li> {timeStamp} </li>
         <li> {note.body} </li>
       </div>
     );
