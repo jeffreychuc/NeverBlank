@@ -110,3 +110,13 @@
   background: #f8f8f8;
   height: 100%;
 }
+
+.slideable  {
+  left: 0;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+.slide-hide  {
+  left: -600px;
+}
