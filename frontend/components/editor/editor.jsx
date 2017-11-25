@@ -2,6 +2,7 @@ import React from 'react';
 import Drawer from 'react-motion-drawer';
 import { Button } from 'react-bootstrap';
 import NotesContainer from '../notes/notes_container';
+import NavSidebarContainer from '../nav/nav_sidebar_container';
 
 class Editor extends React.Component  {
   constructor (props)  {
@@ -15,9 +16,7 @@ class Editor extends React.Component  {
   render()  {
     return (
       <div className = 'editor-main'>
-        <div className = 'nav-sidebar'>
-          <img src='https://imgur.com/GTBvCdV.png' />
-        </div>
+        <NavSidebarContainer />
         <div className = 'notes-sidebar'>
           <NotesContainer id={2} />
         </div>

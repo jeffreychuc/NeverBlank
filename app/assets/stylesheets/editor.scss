@@ -1,10 +1,12 @@
 .editor-main {
-  display: flex;
   overflow-y: hidden;
+  display:flex;
 }
 .nav-sidebar  {
   width: 75px;
   height: 100vh;
+  background-color: #f8f8f8;
+  flex-shrink: 0;
 }
 
 .notes-scroller {
