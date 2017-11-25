@@ -5,7 +5,6 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import LandingContainer from './landing/landing_container';
 import { SigninContainer, SignupContainer } from './session/session_container';
 import HomeContainer from './home/home_container';
-import EditorContainer from './editor/editor_container';
 
 export default () => (
   <div>

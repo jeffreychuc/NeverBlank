@@ -37,7 +37,7 @@ class Landing extends React.Component{
     console.log(this.props);
     event.preventDefault();
     this.props.createNewUser(this.state)
-      .then(() => this.props.history.push('/editor')); //acts as redirect
+      .then(() => this.props.history.push('/home')); //acts as redirect
   }
 
   clearTimer() {
@@ -71,7 +71,7 @@ class Landing extends React.Component{
   }
 
   handleDemoLogin() {
-    this.props.loginDemo().then(() => this.props.history.push('/editor'));
+    this.props.loginDemo().then(() => this.props.history.push('/home'));
   }
 
   getValidationStateEmail() {

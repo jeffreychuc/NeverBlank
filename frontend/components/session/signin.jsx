@@ -33,7 +33,7 @@ class Signin extends React.Component{
     console.log(this.props);
     event.preventDefault();
     this.props.login(this.state)
-      .then(() => this.props.history.push('/editor')); //acts as redirect
+      .then(() => this.props.history.push('/home')); //acts as redirect
   }
 
   renderTopBar () {
@@ -113,7 +113,7 @@ class Signin extends React.Component{
   }
 
   handleDemoLogin() {
-    this.props.loginDemo().then(() => this.props.history.push('/editor'));
+    this.props.loginDemo().then(() => this.props.history.push('/home'));
   }
 
 
