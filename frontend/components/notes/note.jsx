@@ -16,8 +16,8 @@ class Note extends React.Component  {
     return (
       <div className = 'note-card noselect'>
         <li className = 'note-card-title'> {note.title} </li>
-        <li> {timeStamp} </li>
-        <li> {note.body} </li>
+        <li className = 'note-card-timestamp'> {timeStamp} </li>
+        <li className = 'note-card-body'> {note.body} </li>
       </div>
     );
   }

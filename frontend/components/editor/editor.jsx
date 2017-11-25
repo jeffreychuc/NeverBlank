@@ -20,7 +20,7 @@ class Editor extends React.Component  {
         <div className = 'notes-sidebar'>
           <NotesContainer id={2} />
         </div>
-        <Button className='logout' onClick={() => this.props.slide(2)} block>Logout</Button>
+        <Button className='logout' onClick={() => this.handleLogout()} block>Logout</Button>
       </div>
     );
   }

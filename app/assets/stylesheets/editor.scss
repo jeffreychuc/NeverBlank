@@ -3,11 +3,27 @@
   display:flex;
 }
 .nav-sidebar  {
-  width: 75px;
+  width: 74px;
   height: 100vh;
   background-color: #f8f8f8;
   flex-shrink: 0;
+  border-right: 1px solid #ececec;
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
 }
+
+.nav-logo {
+  display: block;
+  margin: auto;
+  margin-top: 13px;
+}
+
+.smallLogo  {
+  width: 36px;
+  height: 36px;
+}
+
 
 .notes-scroller {
   width: 350px;
@@ -38,7 +54,6 @@
   text-align: left;
   margin: 0;
 }
-
 .notes-header {
   box-sizing: border-box;
   margin: 0 auto;
@@ -110,6 +125,24 @@
   word-wrap: break-word;
   line-height: 20px;
   width: 302px;
+}
+
+.note-card-timestamp  {
+  font-family: Gotham_SSm_5r, helvetica, arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.note-card-body {
+  font-family: Gotham_SSm_5r, helvetica, arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  -webkit-font-smoothing: antialiased;
 }
 
 .notes-background {
