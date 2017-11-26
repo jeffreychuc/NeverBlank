@@ -16,8 +16,8 @@ class Notes extends React.Component  {
   }
 
   componentDidMount() {
-    this.props.fetchNotes().then(() => this.noteScrollerToggle());
-    // this.noteScrollerToggle();
+    // fetches notes then sets active note to first note in list.
+    this.props.fetchNotes().then(() => this.setActive(this.props.notes[0].id)).then(() => this.noteScrollerToggle());
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,7 +25,6 @@ class Notes extends React.Component  {
       return null;
     }
   }
-
 
   render()  {
     console.log('in render');
