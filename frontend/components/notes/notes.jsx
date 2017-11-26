@@ -7,18 +7,14 @@ import { createSlideToggle } from '../../util/css_util';
 class Notes extends React.Component  {
   constructor (props)  {
     super(props);
-    console.log("IN NOTES CONSTRUCTOR");
-    console.log(props);
+    // console.log("IN NOTES CONSTRUCTOR");
+    // console.log(props);
     const boundSlideToggle = createSlideToggle.bind(this);
     this.noteScrollerToggle = boundSlideToggle('notesScrollerClass', 'notes-scroller').bind(this);
-    // this.setActive = this.props.currentNoteID;
-    console.log('in notes constructor');
-    debugger;
+    // console.log('in notes constructor');
   }
 
   componentDidMount() {
-    // fetches notes then sets active note to first note in list.
-    // this.props.fetchNotes().then(() => this.setActive(this.props.notes[0].id)).then(() => this.noteScrollerToggle());
     this.noteScrollerToggle();
   }
 
@@ -26,13 +22,12 @@ class Notes extends React.Component  {
     if (this.props.selected !== nextProps.selected)  {
       return null;
     }
-    debugger;
   }
 
   render()  {
-    console.log('in render');
-    console.log(this.props.selected, 'THIS SHOULD BE A BOOL');
-    console.log(this.props);
+    // console.log('in render');
+    // console.log(this.props.selected, 'THIS SHOULD BE A BOOL');
+    // console.log(this.props);
     if (!this.props.notes)  {
       return null;
     }

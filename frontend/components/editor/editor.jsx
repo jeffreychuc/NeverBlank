@@ -4,20 +4,22 @@ class Editor extends React.Component {
   constructor (props) {
     console.log('IN EDITOR CONSTRUCTOR');
     super(props);
-    this.state = { editorHtml: '', theme: 'snow' };
+    this.state = {editorHtml: ''};
     this.handleChange = this.handleChange.bind(this);
   }
-  
+
   handleChange (html) {
-    console.log(this.state);
+    console.log(this);
+    console.log('setting state for some reason');
     this.setState( { editorHtml: html } );
   }
-  
+
   render () {
+    console.log(this.props,' THIS SI HALKDSJFKJDKFJDSLKJ');
     return (
       <div>
         <ReactQuill 
-          theme={this.state.theme}
+          theme={'snow'}
           onChange={this.handleChange}
           value={this.state.editorHtml}
           modules={Editor.modules}

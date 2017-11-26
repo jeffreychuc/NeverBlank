@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { createNewUser, loginDemo } from '../../actions/session';
 import { clearErrors } from '../../actions/errors';
 import Landing from './landing';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   console.log(state, 'IN MAP TO PROPS IN HOME CONTAINER');
@@ -14,4 +15,4 @@ const mapDispatchToProps = (dispatch) => ({
   clearErrors: () => dispatch(clearErrors())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Landing);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Landing));

@@ -13,8 +13,11 @@ class Home extends React.Component  {
     this.props.fetchNotes().then(() => this.props.history.push(`/home/notes/${this.props.state.entities.notes[0].id}`));
   }
 
+
   render()  {
     if (this.props.state.entities.notes)  {
+      console.log('notes loaded, rendering home view');
+      console.log(this.props.state.entities.notes);
       return (
         <div className = 'main-view'>
           <NavSidebarContainer />
@@ -22,12 +25,13 @@ class Home extends React.Component  {
             <NotesContainer notes={this.props.state.entities.notes} />
           </div>
           <div className = 'editor-main'>
-            <EditorContainer placeholder={'Write something...'}/>
+            <EditorContainer notes={this.props.state.entities.notes} placeholder={'Drag files here or just start typing...'}/>
           </div>
         </div>
       );
     }
     else  {
+      console.log('notes still loading, skipping render');
       return null;
     }
   }
