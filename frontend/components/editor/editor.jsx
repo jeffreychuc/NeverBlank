@@ -4,7 +4,6 @@ class Editor extends React.Component {
   constructor (props) {
     console.log('IN EDITOR CONSTRUCTOR');
     super(props);
-    debugger;
     this.state = { editorHtml: '', theme: 'snow' };
     this.handleChange = this.handleChange.bind(this);
   }
