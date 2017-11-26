@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-
+import { currentNoteID } from '../../actions/ui.js';
 import { fetchNotes } from '../../actions/notes';
 import { slide } from '../../actions/ui';
 
@@ -16,7 +16,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchNotes: () => dispatch(fetchNotes()),
-  slide: (id) => dispatch(slide())
+  slide: (id) => dispatch(slide()),
+  currentNoteID: (id) => dispatch(currentNoteID(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notes);

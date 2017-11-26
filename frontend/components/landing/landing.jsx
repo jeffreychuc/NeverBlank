@@ -4,14 +4,13 @@ import { Link } from 'react-router';
 import { logoLink } from '../assets';
 
 class Landing extends React.Component{
-  constructor(props) {
+  constructor(props, ownProps) {
     super(props);
     this.state = {
       email: '',
       password: ''
     };
-
-    console.log(props);
+    
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
     this.handleDemoLogin = this.handleDemoLogin.bind(this);

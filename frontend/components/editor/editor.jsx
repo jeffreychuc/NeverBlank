@@ -2,13 +2,16 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 class Editor extends React.Component {
   constructor (props) {
+    console.log('IN EDITOR CONSTRUCTOR');
     super(props);
+    debugger;
     this.state = { editorHtml: '', theme: 'snow' };
     this.handleChange = this.handleChange.bind(this);
   }
   
   handleChange (html) {
-  	this.setState( { editorHtml: html } );
+    console.log(this.state);
+    this.setState( { editorHtml: html } );
   }
   
   render () {

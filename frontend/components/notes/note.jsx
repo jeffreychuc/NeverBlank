@@ -14,7 +14,7 @@ class Note extends React.Component  {
     const { note } = this.props;
     let timeStamp = moment(note.updated_at).fromNow();
     return (
-      <div className = 'note-card noselect'>
+      <div className = 'note-card noselect' onClick={() => this.props.setActive(note.id)}>
         <li className = 'note-card-title'> {note.title} </li>
         <li className = 'note-card-timestamp'> {timeStamp} </li>
         <li className = 'note-card-body'> {note.body} </li>

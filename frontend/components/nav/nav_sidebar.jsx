@@ -39,10 +39,10 @@ class NavSidebar extends React.Component  {
       <div className = 'nav-sidebar'>
         <div className = 'nav-logo'>
           <img className='smallLogo' src='https://s3-us-west-1.amazonaws.com/neverblank/smallLogo.png' />
-          {this.topButtonGroup()}
-          {this.bottomButtonGroup()}
-          {this.profileButton()}
-        </div> 
+        </div>
+        {this.topButtonGroup()}
+        {this.bottomButtonGroup()}
+        {this.profileButton()}
       </div> 
     );
   }
