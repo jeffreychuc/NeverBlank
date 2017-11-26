@@ -36,7 +36,7 @@ class Landing extends React.Component{
     console.log(this.props);
     event.preventDefault();
     this.props.createNewUser(this.state)
-      .then(() => this.props.history.push('/home')); //acts as redirect
+      .then(() => this.props.history.push('/home/notes')); //acts as redirect
   }
 
   clearTimer() {
@@ -51,7 +51,7 @@ class Landing extends React.Component{
     console.log(this);
     this.simType('demo@app-academy.io', 'email');
     this.simType('gibjobpls', 'password');
-    this.demoLogin = setTimeout(this.handleDemoLogin, 2000);
+    this.demoLogin = setTimeout(this.handleDemoLogin, 1250);
   }
 
   simType (input, field) {
@@ -66,7 +66,7 @@ class Landing extends React.Component{
       if (i === chars.length) { 
         clearInterval(typeAction);  
       } 
-    }, 80); 
+    }, 40); 
   }
 
   handleDemoLogin() {

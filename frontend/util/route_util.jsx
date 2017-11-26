@@ -8,7 +8,7 @@ const Auth = ({component: Component, path, loggedIn}) => (
       return (<Component {...props} />);
     }
     else  {
-      return (<Redirect to="/home" />);
+      return (<Redirect to="/home/notes" />);
     }
   }} />
 );

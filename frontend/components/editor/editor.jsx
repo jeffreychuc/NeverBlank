@@ -4,18 +4,26 @@ class Editor extends React.Component {
   constructor (props) {
     console.log('IN EDITOR CONSTRUCTOR');
     super(props);
-    this.state = {editorHtml: ''};
+    this.currentEditorNote = this.props.notes.find((note) => note.id === parseInt(this.props.match.params.noteId));
     this.handleChange = this.handleChange.bind(this);
+    this.state = {editorHtml: this.currentEditorNote.body};
+    this.autoSaveTimeoutId = null;
+  }
+
+  handleAutoSave()  {
+    console.log('autosave!');
   }
 
   handleChange (html) {
-    console.log(this);
+    console.log(this.state);
     console.log('setting state for some reason');
-    this.setState( { editorHtml: html } );
+    clearTimeout(this.autoSaveTimeoutId);
+    this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(), 1000);
+    this.setState({editorHtml: html});
   }
 
   render () {
-    console.log(this.props,' THIS SI HALKDSJFKJDKFJDSLKJ');
+    console.log('RENDERING EDITOR');
     return (
       <div>
         <ReactQuill 
