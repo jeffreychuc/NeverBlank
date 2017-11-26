@@ -11,19 +11,22 @@ class Notes extends React.Component  {
     console.log(props);
     const boundSlideToggle = createSlideToggle.bind(this);
     this.noteScrollerToggle = boundSlideToggle('notesScrollerClass', 'notes-scroller').bind(this);
-    this.setActive = this.props.currentNoteID;
+    // this.setActive = this.props.currentNoteID;
     console.log('in notes constructor');
+    debugger;
   }
 
   componentDidMount() {
     // fetches notes then sets active note to first note in list.
-    this.props.fetchNotes().then(() => this.setActive(this.props.notes[0].id)).then(() => this.noteScrollerToggle());
+    // this.props.fetchNotes().then(() => this.setActive(this.props.notes[0].id)).then(() => this.noteScrollerToggle());
+    this.noteScrollerToggle();
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.selected !== nextProps.selected)  {
       return null;
     }
+    debugger;
   }
 
   render()  {
@@ -49,7 +52,7 @@ class Notes extends React.Component  {
                 <ol>
                   {
                     this.props.notes.map((note) => (
-                      <Note setActive={this.setActive} key={shortid.generate()} note={note}/>
+                      <Note key={shortid.generate()} note={note}/>
                     ))
                   }
                 </ol>

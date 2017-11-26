@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import { currentNoteID } from '../../actions/ui.js';
-import { fetchNotes } from '../../actions/notes';
+// import { fetchNotes } from '../../actions/notes';
 import { slide } from '../../actions/ui';
 
 import Notes from './notes';
-
 
 const mapStateToProps = (state, ownProps) => {
   console.log(state, 'IN MAP TO PROPS IN NOTES CONTAINER');
@@ -15,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchNotes: () => dispatch(fetchNotes()),
+  // fetchNotes: () => dispatch(fetchNotes()),
   slide: (id) => dispatch(slide()),
   currentNoteID: (id) => dispatch(currentNoteID(id))
 });

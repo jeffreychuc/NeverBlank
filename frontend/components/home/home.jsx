@@ -8,19 +8,28 @@ class Home extends React.Component  {
     super(props);
   }
 
+  componentDidMount() {
+    // fetches notes then sets active note to first note in list.
+    this.props.fetchNotes().then(() => this.props.history.push(`/home/notes/${this.props.state.entities.notes[0].id}`));
+  }
 
   render()  {
-    return (
-      <div className = 'main-view'>
-        <NavSidebarContainer />
-        <div className = 'notes-sidebar'>
-          <NotesContainer id={2} />
+    if (this.props.state.entities.notes)  {
+      return (
+        <div className = 'main-view'>
+          <NavSidebarContainer />
+          <div className = 'notes-sidebar'>
+            <NotesContainer notes={this.props.state.entities.notes} />
+          </div>
+          <div className = 'editor-main'>
+            <EditorContainer placeholder={'Write something...'}/>
+          </div>
         </div>
-        <div className = 'editor-main'>
-          <EditorContainer placeholder={'Write something...'}/>
-        </div>
-      </div>
-    );
+      );
+    }
+    else  {
+      return null;
+    }
   }
 }
 
