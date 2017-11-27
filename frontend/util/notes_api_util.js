@@ -10,6 +10,6 @@ export const saveNote = (note) => (
   $.ajax({
     url: `/api/notes/${note.id}`,
     method: 'PATCH',
-    data: { note }
+    data: { note: {title: note.title, body: note.body} }
   })
 );

@@ -12,8 +12,8 @@ class Editor extends React.Component {
     this.autoSaveTimeoutId = null;
   }
 
-  handleAutoSave(note)  {
-    this.props.saveNotes(note);
+  handleAutoSave(editorState, id)  {
+    this.props.saveNotes({body: editorState['editorHtml'], id: id});
     // add logic to only autosave if there was a change in the document?
 
   }
@@ -22,14 +22,15 @@ class Editor extends React.Component {
     console.log(this.state);
     console.log('setting state for some reason');
     clearTimeout(this.autoSaveTimeoutId);
-    this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.currentEditorNote), 1000);
     this.setState({editorHtml: html});
+    this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.state, this.currentEditorNote.id), 1000);
+    
   }
 
   componentWillReceiveProps(newProps) {
-    this.handleAutoSave(this.currentEditorNote);
-    this.currentEditorNote = this.props.notes[parseInt(this.props.match.params.noteId)];
     if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
+      this.handleAutoSave(this.currentEditorNote, this.currentEditorNote.id);
+      this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
       this.setState({editorHtml: this.currentEditorNote.body});  
     }
   }

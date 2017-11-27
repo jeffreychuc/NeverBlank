@@ -19,9 +19,7 @@ class Notes extends React.Component  {
   }
 
   // componentWillReceiveProps(nextProps) {
-  //   if (this.props.selected !== nextProps.selected)  {
-  //     return null;
-  //   }
+    
   // }
 
   render()  {
