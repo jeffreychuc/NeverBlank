@@ -18,9 +18,14 @@ class Notes extends React.Component  {
     this.noteScrollerToggle();
   }
 
-  // componentWillReceiveProps(nextProps) {
-    
-  // }
+  componentWillReceiveProps(newProps) {
+   console.log('notes getting new props');
+    if (this.props.match.params.noteId !== newProps.match.params.noteId) {
+      debugger;
+      console.log('fdlksjflkaj');
+      this.setState(newProps);
+    }
+  }
 
   render()  {
     console.log('in notes render');

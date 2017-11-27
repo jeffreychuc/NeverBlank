@@ -23,22 +23,25 @@ class Editor extends React.Component {
     console.log('setting state for some reason');
     clearTimeout(this.autoSaveTimeoutId);
     this.setState({editorHtml: html});
-    this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.state, this.currentEditorNote.id), 1000);
-    
+    if (this.state.editorHtml !== this.currentEditorNote.body)  {
+      this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.state, this.currentEditorNote.id), 1000);
+    }
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
-      this.handleAutoSave(this.currentEditorNote, this.currentEditorNote.id);
+      if (this.state.editorHtml !== this.currentEditorNote.body)  {
+        this.handleAutoSave(this.state, this.currentEditorNote.id);
+      }
       this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
-      this.setState({editorHtml: this.currentEditorNote.body});  
+      this.setState({editorHtml: this.currentEditorNote.body});
     }
   }
 
   render () {
     return (
       <div>
-        <ReactQuill 
+        <ReactQuill
           theme={'snow'}
           onChange={this.handleChange}
           value={this.state.editorHtml}  //is this causing a double render?
@@ -52,7 +55,7 @@ class Editor extends React.Component {
   }
 }
 
-/* 
+/*
  * Quill modules to attach to editor
  * See https://quilljs.com/docs/modules/ for complete options
  */
@@ -61,7 +64,7 @@ Editor.modules = {
     [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
     [{size: []}],
     ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-    [{'list': 'ordered'}, {'list': 'bullet'}, 
+    [{'list': 'ordered'}, {'list': 'bullet'},
      {'indent': '-1'}, {'indent': '+1'}],
     ['link', 'image', 'video'],
     ['clean']
@@ -71,7 +74,7 @@ Editor.modules = {
     matchVisual: false,
   }
 };
-/* 
+/*
  * Quill editor formats
  * See https://quilljs.com/docs/formats/
  */
@@ -82,7 +85,7 @@ Editor.formats = [
   'link', 'image', 'video'
 ];
 
-// /* 
+// /*
 //  * PropType validation
 //  */
 // Editor.propTypes = {

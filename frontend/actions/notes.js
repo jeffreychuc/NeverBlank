@@ -12,5 +12,5 @@ export const fetchNotes = () => (dispatch) => (
 );
 
 export const saveNotes = (note) => (dispatch) => (
-  saveNote(note).then(() => getNotes()).then((notes) => dispatch(receiveAllNotes))
+  saveNote(note).then(() => getNotes()).then((notes) => dispatch(receiveAllNotes(notes)))
 );

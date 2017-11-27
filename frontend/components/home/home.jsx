@@ -19,6 +19,12 @@ class Home extends React.Component  {
     // debugger;
   }
 
+  componentWillReceiveProps(newProps) {
+    console.log('new props in home yo');
+    //do i need to set state here?
+    debugger;
+  }
+
   render()  {
     // check for loaded notes and pushed path
     if (this.props.state.entities.notes && this.props.match.params.noteId)  {
