@@ -2,7 +2,7 @@ import React from 'react';
 import Note from './note';
 import shortid from 'shortid';
 import pluralize from 'pluralize';
-import { createSlideToggle } from '../../util/css_util'; 
+import { createSlideToggle } from '../../util/css_util';
 
 class Notes extends React.Component  {
   constructor (props)  {
@@ -27,6 +27,13 @@ class Notes extends React.Component  {
     }
   }
 
+  renderNoteCards() {
+    debugger;
+    this.props.notes.ordered.updated_at_desc.map((id) => (
+      <Note key={shortid.generate()} note={this.props.notes.by_id[id]}/>
+    ));
+  }
+
   render()  {
     console.log('in notes render');
     // console.log(this.props.selected, 'THIS SHOULD BE A BOOL');
@@ -34,7 +41,7 @@ class Notes extends React.Component  {
     if (!this.props.notes)  {
       return null;
     }
-    let noteCount = Object.keys(this.props.notes.by_id).length;
+    let noteCount = this.props.notes.by_id ? Object.keys(this.props.notes.by_id).length : 0;
     return (
       <div className ={this.state.notesScrollerClass}>
         <div className = 'notes-header'>
@@ -48,11 +55,7 @@ class Notes extends React.Component  {
             <div className = 'notes-view'>
               <div className = 'notes-container'>
                 <ol>
-                  {
-                    this.props.notes.ordered.updated_at_desc.map((id) => (
-                      <Note key={shortid.generate()} note={this.props.notes.by_id[id]}/>
-                    ))
-                  }
+                  {this.renderNoteCards()}
                 </ol>
               </div>
             </div>
