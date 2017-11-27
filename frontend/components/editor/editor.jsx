@@ -42,12 +42,12 @@ class Editor extends React.Component {
     if (this.state.editorHtml !== this.currentEditorNote.body)  {
       if (this.props.match.path === '/home/notes/:noteId' && !this.props.notes['new'])  {
         //console.log('updating note supposidly');
-        debugger;
+        // debugger;
         this.currentEditorNote = this.props.notes[this.props.match.params.noteId];
         this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.state, this.currentEditorNote.id), 1000);
       }
       else if (this.state.editorHtml.title !== '' || this.state.editorHtml.body !== ''){
-        debugger;
+        // debugger;
         //console.log('saving as else');
         this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.state), 1000);
       }
@@ -71,19 +71,37 @@ class Editor extends React.Component {
     //   this.setState({editorHtml: {title: '', body: ''}});
     //   this.props.history.push('/home/notes/new');
     // }
-    // debugger;
+    // if (this.props.notes) {
+    //   if ((typeof this.props.notes['new'] === 'undefined') && newProps.notes['new'])  {
+    //     this.setState({editorHtml: {title: '', body: ''}});
+    //     this.props.history.push('/home/notes/new');
+    //   }
+    // }
+    // if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
+    //   // if (this.state.editorHtml !== this.currentEditorNote.body)  {
+    //   //   this.handleAutoSave(this.state, this.currentEditorNote.id);
+    //   // }
+    //   this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
+    //   this.setState({editorHtml: this.currentEditorNote.body});
+    // }
+
+    console.log('getting new props in editor');
     if (this.props.notes) {
-      if ((typeof this.props.notes['new'] === 'undefined') && newProps.notes['new'])  {
+      if (!('new' in this.props.notes) &&('new' in newProps.notes)) {
         this.setState({editorHtml: {title: '', body: ''}});
         this.props.history.push('/home/notes/new');
       }
+      else if ((this.props.match.params.noteId !== newProps.match.params.noteId) && !('new' in this.props.notes)) {
+        // debugger;
+        this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
+        this.setState({editorHtml: this.currentEditorNote.body});
+      }
     }
-    else if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
-      // if (this.state.editorHtml !== this.currentEditorNote.body)  {
-      //   this.handleAutoSave(this.state, this.currentEditorNote.id);
-      // }
+    else  {
+      // debugger;
       this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
       this.setState({editorHtml: this.currentEditorNote.body});
+      this.setState(newProps);
     }
   }
 

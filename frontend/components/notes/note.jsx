@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 class Note extends React.Component  {
   constructor (props)  {
