@@ -34,6 +34,10 @@
     "postinstall": "webpack",
     "webpack": "webpack --watch"
   },
+  "engines": {
+    "node": "6.10.1",
+    "npm": "3.10.10"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jeffreychuc/NeverBlank.git"
