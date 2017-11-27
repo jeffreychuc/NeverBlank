@@ -22,7 +22,6 @@ class Editor extends React.Component {
   handleChange (html) {
     console.log(this.state);
     console.log('setting state for some reason');
-    debugger;
     clearTimeout(this.autoSaveTimeoutId);
     this.setState({editorHtml: html});
     if (this.state.editorHtml !== this.currentEditorNote.body)  {
@@ -31,7 +30,6 @@ class Editor extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    debugger;
     if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
       if (this.state.editorHtml !== this.currentEditorNote.body)  {
         this.handleAutoSave(this.state, this.currentEditorNote.id);
@@ -42,19 +40,26 @@ class Editor extends React.Component {
   }
 
   render () {
-    return (
-      <div>
-        <ReactQuill
-          theme={'snow'}
-          onChange={this.handleChange}
-          value={this.state.editorHtml}  //is this causing a double render?
-          modules={Editor.modules}
-          formats={Editor.formats}
-          bounds={'.editor-main'}
-          placeholder={this.props.placeholder}
-         />
-       </div>
-     );
+    debugger;
+    console.log('fks;lf;skf');
+    if (this.props.notes) {
+      return (
+        <div>
+          <ReactQuill
+            theme={'snow'}
+            onChange={this.handleChange}
+            value={this.state.editorHtml}  //is this causing a double render?
+            modules={Editor.modules}
+            formats={Editor.formats}
+            bounds={'.editor-main'}
+            placeholder={this.props.placeholder}
+          />
+        </div>
+      );
+    }
+    else  {
+      return null;
+    }
   }
 }
 
