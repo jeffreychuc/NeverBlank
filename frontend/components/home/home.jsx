@@ -10,14 +10,20 @@ class Home extends React.Component  {
 
   componentDidMount() {
     // fetches notes then sets active note to first note in list.
-    this.props.fetchNotes().then(() => this.props.history.push(`/home/notes/${this.props.state.entities.notes[0].id}`));
+    console.log('home did mount');
+    this.props.fetchNotes().then(() => this.debug()).then(() => this.props.history.push(`/home/notes/${this.props.state.entities.notes.ordered.updated_at_desc[0]}`));
   }
 
+  debug() {
+    // console.log('fdksaf;sk');
+    // debugger;
+  }
 
   render()  {
-    if (this.props.state.entities.notes)  {
+    // check for loaded notes and pushed path
+    if (this.props.state.entities.notes && this.props.match.params.noteId)  {
       console.log('notes loaded, rendering home view');
-      console.log(this.props.state.entities.notes);
+      // console.log(this.props.state.entities.notes);
       return (
         <div className = 'main-view'>
           <NavSidebarContainer />
@@ -25,7 +31,7 @@ class Home extends React.Component  {
             <NotesContainer notes={this.props.state.entities.notes} />
           </div>
           <div className = 'editor-main'>
-            <EditorContainer notes={this.props.state.entities.notes} placeholder={'Drag files here or just start typing...'}/>
+            <EditorContainer notes={this.props.state.entities.notes.by_id} placeholder={'Drag files here or just start typing...'}/>
           </div>
         </div>
       );

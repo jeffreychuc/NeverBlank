@@ -18,20 +18,20 @@ class Notes extends React.Component  {
     this.noteScrollerToggle();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.selected !== nextProps.selected)  {
-      return null;
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.selected !== nextProps.selected)  {
+  //     return null;
+  //   }
+  // }
 
   render()  {
-    // console.log('in render');
+    console.log('in notes render');
     // console.log(this.props.selected, 'THIS SHOULD BE A BOOL');
     // console.log(this.props);
     if (!this.props.notes)  {
       return null;
     }
-    let noteCount = this.props.notes.length;
+    let noteCount = Object.keys(this.props.notes.by_id).length;
     return (
       <div className ={this.state.notesScrollerClass}>
         <div className = 'notes-header'>
@@ -46,8 +46,8 @@ class Notes extends React.Component  {
               <div className = 'notes-container'>
                 <ol>
                   {
-                    this.props.notes.map((note) => (
-                      <Note key={shortid.generate()} note={note}/>
+                    this.props.notes.ordered.updated_at_desc.map((id) => (
+                      <Note key={shortid.generate()} note={this.props.notes.by_id[id]}/>
                     ))
                   }
                 </ol>

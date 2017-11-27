@@ -24,9 +24,21 @@ const Protected = ({ component: Component, path, loggedIn }) => (
   }} />
 );
 
+const ProtectedExact = ({ component: Component, path, loggedIn }) => (
+  <Route excat path={path} render={(props) => {
+    if (loggedIn)  {
+      return (<Component {...props} />);
+    }
+    else  {
+      return (<Redirect to="/signin" />);
+    }
+  }} />
+);
+
 const mapStateToProps = state => (
   {loggedIn: Boolean(state.session.currentUser)}
 );
 
 export const AuthRoute = withRouter(connect(mapStateToProps, null)(Auth));
 export const ProtectedRoute = withRouter(connect(mapStateToProps, null)(Protected));
+export const ProtectedRouteExact = withRouter(connect(mapStateToProps, null)(ProtectedExact));

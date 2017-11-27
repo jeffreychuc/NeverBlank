@@ -5,3 +5,11 @@ export const getNotes = (notes) => (
     notes: notes
   })
 );
+
+export const saveNote = (note) => (
+  $.ajax({
+    url: `/api/notes/${note.id}`,
+    method: 'PATCH',
+    data: { note }
+  })
+);
