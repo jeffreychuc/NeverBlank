@@ -21,3 +21,10 @@ export const postNote = (note) => (
     data: { note: {title: note.title, body: note.body, bodypreview: note.bodypreview} }
   })
 );
+
+export const deleteNote = (id) => (
+  $.ajax({
+    url: `api/notes/${id}`,
+    method: 'DELETE'
+  })
+);

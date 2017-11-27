@@ -87,7 +87,8 @@ class Editor extends React.Component {
 
     console.log('getting new props in editor');
     if (this.props.notes) {
-      if (!('new' in this.props.notes) &&('new' in newProps.notes)) {
+      debugger;
+      if (!('new' in this.props.notes) && (typeof newProps.notes !== 'undefined') && ('new' in newProps.notes)) {
         this.setState({editorHtml: {title: '', body: ''}});
         this.props.history.push('/home/notes/new');
       }

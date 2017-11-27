@@ -33,7 +33,7 @@ class Notes extends React.Component  {
     // debugger;
     return(
       this.props.notes.ordered.updated_at_desc.map((id) => (
-        <Note key={shortid.generate()} note={this.props.notes.by_id[id]}/>
+        <Note destroyNote={this.props.destroyNote} key={shortid.generate()} note={this.props.notes.by_id[id]}/>
       ))
     );
   }

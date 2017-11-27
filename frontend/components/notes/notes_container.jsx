@@ -1,9 +1,10 @@
+import Notes from './notes';
 import { connect } from 'react-redux';
-import { currentNoteID } from '../../actions/ui.js';
+import { currentNoteID } from '../../actions/ui';
 import { slide } from '../../actions/ui';
 import { withRouter } from 'react-router-dom';
+import { destroyNote } from '../../actions/notes';
 
-import Notes from './notes';
 
 const mapStateToProps = (state, ownProps) => {
   console.log(state, 'IN MAP TO PROPS IN NOTES CONTAINER');
@@ -13,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-
+  destroyNote: (id) => dispatch(destroyNote(id))
 });
 
-export default withRouter(connect(mapStateToProps, null)(Notes));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Notes));
