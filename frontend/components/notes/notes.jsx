@@ -20,7 +20,7 @@ class Notes extends React.Component  {
 
   componentWillReceiveProps(newProps) {
    console.log('notes getting new props');
-   debugger;
+  //  debugger;
     if ('by_id' in newProps.notes)  {
       if ((!newProps.notes.by_id['new']) && (this.props.match.params.noteId !== newProps.match.params.noteId)) {
         console.log('notes setting new props');
@@ -46,7 +46,7 @@ class Notes extends React.Component  {
       return null;
     }
     // debugger;
-    let noteCount = this.props.notes.by_id ? Object.keys(this.props.notes.by_id).length : 0;
+    let noteCount = this.props.notes.ordered ? this.props.notes.ordered.created_at_asce.length : 0;
     return (
       <div className ={this.state.notesScrollerClass}>
         <div className = 'notes-header'>
