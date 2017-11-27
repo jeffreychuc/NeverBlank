@@ -2,6 +2,7 @@ import React from 'react';
 import Note from './note';
 import shortid from 'shortid';
 import pluralize from 'pluralize';
+import { Button } from 'react-bootstrap';
 import { createSlideToggle } from '../../util/css_util';
 
 class Notes extends React.Component  {
@@ -29,11 +30,21 @@ class Notes extends React.Component  {
     }
   }
 
+  handleDelete(id)  {
+    //delete the note, then push
+    this.props.destroyNote(id).then((action) =>
+      this.props.history.push('/home/notes/' + `${action.notes.ordered.updated_at_desc[0] ? action.notes.ordered.updated_at_desc[0] : ''}`)
+    );
+  }
+
   renderNoteCards() {
     // debugger;
     return(
       this.props.notes.ordered.updated_at_desc.map((id) => (
-        <Note destroyNote={this.props.destroyNote} key={shortid.generate()} note={this.props.notes.by_id[id]}/>
+        <div>
+          <Button key={shortid.generate()} onClick = {() => this.handleDelete(id)} />
+          <Note key={shortid.generate()} note={this.props.notes.by_id[id]}/>
+        </div>
       ))
     );
   }

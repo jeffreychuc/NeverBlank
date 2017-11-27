@@ -87,7 +87,7 @@ class Editor extends React.Component {
 
     console.log('getting new props in editor');
     if (this.props.notes) {
-      debugger;
+      // debugger;
       if (!('new' in this.props.notes) && (typeof newProps.notes !== 'undefined') && ('new' in newProps.notes)) {
         this.setState({editorHtml: {title: '', body: ''}});
         this.props.history.push('/home/notes/new');
@@ -96,6 +96,10 @@ class Editor extends React.Component {
         // debugger;
         this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
         this.setState({editorHtml: this.currentEditorNote.body});
+      }
+      else  {
+        debugger;
+        console.log('delete logic should be in here');
       }
     }
     else  {

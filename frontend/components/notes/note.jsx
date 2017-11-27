@@ -14,7 +14,6 @@ class Note extends React.Component  {
     let timeStamp = moment(note.updated_at).fromNow();
     return (
       <NavLink to={`/home/notes/${note.id}`}>
-        <Button onClick={() => this.props.destroyNote(note.id)} />
         <div className = 'note-select'>
           <div className = 'note-card noselect'>
             <li className = 'note-card-title'> {note.title} </li>
