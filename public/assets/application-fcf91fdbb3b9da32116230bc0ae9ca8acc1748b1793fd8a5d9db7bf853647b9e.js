@@ -87843,7 +87843,7 @@ var Notes = function (_React$Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
       console.log('notes getting new props');
-      debugger;
+      //  debugger;
       if ('by_id' in newProps.notes) {
         if (!newProps.notes.by_id['new'] && this.props.match.params.noteId !== newProps.match.params.noteId) {
           console.log('notes setting new props');
@@ -87871,7 +87871,7 @@ var Notes = function (_React$Component) {
         return null;
       }
       // debugger;
-      var noteCount = this.props.notes.by_id ? Object.keys(this.props.notes.by_id).length : 0;
+      var noteCount = this.props.notes.ordered ? this.props.notes.ordered.created_at_asce.length : 0;
       return _react2.default.createElement(
         'div',
         { className: this.state.notesScrollerClass },
