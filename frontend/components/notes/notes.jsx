@@ -21,14 +21,13 @@ class Notes extends React.Component  {
   componentWillReceiveProps(newProps) {
    console.log('notes getting new props');
     if (this.props.match.params.noteId !== newProps.match.params.noteId) {
-      debugger;
-      console.log('fdlksjflkaj');
+      // debugger;
       this.setState(newProps);
     }
   }
 
   renderNoteCards() {
-    debugger;
+    // debugger;
     return(
       this.props.notes.ordered.updated_at_desc.map((id) => (
         <Note key={shortid.generate()} note={this.props.notes.by_id[id]}/>
@@ -43,7 +42,7 @@ class Notes extends React.Component  {
     if (!this.props.notes)  {
       return null;
     }
-    debugger;
+    // debugger;
     let noteCount = this.props.notes.by_id ? Object.keys(this.props.notes.by_id).length : 0;
     return (
       <div className ={this.state.notesScrollerClass}>

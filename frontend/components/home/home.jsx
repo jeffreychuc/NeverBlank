@@ -32,7 +32,7 @@ class Home extends React.Component  {
 
   render()  {
     // check for loaded notes and pushed path
-    debugger;
+    // debugger;
     if (this.props.state.entities.notes)  {
       console.log('notes loaded, rendering home view');
       // console.log(this.props.state.entities.notes);

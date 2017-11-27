@@ -9,24 +9,23 @@ class Editor extends React.Component {
     this.currentEditorNote = this.props.notes ? this.props.notes[parseInt(this.props.match.params.noteId)] : {body: '', title: ''};
     this.handleChange = this.handleChange.bind(this);
     this.state = {editorHtml: this.currentEditorNote.body};
-    this.catchFirstReload = true;
     this.autoSaveTimeoutId = null;
   }
 
   handleAutoSave(editorState, id)  {
     const bodyHtml = editorState['editorHtml'];
-    if (id) {
-      this.props.saveNotes({body: bodyHtml, bodypreview: striptags(bodyHtml).substring(0, 200), id: id});
+    if (typeof id === "undefined") {
+      this.props.createNote({body: bodyHtml, bodypreview: striptags(bodyHtml)}).then((note)=> this.debug(note)).then((action) => this.props.history.push(`/home/notes/${action.notes.ordered.created_at_desc[0]}`));
     }
     else  {
       // this.props.createNote({body: bodyHtml, bodypreview: striptags(bodyHtml)}).then((note) => this.debug(note));
-      this.props.createNote({body: bodyHtml, bodypreview: striptags(bodyHtml)}).then((action) => this.props.history.push(`/home/notes/${action.notes.ordered.created_at_desc[0]}`));
+      this.props.saveNotes({body: bodyHtml, bodypreview: striptags(bodyHtml).substring(0, 200), id: id}).then((note) => this.debug(note));
     }
     // add logic to only autosave if there was a change in the document?
   }
 
   debug(note) {
-    debugger;
+    return note;
   }
 
   handleChange (html) {
@@ -40,17 +39,27 @@ class Editor extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    // if (this.props.match)
+    // if (this.props.match.path === newProps.match.path)  {
+    //   // save on exit but broken?
+
+    //   if ((this.props.match.params.noteId !== newProps.match.params.noteId) && (this.state.editorHtml !== this.currentEditorNote.body))  {
+    //     this.handleAutoSave(this.state, this.currentEditorNote.id);
+    //   }
+    //   this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
+    //   this.setState({editorHtml: this.currentEditorNote.body});
+    // }
     if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
-      if (this.state.editorHtml !== this.currentEditorNote.body)  {
-        this.handleAutoSave(this.state, this.currentEditorNote.id);
-      }
+      // if (this.state.editorHtml !== this.currentEditorNote.body)  {
+      //   this.handleAutoSave(this.state, this.currentEditorNote.id);
+      // }
       this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
       this.setState({editorHtml: this.currentEditorNote.body});
     }
   }
 
   render () {
-    debugger;
+    // debugger;
     const renderNoteContent = this.state.editorHtml ? this.state.editorHtml : '';
     return (
       <div>
