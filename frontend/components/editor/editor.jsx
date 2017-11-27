@@ -98,8 +98,7 @@ class Editor extends React.Component {
       }
     }
     else  {
-      // debugger;
-      this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
+      this.currentEditorNote = newProps.notes ? newProps.notes[parseInt(newProps.match.params.noteId)] : this.currentEditorNote;
       this.setState({editorHtml: this.currentEditorNote.body});
       this.setState(newProps);
     }

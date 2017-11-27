@@ -20,10 +20,12 @@ class Notes extends React.Component  {
 
   componentWillReceiveProps(newProps) {
    console.log('notes getting new props');
-  //  debugger;
-    if ((!newProps.notes.by_id['new']) && (this.props.match.params.noteId !== newProps.match.params.noteId)) {
-      console.log('notes setting new props');
-      this.setState(newProps);
+   debugger;
+    if ('by_id' in newProps.notes)  {
+      if ((!newProps.notes.by_id['new']) && (this.props.match.params.noteId !== newProps.match.params.noteId)) {
+        console.log('notes setting new props');
+        this.setState(newProps);
+      }
     }
   }
 
