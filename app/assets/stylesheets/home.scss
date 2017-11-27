@@ -2,21 +2,21 @@
   font-family: 'Gotham_SSm_5r';
   src: local("?"), url("https://s3-us-west-1.amazonaws.com/neverblank/fonts/gmedium.woff") format("woff");
   font-weight: normal;
-  font-style: normal; 
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'webfont';
   src: url("/assets/caecilialtstd-roman.eot") format("eot");
   font-weight: normal;
-  font-style: normal; 
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'Gotham_SSm_3r';
   src: url("https://s3-us-west-1.amazonaws.com/neverblank/fonts/glight.woff") format("woff");
   font-weight: normal;
-  font-style: normal; 
+  font-style: normal;
 }
 
 .signup-form h2 {
@@ -110,20 +110,20 @@ li  {
 .or-row {
   display: flex;
   align-items: center;
-  margin: 22px 0; 
+  margin: 22px 0;
 }
 
 .or-line {
   flex: 1 1;
   height: 1px;
-  background-color: #f3f3f3; 
+  background-color: #f3f3f3;
 }
 
 .or-text {
   color: #b4b4b4;
   margin: 0 8px;
   font-family: "Gotham_SSm_3r", Helvetica, Arial, sans-serif;
-  font-size: 11px; 
+  font-size: 11px;
 }
 
 .signup-form h2 {
@@ -239,7 +239,6 @@ li  {
 
 .rotator.heading-4 {
   opacity:0;
-  
   animation: heading1-rotation-animation;
   animation-duration: 1s;
   animation-fill-mode: forwards;
