@@ -7,5 +7,5 @@ import thunk from 'redux-thunk';
 
 export default (preloadedState = {}) => createStore(
   rootReducer, preloadedState,
-  composeWithDevTools(applyMiddleware(createLogger(), thunk))
+  composeWithDevTools(applyMiddleware(thunk, createLogger()))
 );

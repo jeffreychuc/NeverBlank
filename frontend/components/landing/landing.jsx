@@ -10,13 +10,13 @@ class Landing extends React.Component{
       email: '',
       password: ''
     };
-    
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
     this.handleDemoLogin = this.handleDemoLogin.bind(this);
     this.simType = this.simType.bind(this);
   }
-  
+
   componentWillMount(){
     // document.body.style.backgroundColor = 'white';
   }
@@ -59,14 +59,14 @@ class Landing extends React.Component{
     let finChars = "";
     console.log(chars);
     let i = 0;
-    let typeAction = setInterval(() => { 
+    let typeAction = setInterval(() => {
       finChars+=chars[i++];
       this.setState({[field]: finChars});
       console.log(finChars);
-      if (i === chars.length) { 
-        clearInterval(typeAction);  
-      } 
-    }, 40); 
+      if (i === chars.length) {
+        clearInterval(typeAction);
+      }
+    }, 40);
   }
 
   handleDemoLogin() {
@@ -83,7 +83,7 @@ class Landing extends React.Component{
     else {
       console.log('not email');
       return 'warning';
-    } 
+    }
   }
 
   getValidationStatePassword() {

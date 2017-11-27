@@ -4,7 +4,7 @@ import striptags from 'striptags';
 
 class Editor extends React.Component {
   constructor (props) {
-    console.log('IN EDITOR CONSTRUCTOR');
+    //console.log('IN EDITOR CONSTRUCTOR');
     super(props);
     this.currentEditorNote = this.props.notes ? this.props.notes[parseInt(this.props.match.params.noteId)] : {body: '', title: ''};
     this.handleChange = this.handleChange.bind(this);
@@ -12,13 +12,16 @@ class Editor extends React.Component {
     this.autoSaveTimeoutId = null;
   }
 
-  handleAutoSave(editorState, id)  {
+  handleAutoSave(editorState, id='new')  {
     const bodyHtml = editorState['editorHtml'];
-    if (typeof id === "undefined") {
-      this.props.createNote({body: bodyHtml, bodypreview: striptags(bodyHtml)}).then((note)=> this.debug(note)).then((action) => this.props.history.push(`/home/notes/${action.notes.ordered.created_at_desc[0]}`));
+    // debugger;
+    if (id==='new') {
+      debugger;
+      this.props.createNote({body: bodyHtml, bodypreview: striptags(bodyHtml)}).then((note)=> this.debug(note)).then((action) => this.props.history.push(`/home/notes/${action.notes.ordered.updated_at_desc[0]}`));
     }
     else  {
       // this.props.createNote({body: bodyHtml, bodypreview: striptags(bodyHtml)}).then((note) => this.debug(note));
+      debugger;
       this.props.saveNotes({body: bodyHtml, bodypreview: striptags(bodyHtml).substring(0, 200), id: id}).then((note) => this.debug(note));
     }
     // add logic to only autosave if there was a change in the document?
@@ -29,12 +32,25 @@ class Editor extends React.Component {
   }
 
   handleChange (html) {
-    console.log(this.state);
-    console.log('setting state for some reason');
+    //console.log(this.state);
+    //console.log('setting state for some reason');
+    // debugger;
     clearTimeout(this.autoSaveTimeoutId);
+    //console.log('fdsafkljsalkfjsak');
     this.setState({editorHtml: html});
+    // debugger;
     if (this.state.editorHtml !== this.currentEditorNote.body)  {
-      this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.state, this.currentEditorNote.id), 1000);
+      if (this.props.match.path === '/home/notes/:noteId' && !this.props.notes['new'])  {
+        //console.log('updating note supposidly');
+        debugger;
+        this.currentEditorNote = this.props.notes[this.props.match.params.noteId];
+        this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.state, this.currentEditorNote.id), 1000);
+      }
+      else if (this.state.editorHtml.title !== '' || this.state.editorHtml.body !== ''){
+        debugger;
+        //console.log('saving as else');
+        this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.state), 1000);
+      }
     }
   }
 
@@ -49,7 +65,20 @@ class Editor extends React.Component {
     //   this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
     //   this.setState({editorHtml: this.currentEditorNote.body});
     // }
-    if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
+    //console.log('GOT NEW PROPS IN EDITOR');
+    // debugger;
+    // if (newProps.notes.new) {
+    //   this.setState({editorHtml: {title: '', body: ''}});
+    //   this.props.history.push('/home/notes/new');
+    // }
+    // debugger;
+    if (this.props.notes) {
+      if ((typeof this.props.notes['new'] === 'undefined') && newProps.notes['new'])  {
+        this.setState({editorHtml: {title: '', body: ''}});
+        this.props.history.push('/home/notes/new');
+      }
+    }
+    else if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
       // if (this.state.editorHtml !== this.currentEditorNote.body)  {
       //   this.handleAutoSave(this.state, this.currentEditorNote.id);
       // }
