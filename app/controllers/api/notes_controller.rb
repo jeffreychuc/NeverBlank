@@ -14,6 +14,20 @@ class Api::NotesController < ApplicationController
     end
   end
 
+  def create
+    if current_user
+      @note = Note.new(note_params)
+      @note.author_id = current_user.id
+      if @note.save
+        render json: @note
+      else
+        render json: { notes: @note.errors.full_messages }, status: 500
+      end
+    else
+      render json: {notes: 'must be logged in'}
+    end
+  end
+
   def update
     @note = current_user.notes.find_by(id: params[:id])
     if @note && @note.update(note_params)
@@ -35,6 +49,6 @@ class Api::NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:title, :body, :notebook_id)
+    params.require(:note).permit(:title, :body, :bodypreview, :notebook_id)
   end
 end

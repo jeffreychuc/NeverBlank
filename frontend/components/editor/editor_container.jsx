@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Editor from './editor';
 import { withRouter } from 'react-router-dom';
 import { getCurrentNote } from '../../util/route_util';
-import { saveNotes } from '../../actions/notes';
+import { patchNotes, postNotes } from '../../actions/notes';
 
 const mapStateToProps = (state, ownProps) => {
   return(
@@ -13,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  saveNotes: (note) => dispatch(saveNotes(note))
+  saveNotes: (note) => dispatch(patchNotes(note)),
+  createNote: (note) => dispatch(postNotes(note))
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(Editor));

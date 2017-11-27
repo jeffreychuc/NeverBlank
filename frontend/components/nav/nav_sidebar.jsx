@@ -10,7 +10,7 @@ class NavSidebar extends React.Component  {
   topButtonGroup()  {
     return (
       <div className = 'topButtonGroup'>
-
+        <Button className='newNoteButton' onClick={() => this.generateNewNote()} block>Logout</Button>
       </div>
     );
   }
@@ -43,7 +43,7 @@ class NavSidebar extends React.Component  {
         {this.topButtonGroup()}
         {this.bottomButtonGroup()}
         {this.profileButton()}
-      </div> 
+      </div>
     );
   }
 }

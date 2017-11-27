@@ -15,8 +15,18 @@ class Editor extends React.Component {
 
   handleAutoSave(editorState, id)  {
     const bodyHtml = editorState['editorHtml'];
-    this.props.saveNotes({body: bodyHtml, bodyPreview: striptags(bodyHtml), id: id});
+    if (id) {
+      this.props.saveNotes({body: bodyHtml, bodypreview: striptags(bodyHtml).substring(0, 200), id: id});
+    }
+    else  {
+      // this.props.createNote({body: bodyHtml, bodypreview: striptags(bodyHtml)}).then((note) => this.debug(note));
+      this.props.createNote({body: bodyHtml, bodypreview: striptags(bodyHtml)}).then((action) => this.props.history.push(`/home/notes/${action.notes.ordered.created_at_desc[0]}`));
+    }
     // add logic to only autosave if there was a change in the document?
+  }
+
+  debug(note) {
+    debugger;
   }
 
   handleChange (html) {
@@ -41,25 +51,20 @@ class Editor extends React.Component {
 
   render () {
     debugger;
-    console.log('fks;lf;skf');
-    if (this.props.notes) {
-      return (
-        <div>
-          <ReactQuill
-            theme={'snow'}
-            onChange={this.handleChange}
-            value={this.state.editorHtml}  //is this causing a double render?
-            modules={Editor.modules}
-            formats={Editor.formats}
-            bounds={'.editor-main'}
-            placeholder={this.props.placeholder}
-          />
-        </div>
-      );
-    }
-    else  {
-      return null;
-    }
+    const renderNoteContent = this.state.editorHtml ? this.state.editorHtml : '';
+    return (
+      <div>
+        <ReactQuill
+          theme={'snow'}
+          onChange={this.handleChange}
+          value={renderNoteContent}
+          modules={Editor.modules}
+          formats={Editor.formats}
+          bounds={'.editor-main'}
+          placeholder={this.props.placeholder}
+        />
+      </div>
+    );
   }
 }
 
