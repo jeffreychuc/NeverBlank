@@ -23,16 +23,21 @@ class User < ApplicationRecord
   validates :password_digest, presence: { message: "Password can not be blank." }
   validates :password, length: { minimum: 6, allow_nil: true }
   before_validation :ensure_session_token
-  
+
   has_many :notes,
   primary_key: :id,
   foreign_key: :author_id,
   class_name: :Note
-  
+
+  has_many :notebooks,
+  primary_key: :id,
+  foreign_key: :author_id,
+  class_name: :Notebook
+
   attr_reader :password
-  
+
   # password=
-  # sets password to instance variable so that 
+  # sets password to instance variable so that
   # model level validations can check for length and presence
   # sets password_digest on user from plain text password
   def password=(password)
