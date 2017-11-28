@@ -37,6 +37,7 @@ class Editor extends React.Component {
   //    return tmp.textContent||tmp.innerText;
   // }
 
+  //https://stackoverflow.com/questions/15523113/removing-html-tags-but-keep-breaklines
   stripTags(html){
     html = html.replace(/<p>/g,'');
     html = html.replace(/<\/p>/g,'\n\n');
