@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
-import striptags from 'striptags';
+// import striptags from 'striptags';
 
 class Editor extends React.Component {
   constructor (props) {
@@ -17,12 +17,12 @@ class Editor extends React.Component {
     // debugger;
     if (id==='new') {
       // debugger;
-      this.props.createNote({body: bodyHtml, bodypreview: striptags(bodyHtml)}).then((note)=> this.debug(note)).then((action) => this.props.history.push(`/home/notes/${action.notes.ordered.updated_at_desc[0]}`));
+      this.props.createNote({body: bodyHtml, bodypreview: bodyHtml}).then((note)=> this.debug(note)).then((action) => this.props.history.push(`/home/notes/${action.notes.ordered.updated_at_desc[0]}`));
     }
     else  {
       // this.props.createNote({body: bodyHtml, bodypreview: striptags(bodyHtml)}).then((note) => this.debug(note));
       // debugger;
-      this.props.saveNotes({body: bodyHtml, bodypreview: striptags(bodyHtml).substring(0, 200), id: id}).then((note) => this.debug(note));
+      this.props.saveNotes({body: bodyHtml, bodypreview: bodyHtml.substring(0, 200), id: id}).then((note) => this.debug(note));
     }
     // add logic to only autosave if there was a change in the document?
   }
