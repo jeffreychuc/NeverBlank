@@ -1,7 +1,5 @@
 import Notes from './notes';
 import { connect } from 'react-redux';
-import { currentNoteID } from '../../actions/ui';
-import { slide } from '../../actions/ui';
 import { withRouter } from 'react-router-dom';
 import { destroyNote } from '../../actions/notes';
 

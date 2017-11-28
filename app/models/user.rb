@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
   has_many :notebooks,
   primary_key: :id,
-  foreign_key: :notebook_id,
+  foreign_key: :author_id,
   class_name: :Notebook
 
   attr_reader :password
