@@ -32,43 +32,45 @@ class Home extends React.Component  {
   }
 
   componentWillReceiveProps(newProps) {
-    debugger;
     if (newProps.state.entities.notes && newProps.state.entities.notebooks) {
       if (this.props.state.ui.loading)  {
         this.props.setLoadingState(false);
+      }
+      let redirect = this.props.match.path;
+      if (this.props.match.path === '/home/') {
+        //add logic to check for current notebook
+        const notesList = newProps.state.entities.notes.ordered.updated_at_desc;
+        if (notesList.length === 0) {
+          redirect += 'notes/';
+        }
+        else  {
+          redirect += `notes/${notesList[0]}`;
+        }
+        if ((redirect !== this.props.match.url) && (redirect !== newProps.match.url)) {
+          this.props.history.push(redirect);
+        }
       }
     }
     //need to handle all loading in here.....
   }
 
   render()  {
-    // check for loaded notes and pushed path
-    if (this.props.state.entities.notes && this.props.state.entities.notebooks)  {
+    // check for loaded data, set in compoenent did mount
+    if (!this.props.state.ui.loading)  {
       console.log('notes loaded, rendering home view');
-      // console.log(this.props.state.entities.notes);
-      let notesToBePassed;
-      let notesToBePassedByID;
+      // this two lines need to be change to accout for switching notebooks
+      let notesToBePassed = this.props.state.entities.notes;
+      let notesToBePassedByID = this.props.state.entities.notes.by_id;
+      // this two lines need to be change to accout for switching notebooks
       let notebooksToBePassed = this.props.state.entities.notebooks;
-      if (this.props.match.params.noteId) { //logic for switching notes view per notebook should be in here
-        notesToBePassed = this.props.state.entities.notes;
-        notesToBePassedByID = notesToBePassed.by_id;
-      }
-      else  {
-        notesToBePassed = null;
-        notesToBePassedByID = null;
-      }
+      debugger;
       return (
         <div className = 'main-view'>
           <NavSidebarContainer />
           <div className = 'notes-sidebar'>
             <NotesContainer notes={notesToBePassed} />
           </div>
-          <div className = 'notebook-slidebar-overlay'>
-            <NotebooksContainer notebooks={notebooksToBePassed} />
-          </div>
-          <div className = 'editor-main'>
-            <EditorContainer notes={notesToBePassedByID} placeholder={'Drag files here or just start typing...'}/>
-          </div>
+
         </div>
       );
     }
@@ -82,3 +84,10 @@ class Home extends React.Component  {
 export default Home;
 
 // {/* <Button className='logout' onClick={this.handleLogout.bind(this)} block>Logout</Button> */}
+// {/* <div className = 'notebook-slidebar-overlay'>
+//             <NotebooksContainer notebooks={notebooksToBePassed} />
+//           </div>
+//
+// {/* <div className = 'editor-main'>
+//             <EditorContainer notes={notesToBePassedByID} placeholder={'Drag files here or just start typing...'}/>
+//           </div> */}

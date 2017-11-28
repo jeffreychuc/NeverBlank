@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactQuill from 'react-quill';
 // import striptags from 'striptags';
@@ -102,6 +101,30 @@ class Editor extends React.Component {
     //   this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
     //   this.setState({editorHtml: this.currentEditorNote.body});
     // }
+    debugger;
+    console.log('getting new props in editor');
+    if (this.props.notes) {
+      debugger;
+      if (!('new' in this.props.notes) && (typeof newProps.notes !== 'undefined') && ('new' in newProps.notes)) {
+        this.setState({editorHtml: {title: '', body: ''}});
+        this.props.history.push('/home/notes/new');
+      }
+      else if ((this.props.match.params.noteId !== newProps.match.params.noteId) && !('new' in this.props.notes)) {
+        // debugger;
+        this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
+        this.setState({editorHtml: this.currentEditorNote.body});
+      }
+      else if (typeof newProps.notes === 'undefined' || newProps.bodypreview === '') {
+        this.setState({editorHtml: {title: '', body: ''}});
+        this.currentEditorNote = {title: '', body: ''};
+        console.log('delete logic should be in here');
+      }
+    }
+    else  {
+      this.currentEditorNote = newProps.notes ? newProps.notes[parseInt(newProps.match.params.noteId)] : this.currentEditorNote;
+      this.setState({editorHtml: this.currentEditorNote.body});
+      this.setState(newProps);
+    }
   }
 
   render () {

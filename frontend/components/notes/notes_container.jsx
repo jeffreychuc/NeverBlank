@@ -15,4 +15,4 @@ const mapDispatchToProps = (dispatch) => ({
   destroyNote: (id) => dispatch(destroyNote(id))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Notes));
+export default withRouter(connect(null, mapDispatchToProps)(Notes));
