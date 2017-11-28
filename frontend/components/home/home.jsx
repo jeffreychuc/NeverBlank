@@ -2,6 +2,7 @@ import React from 'react';
 import NotesContainer from '../notes/notes_container';
 import NavSidebarContainer from '../nav/nav_sidebar_container';
 import EditorContainer from '../editor/editor_container';
+import NotebooksContainer from '../notebooks/notebooks_container';
 
 class Home extends React.Component  {
   constructor (props)  {
@@ -12,6 +13,8 @@ class Home extends React.Component  {
     // fetches notes then sets active note to first note in list.
     console.log('home did mount');
     this.props.fetchNotes().then(() => this.getRedirect()).then((redirect) => this.props.history.push(redirect));
+    debugger;
+    this.props.fetchNotebooks();
   }
 
   getRedirect() {
@@ -26,12 +29,13 @@ class Home extends React.Component  {
 
   render()  {
     // check for loaded notes and pushed path
-    if (this.props.state.entities.notes)  {
+    if (this.props.state.entities.notes && this.props.state.entities.notebooks)  {
       console.log('notes loaded, rendering home view');
       // console.log(this.props.state.entities.notes);
       let notesToBePassed;
       let notesToBePassedByID;
-      if (this.props.match.params.noteId) {
+      let notebooksToBePassed = this.props.state.entities.notebooks;
+      if (this.props.match.params.noteId) { //logic for switching notes view per notebook should be in here
         notesToBePassed = this.props.state.entities.notes;
         notesToBePassedByID = notesToBePassed.by_id;
       }
@@ -44,6 +48,9 @@ class Home extends React.Component  {
           <NavSidebarContainer />
           <div className = 'notes-sidebar'>
             <NotesContainer notes={notesToBePassed} />
+          </div>
+          <div className = 'notebook-slidebar-overlay'>
+            <NotebooksContainer notebooks={notebooksToBePassed} />
           </div>
           <div className = 'editor-main'>
             <EditorContainer notes={notesToBePassedByID} placeholder={'Drag files here or just start typing...'}/>
