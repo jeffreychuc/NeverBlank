@@ -41,9 +41,9 @@ class Notes extends React.Component  {
     // debugger;
     return(
       this.props.notes.ordered.updated_at_desc.map((id) => (
-        <div>
-          <Button key={shortid.generate()} onClick = {() => this.handleDelete(id)} />
-          <Note key={shortid.generate()} note={this.props.notes.by_id[id]}/>
+        <div key={shortid.generate()} >
+          <Button onClick = {() => this.handleDelete(id)} />
+          <Note note={this.props.notes.by_id[id]}/>
         </div>
       ))
     );
