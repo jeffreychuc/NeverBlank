@@ -3,12 +3,12 @@ class Api::NotesController < ApplicationController
     if current_user
       @notes = Note.where(author_id: current_user.id)
       if @notes
-        @notes_updated_at_desc = @notes.order(updated_at: :desc).map(&:id)
-        @notes_updated_at_asce = @notes.order(updated_at: :asc).map(&:id)
-        @notes_created_at_desc = @notes.order(created_at: :desc).map(&:id)
-        @notes_created_at_asce = @notes.order(created_at: :asc).map(&:id)
-        @notes_title_desc = @notes.order(title: :desc).map(&:id)
-        @notes_title_asce = @notes.order(title: :asc).map(&:id)
+        @notes_updated_at_desc = @notes.order(updated_at: :desc).pluck(:id)
+        @notes_updated_at_asce = @notes.order(updated_at: :asc).pluck(:id)
+        @notes_created_at_desc = @notes.order(created_at: :desc).pluck(:id)
+        @notes_created_at_asce = @notes.order(created_at: :asc).pluck(:id)
+        @notes_title_desc = @notes.order(title: :desc).pluck(:id)
+        @notes_title_asce = @notes.order(title: :asc).pluck(:id)
         render :index
       end
     end
