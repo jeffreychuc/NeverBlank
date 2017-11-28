@@ -52,9 +52,10 @@ class Editor extends React.Component {
     // debugger;
     clearTimeout(this.autoSaveTimeoutId);
     //console.log('fdsafkljsalkfjsak');
+
     this.setState({editorHtml: html});
-    // debugger;
-    if (this.state.editorHtml !== this.currentEditorNote.body)  {
+    debugger;
+    if (this.state.editorHtml.body !== this.currentEditorNote.body)  {
       if (this.props.match.path === '/home/notes/:noteId' && !this.props.notes['new'])  {
         //console.log('updating note supposidly');
         // debugger;
@@ -66,6 +67,7 @@ class Editor extends React.Component {
         //console.log('saving as else');
         this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.state), 1000);
       }
+      debugger;
     }
   }
 
