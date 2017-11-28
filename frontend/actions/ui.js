@@ -13,3 +13,11 @@ export const currentNoteID = (id) => {
   return {type: SHOW_NOTE_IN_EDITOR,
           id: id};
 };
+
+export const SET_LOADING = 'SET_LOADING';
+
+export const setLoadingState = (loadingState) => {
+  console.log('current loading state ', loadingState);
+  return {type: SET_LOADING,
+          loading: loadingState};
+};

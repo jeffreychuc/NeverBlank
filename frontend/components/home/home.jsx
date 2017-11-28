@@ -12,9 +12,13 @@ class Home extends React.Component  {
   componentDidMount() {
     // fetches notes then sets active note to first note in list.
     console.log('home did mount');
-    this.props.fetchNotes().then(() => this.getRedirect()).then((redirect) => this.props.history.push(redirect));
-    debugger;
+    this.props.setLoadingState(true);
+    this.props.fetchNotes();
     this.props.fetchNotebooks();
+  }
+
+  debug() {
+    debugger;
   }
 
   getRedirect() {
@@ -25,6 +29,16 @@ class Home extends React.Component  {
     else  {
       return (`/home/notes/${notesList[0]}`);
     }
+  }
+
+  componentWillReceiveProps(newProps) {
+    debugger;
+    if (newProps.state.entities.notes && newProps.state.entities.notebooks) {
+      if (this.props.state.ui.loading)  {
+        this.props.setLoadingState(false);
+      }
+    }
+    //need to handle all loading in here.....
   }
 
   render()  {

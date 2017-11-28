@@ -4,6 +4,7 @@ import { logout } from '../../actions/session';
 import { fetchNotes } from '../../actions/notes';
 import { fetchNotebooks } from '../../actions/notebooks';
 import { withRouter } from 'react-router-dom';
+import { setLoadingState } from '../../actions/ui';
 
 const mapStateToProps = (state) => ({
   state: state
@@ -11,7 +12,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchNotes: () => dispatch(fetchNotes()),
-  fetchNotebooks: () => dispatch(fetchNotebooks())
+  fetchNotebooks: () => dispatch(fetchNotebooks()),
+  setLoadingState: (loadingState) => dispatch(setLoadingState(loadingState))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
