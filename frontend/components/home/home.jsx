@@ -13,8 +13,7 @@ class Home extends React.Component  {
     // fetches notes then sets active note to first note in list.
     console.log('home did mount');
     this.props.setLoadingState(true);
-    this.props.fetchNotes();
-    this.props.fetchNotebooks();
+    this.props.fetchNotes().then(() => this.props.fetchNotebooks());
   }
 
   debug() {
@@ -32,26 +31,33 @@ class Home extends React.Component  {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.state.entities.notes && newProps.state.entities.notebooks) {
-      if (this.props.state.ui.loading)  {
-        this.props.setLoadingState(false);
+    // debugger;
+    if (newProps.state.entities.notes !== null) {
+      // debugger;
+      if (('ordered' in newProps.state.entities.notes)) {
+        // debugger;
+        if (this.props.state.ui.loading)  {
+          this.props.setLoadingState(false);
+        }
+        let redirect = this.props.match.path;
+        if (this.props.match.path === '/home/') {
+          //add logic to check for current notebook
+          const notesList = newProps.state.entities.notes.ordered.updated_at_desc;
+          debugger;
+          if (notesList.length === 0) {
+            redirect += 'notes/';
+          }
+          else  {
+            redirect += `notes/${notesList[0]}`;
+          }
+          if ((redirect !== this.props.match.url) && (redirect !== newProps.match.url)) {
+            this.props.history.push(redirect);
+          }
+        }
       }
-      let redirect = this.props.match.path;
-      if (this.props.match.path === '/home/') {
-        //add logic to check for current notebook
-        const notesList = newProps.state.entities.notes.ordered.updated_at_desc;
-        if (notesList.length === 0) {
-          redirect += 'notes/';
-        }
-        else  {
-          redirect += `notes/${notesList[0]}`;
-        }
-        if ((redirect !== this.props.match.url) && (redirect !== newProps.match.url)) {
-          this.props.history.push(redirect);
-        }
-      }
+      //need to handle all loading in here.....
+      // debugger;
     }
-    //need to handle all loading in here.....
   }
 
   render()  {
@@ -61,11 +67,12 @@ class Home extends React.Component  {
       // this two lines need to be change to accout for switching notebooks
       let notesToBePassed = this.props.state.entities.notes;
       let noteToBePassedById;
-      if (this.props.match.params['noteId'] === 'new')  {
-        noteToBePassedById = {body: '', id: 'new'};
+      debugger;
+      if (('noteId' in this.props.match.params) && (this.props.match.params['noteId'] !== 'new') && ('by_id' in this.props.state.entities.notes)) {
+        noteToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
       }
       else  {
-        noteToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
+        noteToBePassedById = {body: '', id: 'new'};
       }
       // this two lines need to be change to accout for switching notebooks
       let notebooksToBePassed = this.props.state.entities.notebooks;
@@ -90,9 +97,3 @@ class Home extends React.Component  {
 }
 
 export default Home;
-
-// {/* <Button className='logout' onClick={this.handleLogout.bind(this)} block>Logout</Button> */}
-// {/* <div className = 'notebook-slidebar-overlay'>
-//             <NotebooksContainer notebooks={notebooksToBePassed} />
-//           </div>
-//

@@ -18,14 +18,27 @@ class Editor extends React.Component {
     return tempDiv.textContent||tempDiv.innerText;
   }
 
+  debug(data) {
+    debugger;
+  }
+
   handleSave(editorState)  {
     const { title, editorHtml, id } = editorState;
     if (id === 'new') {
-      // debugger;
-      this.props.createNotes({body: editorHtml, bodypreview: this.stripTags(editorHtml).substring(0, 200)});
+      this.props.createNotes({
+        body: editorHtml,
+        bodypreview: this.stripTags(editorHtml).substring(0, 200)
+      }).then((action) => this.props.history.push(
+        this.props.match.path.split('/').slice(0,this.props.match.path.split('/').length-1).join('/')
+        + '/'
+        + action.notes.ordered.updated_at_desc[0]));
     }
     else  {
-      this.props.saveNotes({body: editorHtml, bodypreview: this.stripTags(editorHtml).substring(0, 200), id: id});
+      this.props.saveNotes({
+        body: editorHtml,
+        bodypreview: this.stripTags(editorHtml).substring(0, 200),
+        id: id
+      });
     }
   }
 
@@ -39,8 +52,10 @@ class Editor extends React.Component {
 
 
   componentWillReceiveProps(newProps) {
+    // debugger;
     if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
-      this.handleSave(this.state);
+      // this.handleSave(this.state);
+      // causes double save
       let editorBody;
       let noteId;
       if (newProps.match.params.noteId === 'new') {
