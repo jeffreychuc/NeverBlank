@@ -7,69 +7,6 @@ class Editor extends React.Component {
   constructor (props) {
     //console.log('IN EDITOR CONSTRUCTOR');
     super(props);
-    this.currentEditorNote = this.props.notes ? this.props.notes[parseInt(this.props.match.params.noteId)] : {body: '', title: ''};
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {editorHtml: this.currentEditorNote.body};
-    this.autoSaveTimeoutId = null;
-  }
-
-  handleAutoSave(editorState, id='new')  {
-    const bodyHtml = editorState['editorHtml'];
-    // debugger;
-    if (id==='new') {
-      // debugger;
-      this.props.createNote({body: bodyHtml, bodypreview: this.stripTags(bodyHtml)}).then((note)=> this.debug(note)).then((action) => this.props.history.push(`/home/notes/${action.notes.ordered.updated_at_desc[0]}`));
-    }
-    else  {
-      // this.props.createNote({body: bodyHtml, bodypreview: striptags(bodyHtml)}).then((note) => this.debug(note));
-      // debugger;
-      this.props.saveNotes({body: bodyHtml, bodypreview: this.stripTags(bodyHtml).substring(0, 200), id: id}).then((note) => this.debug(note));
-    }
-    // add logic to only autosave if there was a change in the document?
-  }
-
-  debug(note) {
-    return note;
-  }
-
-  // stripTags(html)  {
-  //    const tmp = document.createElement("DIV");
-  //    tmp.innerHTML = html;
-  //    return tmp.textContent||tmp.innerText;
-  // }
-
-  //https://stackoverflow.com/questions/15523113/removing-html-tags-but-keep-breaklines
-  stripTags(html){
-    html = html.replace(/<p>/g,'');
-    html = html.replace(/<\/p>/g,'\n\n');
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = html;
-    return tempDiv.textContent||tempDiv.innerText;
-  }
-
-  handleChange (html) {
-    //console.log(this.state);
-    //console.log('setting state for some reason');
-    // debugger;
-    clearTimeout(this.autoSaveTimeoutId);
-    //console.log('fdsafkljsalkfjsak');
-
-    this.setState({editorHtml: html});
-    debugger;
-    if (this.state.editorHtml.body !== this.currentEditorNote.body)  {
-      if (this.props.match.path === '/home/notes/:noteId' && !this.props.notes['new'])  {
-        //console.log('updating note supposidly');
-        // debugger;
-        this.currentEditorNote = this.props.notes[this.props.match.params.noteId];
-        this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.state, this.currentEditorNote.id), 1000);
-      }
-      else if (this.state.editorHtml.title !== '' || this.state.editorHtml.body !== ''){
-        // debugger;
-        //console.log('saving as else');
-        this.autoSaveTimeoutId = setTimeout(() => this.handleAutoSave(this.state), 1000);
-      }
-      debugger;
-    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -106,18 +43,9 @@ class Editor extends React.Component {
 
   render () {
     // debugger;
-    const renderNoteContent = this.state.editorHtml ? this.state.editorHtml : '';
     return (
       <div>
-        <ReactQuill
-          theme={'snow'}
-          onChange={this.handleChange}
-          value={renderNoteContent}
-          modules={Editor.modules}
-          formats={Editor.formats}
-          bounds={'.editor-main'}
-          placeholder={this.props.placeholder}
-        />
+        QUILL EDITOR
       </div>
     );
   }
