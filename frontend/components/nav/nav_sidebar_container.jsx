@@ -10,7 +10,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout()),
-  addBlankNote: () => dispatch(generateBlankNote())
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(NavSidebar));

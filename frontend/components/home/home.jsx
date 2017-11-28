@@ -60,16 +60,16 @@ class Home extends React.Component  {
       console.log('notes loaded, rendering home view');
       // this two lines need to be change to accout for switching notebooks
       let notesToBePassed = this.props.state.entities.notes;
-      let notesToBePassedById;
+      let noteToBePassedById;
       if (this.props.match.params['noteId'] === 'new')  {
-        notesToBePassedById = null;
+        noteToBePassedById = {body: '', id: 'new'};
       }
       else  {
-        notesToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
+        noteToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
       }
       // this two lines need to be change to accout for switching notebooks
       let notebooksToBePassed = this.props.state.entities.notebooks;
-      debugger;
+      // debugger;
       return (
         <div className = 'main-view'>
           <NavSidebarContainer />
@@ -77,7 +77,7 @@ class Home extends React.Component  {
             <NotesContainer notes={notesToBePassed} />
           </div>
           <div className = 'editor-main'>
-            <EditorContainer notes={notesToBePassedById} placeholder={'Drag files here or just start typing...'}/>
+            <EditorContainer note={noteToBePassedById} placeholder={'Drag files here or just start typing...'}/>
           </div>
         </div>
       );

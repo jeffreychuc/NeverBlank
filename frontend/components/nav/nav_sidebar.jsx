@@ -10,7 +10,7 @@ class NavSidebar extends React.Component  {
   topButtonGroup()  {
     return (
       <div className = 'topButtonGroup'>
-        <Button className='newNoteButton' onClick={this.props.addBlankNote} block>Add New Note</Button>
+        <Button className='newNoteButton' onClick={() => this.props.history.push('/home/notes/new/')} block>Add New Note</Button>
       </div>
     );
   }

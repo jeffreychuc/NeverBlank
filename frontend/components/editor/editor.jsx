@@ -1,51 +1,72 @@
-
 import React from 'react';
 import ReactQuill from 'react-quill';
 // import striptags from 'striptags';
 
 class Editor extends React.Component {
   constructor (props) {
-    //console.log('IN EDITOR CONSTRUCTOR');
     super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {title: '', editorHtml: this.props.note['body'], id: this.props.note['id']};
+    this.autoSaveTimeoutId = null;
   }
 
-  componentWillReceiveProps(newProps) {
-    // if (this.props.match)
-    // if (this.props.match.path === newProps.match.path)  {
-    //   // save on exit but broken?
+  stripTags(html) {
+    html = html.replace(/<p>/g,'');
+    html = html.replace(/<\/p>/g,'\n\n');
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    return tempDiv.textContent||tempDiv.innerText;
+  }
 
-    //   if ((this.props.match.params.noteId !== newProps.match.params.noteId) && (this.state.editorHtml !== this.currentEditorNote.body))  {
-    //     this.handleAutoSave(this.state, this.currentEditorNote.id);
-    //   }
-    //   this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
-    //   this.setState({editorHtml: this.currentEditorNote.body});
-    // }
-    //console.log('GOT NEW PROPS IN EDITOR');
-    // debugger;
-    // if (newProps.notes.new) {
-    //   this.setState({editorHtml: {title: '', body: ''}});
-    //   this.props.history.push('/home/notes/new');
-    // }
-    // if (this.props.notes) {
-    //   if ((typeof this.props.notes['new'] === 'undefined') && newProps.notes['new'])  {
-    //     this.setState({editorHtml: {title: '', body: ''}});
-    //     this.props.history.push('/home/notes/new');
-    //   }
-    // }
-    // if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
-    //   // if (this.state.editorHtml !== this.currentEditorNote.body)  {
-    //   //   this.handleAutoSave(this.state, this.currentEditorNote.id);
-    //   // }
-    //   this.currentEditorNote = newProps.notes[parseInt(newProps.match.params.noteId)];
-    //   this.setState({editorHtml: this.currentEditorNote.body});
-    // }
+  handleSave(editorState)  {
+    const { title, editorHtml, id } = editorState;
+    if (id === 'new') {
+      // debugger;
+      this.props.createNotes({body: editorHtml, bodypreview: this.stripTags(editorHtml).substring(0, 200)});
+    }
+    else  {
+      this.props.saveNotes({body: editorHtml, bodypreview: this.stripTags(editorHtml).substring(0, 200), id: id});
+    }
+  }
+
+  handleChange (html) {
+    clearTimeout(this.autoSaveTimeoutId);
+    this.setState({editorHtml: html});
+    if (this.props.note.body !== this.state.editorHtml) {
+      this.autoSaveTimeoutId = setTimeout(() => this.handleSave(this.state), 1000);
+    }
+  }
+
+
+  componentWillReceiveProps(newProps) {
+    if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
+      this.handleSave(this.state);
+      let editorBody;
+      let noteId;
+      if (newProps.match.params.noteId === 'new') {
+        editorBody = '';
+        noteId = 'new';
+      }
+      else  {
+        editorBody = newProps.note.body;
+        noteId = newProps.note['id'];
+      }
+      this.setState({editorHtml: editorBody, id: noteId});
+    }
   }
 
   render () {
-    // debugger;
     return (
       <div>
-        QUILL EDITOR
+        <ReactQuill
+          theme={'snow'}
+          onChange={this.handleChange}
+          value={this.state.editorHtml}
+          modules={Editor.modules}
+          formats={Editor.formats}
+          bounds={'.editor-main'}
+          placeholder={this.props.placeholder}
+        />
       </div>
     );
   }

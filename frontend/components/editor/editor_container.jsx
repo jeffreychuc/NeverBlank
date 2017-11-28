@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   saveNotes: (note) => dispatch(patchNotes(note)),
-  createNote: (note) => dispatch(postNotes(note))
+  createNotes: (note) => dispatch(postNotes(note))
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(Editor));
