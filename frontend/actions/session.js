@@ -33,5 +33,5 @@ export const logout = () => (dispatch) => (
 );
 
 export const loginDemo = () => (dispatch) =>  (
-  postSession(demoUser).then((user) => dispatch(receiveCurrentUser(user)))
+  postSession(demoUser).then((user) => dispatch(receiveCurrentUser(user)), (error) => dispatch(receiveErrors(error.responseJSON)))
 );

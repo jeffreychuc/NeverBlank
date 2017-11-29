@@ -22,6 +22,8 @@ class Notebooks extends React.Component  {
 
   handleDelete(id)  {
     //delete the note, then push
+    // code to confirm?
+    // handle delete should also be in notes container
     this.props.destroyNotebook(id);
     // .then((action) =>
     //   this.props.history.push('/home/notes/' + `${action.notes.ordered.updated_at_desc[0] ? action.notes.ordered.updated_at_desc[0] : ''}`)

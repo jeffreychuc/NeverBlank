@@ -66,7 +66,7 @@ class Home extends React.Component  {
           let notebook_id = newProps.match.params.notebookId;
           // debugger;
           let firstNotebookNote = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebookPair) => Object.keys(notebookPair)[0] === notebook_id))[0][0];
-          this.props.history.push(`/home/notebooks/${notebook_id}/notes/${firstNotebookNote}`);
+          this.props.history.push(firstNotebookNote ? `/home/notebooks/${notebook_id}/notes/${firstNotebookNote}` : `/home/notebooks/${notebook_id}/notes/`);
         }
       }
 
