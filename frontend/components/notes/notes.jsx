@@ -38,12 +38,12 @@ class Notes extends React.Component  {
   }
 
   renderNoteCards() {
-    debugger;
+    // debugger;
     return(
       this.props.notes.map((note) => (
         <div key={shortid.generate()} >
           <Button onClick = {() => this.handleDelete(note.id)} />
-          <Note note={note}/>
+          <Note match={this.props.match}note={note}/>
         </div>
       ))
     );
@@ -57,7 +57,7 @@ class Notes extends React.Component  {
       return null;
     }
     // debugger;
-    let noteCount = this.props.notes.ordered ? this.props.notes.ordered.created_at_asce.length : 0;
+    let noteCount = this.props.notes.length;
     return (
       <div className ={this.state.notesScrollerClass}>
         <div className = 'notes-header'>

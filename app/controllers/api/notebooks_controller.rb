@@ -5,7 +5,7 @@ class Api::NotebooksController < ApplicationController
       if @notebooks
         @notebooks_created_at_desc = @notebooks.order(created_at: :desc).pluck(:id)
         @notebook_arr = []
-        @notebooks_created_at_desc.map {|notebook_id| @notebook_arr.push([notebook_id, [current_user.notes.find_by(notebook_id: notebook_id)]])}
+        @notebooks_created_at_desc.map {|notebook_id| @notebook_arr.push([notebook_id, [current_user.notes.where(notebook_id: notebook_id)]])}
         render :index
       end
     else

@@ -12,8 +12,18 @@ class Note extends React.Component  {
   render()  {
     const { note } = this.props;
     let timeStamp = moment(note.updated_at).fromNow();
+
+    let noteLink;// = (this.props.match.path === '/home/notebooks/:notebookId') ? this.props.match.url + `/notes/${note.id}`: `/notes/${note.id}`;
+    debugger;
+    if (this.props.match.path.includes('/home/notebooks/:notebookId'))  {
+      noteLink = `/home/notebooks/${this.props.match.params.notebookId}/notes/${note.id}`;
+    }
+    else  {
+      noteLink = `/home/notes/${note.id}`;
+    }
+
     return (
-      <NavLink to={`/home/notes/${note.id}`}>
+      <NavLink to={noteLink}>
         <div className = 'note-select'>
           <div className = 'note-card noselect'>
             <li className = 'note-card-title'> {note.title} </li>

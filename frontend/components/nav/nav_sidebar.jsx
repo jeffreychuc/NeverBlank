@@ -17,7 +17,8 @@ class NavSidebar extends React.Component  {
 
   bottomButtonGroup() {
     return (
-      <div className = 'bottomButtonGroup'>
+      <div className = 'middleButtonGroup'>
+        <Button className='newNoteButton' onClick={() => this.props.history.push('/home/notes/')} block>Notes</Button>
       </div>
     );
   }
