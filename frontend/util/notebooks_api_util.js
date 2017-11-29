@@ -18,7 +18,7 @@ export const postNotebook = (notebook) => (
   $.ajax({
     url: '/api/notebooks/',
     method: 'POST',
-    data: { note: {title: notebook.title} }
+    data: { notebook: {title: notebook.title} }
   })
 );
 

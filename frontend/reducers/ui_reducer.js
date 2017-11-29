@@ -1,4 +1,4 @@
-import { SET_LOADING } from '../actions/ui';
+import { SET_LOADING, SET_CURRENT_NOTEBOOK } from '../actions/ui';
 import merge from 'lodash/merge';
 
 
@@ -9,6 +9,8 @@ export default (state=_initSlideState, action) => {
   switch(action.type) {
     case SET_LOADING:
       return {loading: action.loading};
+    case SET_CURRENT_NOTEBOOK:
+      return {currentNotebook: action.notebookId};
     default:
       return state;
   }

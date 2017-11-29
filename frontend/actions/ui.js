@@ -16,8 +16,17 @@ export const currentNoteID = (id) => {
 
 export const SET_LOADING = 'SET_LOADING';
 
+
 export const setLoadingState = (loadingState) => {
   console.log('current loading state ', loadingState);
   return {type: SET_LOADING,
           loading: loadingState};
+};
+
+export const SET_CURRENT_NOTEBOOK = 'SET_CURRENT_NOTEBOOK';
+
+export const setCurrentNotebook = (id) => {
+  console.log('current notebook ', id);
+  return {type: SET_CURRENT_NOTEBOOK,
+          currentNotebook: id};
 };

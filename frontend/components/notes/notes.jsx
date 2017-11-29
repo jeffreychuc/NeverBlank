@@ -21,13 +21,13 @@ class Notes extends React.Component  {
 
   componentWillReceiveProps(newProps) {
    console.log('notes getting new props');
-   debugger;
-    if ('by_id' in newProps.notes)  {
-      if ((!newProps.notes.by_id['new']) && (this.props.match.params.noteId !== newProps.match.params.noteId)) {
-        console.log('notes setting new props');
-        this.setState(newProps);
-      }
-    }
+  //  debugger;
+    // if ('by_id' in newProps.notes)  {
+    //   if ((!newProps.notes.by_id['new']) && (this.props.match.params.noteId !== newProps.match.params.noteId)) {
+    //     console.log('notes setting new props');
+    //     this.setState(newProps);
+    //   }
+    // }
   }
 
   handleDelete(id)  {
@@ -38,12 +38,12 @@ class Notes extends React.Component  {
   }
 
   renderNoteCards() {
-    // debugger;
+    debugger;
     return(
-      this.props.notes.ordered.updated_at_desc.map((id) => (
+      this.props.notes.map((note) => (
         <div key={shortid.generate()} >
-          <Button onClick = {() => this.handleDelete(id)} />
-          <Note note={this.props.notes.by_id[id]}/>
+          <Button onClick = {() => this.handleDelete(note.id)} />
+          <Note note={note}/>
         </div>
       ))
     );

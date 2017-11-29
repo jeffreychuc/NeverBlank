@@ -21,31 +21,39 @@ class Notebooks extends React.Component  {
   }
 
   handleDelete(id)  {
-
+    //delete the note, then push
+    this.props.destroyNotebook(id);
+    // .then((action) =>
+    //   this.props.history.push('/home/notes/' + `${action.notes.ordered.updated_at_desc[0] ? action.notes.ordered.updated_at_desc[0] : ''}`)
+    // expected behavior: if in match path of notebook sidebar view, stay, if in /home/notes/notebooks/:notebookid/notes/:noteid go back to /home/notes/
   }
 
+
   renderNotebookCards() {
+    debugger;
     return(
-      this.props.notebooks.ordered.created_at_desc.map((id) => (
+      this.props.notebooks.ordered['created_at_desc'].map((notebookPair) => ( //data for this should look like {3: [5]}
         <div key={shortid.generate()} >
-          <Button onClick = {() => this.handleDelete(id)} />
-          <Notebook notebook={this.props.notebooks.by_id[id]}/>
+          <Button onClick = {() => this.handleDelete(Object.keys(notebookPair)[0])} />
+          <Notebook notebook={this.props.notebooks.by_id[Object.keys(notebookPair)[0]]} noteCount = {notebookPair[Object.keys(notebookPair)[0]].length}/>
         </div>
       ))
     );
   }
 
+  debug() {
+    debugger;
+  }
   render()  {
     console.log('in notebooks render');
     // console.log(this.props.selected, 'THIS SHOULD BE A BOOL');
     // console.log(this.props);
-    if (!this.props.notebooks)  {
-      return null;
-    }
     // debugger;
     return (
       <div className = 'notebooksSlider'>
         IT RENDERS
+        <h2 className = 'notebooksSlider-header'>Notebooks</h2>
+        <Button onClick ={()=>this.props.createNotebook()}/>
         {this.renderNotebookCards()}
       </div>
     );

@@ -1,6 +1,10 @@
 json.ordered do
   json.created_at_desc do
-    json.array! @notebooks_created_at_desc
+    json.array! @notebook_arr.each do |notebook_pair|
+      json.set! notebook_pair[0] do
+        json.array! notebook_pair[1].map! { |note| note ? note.id : nil }.compact
+      end
+    end
   end
 end
 

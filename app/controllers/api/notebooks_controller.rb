@@ -1,9 +1,11 @@
 class Api::NotebooksController < ApplicationController
   def index
     if current_user
-      @notebooks = Note.where(author_id: current_user.id)
+      @notebooks = Notebook.where(author_id: current_user.id)
       if @notebooks
         @notebooks_created_at_desc = @notebooks.order(created_at: :desc).pluck(:id)
+        @notebook_arr = []
+        @notebooks_created_at_desc.map {|notebook_id| @notebook_arr.push([notebook_id, [current_user.notes.find_by(notebook_id: notebook_id)]])}
         render :index
       end
     else
@@ -37,8 +39,7 @@ class Api::NotebooksController < ApplicationController
   def destroy
     @notebook = current_user.notebooks.find_by(id: params[:id])
     if @notebook.destroy
-      byebug
-      @notes = current_user.notes.find_by(id: params[:id])
+      @notes = current_user.notes.find_by(notebook_id: params[:id])
       if @notes
         @notes.destroy_all
       end
