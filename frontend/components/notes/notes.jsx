@@ -32,6 +32,7 @@ class Notes extends React.Component  {
 
   handleDelete(id)  {
     //delete the note, then push
+    debugger;
     this.props.destroyNote(id).then((action) =>
       this.props.history.push('/home/notes/' + `${action.notes.ordered.updated_at_desc[0] ? action.notes.ordered.updated_at_desc[0] : ''}`)
     );

@@ -19,7 +19,7 @@ class NavSidebar extends React.Component  {
   bottomButtonGroup() {
     return (
       <div className = 'middleButtonGroup'>
-        <NavLink className='newNoteButton' to={'/home/notes/'} block>Notes</NavLink>
+        <NavLink strict className='newNoteButton' to={'/home/notes/'} >Notes</NavLink>
       </div>
     );
   }

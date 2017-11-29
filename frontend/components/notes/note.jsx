@@ -14,7 +14,6 @@ class Note extends React.Component  {
     let timeStamp = moment(note.updated_at).fromNow();
 
     let noteLink;// = (this.props.match.path === '/home/notebooks/:notebookId') ? this.props.match.url + `/notes/${note.id}`: `/notes/${note.id}`;
-    debugger;
     if (this.props.match.path.includes('/home/notebooks/:notebookId'))  {
       noteLink = `/home/notebooks/${this.props.match.params.notebookId}/notes/${note.id}`;
     }
