@@ -57,12 +57,13 @@ class Home extends React.Component  {
           // if ((redirect !== this.props.match.url) && (redirect !== newProps.match.url)) {
           //   this.props.history.push(redirect);
           // }
-          debugger;
+          // debugger;
           if ((newProps.match.url === '/home/notes/' && redirect !== newProps.match.url) || ((redirect !== this.props.match.url) && (redirect !== newProps.match.url))) {
             this.props.history.push(redirect);
           }
         }
         else if (newProps.match.path === '/home/notebooks/:notebookId') {
+          // debugger;
           let notebook_id = newProps.match.params.notebookId;
           // debugger;
           let firstNotebookNote = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebookPair) => Object.keys(notebookPair)[0] === notebook_id))[0][0];
