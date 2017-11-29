@@ -43,8 +43,8 @@ class Home extends React.Component  {
         }
         let redirect;
         // Home view
-        debugger;
-        if (this.props.match.path === '/home/' || this.props.match.path === '/home/notes/') {
+
+        if (this.props.match.path === '/home/' || this.props.match.path === '/home/notes/' || newProps.match.path === '/home/notes/') {
           //add logic to check for current notebook
           const notesList = newProps.state.entities.notes.ordered.updated_at_desc;
           // debugger;
@@ -54,13 +54,17 @@ class Home extends React.Component  {
           else  {
             redirect = `/home/notes/${notesList[0]}`;
           }
-          if ((redirect !== this.props.match.url) && (redirect !== newProps.match.url)) {
+          // if ((redirect !== this.props.match.url) && (redirect !== newProps.match.url)) {
+          //   this.props.history.push(redirect);
+          // }
+          debugger;
+          if (newProps.match.url === '/home/notes/' || ((redirect !== this.props.match.url) && (redirect !== newProps.match.url))) {
             this.props.history.push(redirect);
           }
         }
         else if (newProps.match.path === '/home/notebooks/:notebookId') {
           let notebook_id = newProps.match.params.notebookId;
-          debugger;
+          // debugger;
           let firstNotebookNote = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebookPair) => Object.keys(notebookPair)[0] === notebook_id))[0][0];
           this.props.history.push(`/home/notebooks/${notebook_id}/notes/${firstNotebookNote}`);
         }

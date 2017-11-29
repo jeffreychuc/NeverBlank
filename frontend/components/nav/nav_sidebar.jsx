@@ -1,6 +1,7 @@
 import React from 'react';
 import { smallLogo } from '../assets';
 import { Button } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 class NavSidebar extends React.Component  {
   constructor(props)  {
@@ -18,7 +19,7 @@ class NavSidebar extends React.Component  {
   bottomButtonGroup() {
     return (
       <div className = 'middleButtonGroup'>
-        <Button className='newNoteButton' onClick={() => this.props.history.push('/home/notes/')} block>Notes</Button>
+        <NavLink className='newNoteButton' to={'/home/notes/'} block>Notes</NavLink>
       </div>
     );
   }
