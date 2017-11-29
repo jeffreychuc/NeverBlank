@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_NOTES, SAVE_CURRENT_NOTE, ADD_BLANK_NOTE } from '../actions/notes';
+import { RECEIVE_ALL_NOTES, ADD_BLANK_NOTE } from '../actions/notes';
 import merge from 'lodash/merge';
 const BLANK_NOTE = {"by_id":
                                 {

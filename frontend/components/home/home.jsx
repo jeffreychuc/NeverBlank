@@ -58,7 +58,7 @@ class Home extends React.Component  {
           //   this.props.history.push(redirect);
           // }
           debugger;
-          if (newProps.match.url === '/home/notes/' || ((redirect !== this.props.match.url) && (redirect !== newProps.match.url))) {
+          if ((newProps.match.url === '/home/notes/' && redirect !== newProps.match.url) || ((redirect !== this.props.match.url) && (redirect !== newProps.match.url))) {
             this.props.history.push(redirect);
           }
         }
@@ -82,7 +82,7 @@ class Home extends React.Component  {
       console.log('notes loaded, rendering home view');
       // this two lines need to be change to accout for switching notebooks
       // let notesToBePassed = this.props.state.entities.notes;
-      let notesToBePassed;
+      let notesToBePassed = [];
 
       //logic for notesToBePassed
 
@@ -94,6 +94,8 @@ class Home extends React.Component  {
       else if (this.props.match.path === '/home/notes/:noteId')  {
         notesToBePassed = this.props.state.entities.notes.ordered.updated_at_desc.map((id) => this.props.state.entities.notes.by_id[id]); // returns list of objects (notes) that belong to the user
       }
+
+      debugger;
       // }
 
       // logic for note to be passed to editor
