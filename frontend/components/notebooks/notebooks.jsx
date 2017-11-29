@@ -53,7 +53,7 @@ class Notebooks extends React.Component  {
       <div className = 'notebooksSlider'>
         IT RENDERS
         <h2 className = 'notebooksSlider-header'>Notebooks</h2>
-        <Button onClick ={()=>this.props.createNotebook()}/>
+        <Button onClick ={()=>this.props.createNotebook()}>Create a Notebook</Button>
         {this.renderNotebookCards()}
       </div>
     );
