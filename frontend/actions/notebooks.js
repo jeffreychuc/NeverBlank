@@ -1,4 +1,5 @@
 import { getNotebooks, deleteNotebook } from '../util/notebooks_api_util';
+import { fetchNotes } from './notes';
 
 export const RECEIVE_ALL_NOTEBOOKS = 'RECEIVE_ALL_NOTEBOOKS';
 export const ADD_BLANK_NOTE = 'ADD_BLANK_NOTEBOOK';
@@ -13,5 +14,5 @@ export const fetchNotebooks = () => (dispatch) => (
 );
 
 export const destroyNotebook = (id) => (dispatch) => (
-  deleteNotebook(id).then(() => getNotebooks()).then((notebooks) => dispatch(receiveAllNotebooks(notebooks)))
+  deleteNotebook(id).then(() => dispatch(fetchNotebooks())).then(() => dispatch(fetchNotes()))
 );

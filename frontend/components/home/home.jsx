@@ -33,7 +33,7 @@ class Home extends React.Component  {
   }
 
   componentWillReceiveProps(newProps) {
-    // debugger;
+    debugger;
     if (newProps.state.entities.notes !== null && newProps.state.entities.notebooks !== null) {
       if (('ordered' in newProps.state.entities.notes) && ('ordered' in newProps.state.entities.notebooks)) {
         // debugger;
@@ -95,13 +95,14 @@ class Home extends React.Component  {
         notesToBePassed = this.props.state.entities.notes.ordered.updated_at_desc.map((id) => this.props.state.entities.notes.by_id[id]); // returns list of objects (notes) that belong to the user
       }
 
-      debugger;
+      // debugger;
       // }
 
       // logic for note to be passed to editor
       let noteToBePassedById;
-      // debugger;
-      if (('noteId' in this.props.match.params) && (this.props.match.params['noteId'] !== 'new') && ('by_id' in this.props.state.entities.notes)) {
+      debugger;
+      this.props.match.params.noteId
+      if ((('noteId' in this.props.match.params) && (this.props.match.params['noteId'] !== 'new') && (('by_id' in this.props.state.entities.notes) && parseInt(this.props.match.params.noteId) in this.props.state.entities.notes))) {
         noteToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
       }
       else  {
