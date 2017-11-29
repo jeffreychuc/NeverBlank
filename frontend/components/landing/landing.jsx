@@ -36,10 +36,10 @@ class Landing extends React.Component{
     console.log(this.props);
     event.preventDefault();
     this.props.createNewUser(this.state)
-      .then(() => this.props.history.push('/home/notes')).catch((err) => this.debug(err)); //acts as redirect
+      .then(() => this.props.session.currentUser ? this.props.history.push('/home/notes') : null ); //acts as redirect
   }
 
-  debug(err)  {
+  debug(status)  {
     debugger;
   }
 

@@ -41,7 +41,7 @@ class Api::NotebooksController < ApplicationController
     if @notebook.destroy
       @notes = current_user.notes.find_by(notebook_id: params[:id])
       if @notes
-        @notes.destroy_all
+        @notes.delete
       end
       render json: @notebook
     else
