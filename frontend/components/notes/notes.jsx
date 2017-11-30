@@ -17,6 +17,9 @@ class Notes extends React.Component  {
     this.renderNotebookEditModal = this.renderNotebookEditModal.bind(this);
     this.renderNotebookEditModal = this.renderNotebookEditModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNotebookDelete = this.handleNotebookDelete.bind(this);
+    this.showNotebookDeleteModal = this.showNotebookDeleteModal.bind(this);
+    this.hideNotebookDeleteModal = this.hideNotebookDeleteModal.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     debugger;
     // console.log('in notes constructor');
@@ -24,7 +27,7 @@ class Notes extends React.Component  {
 
   componentDidMount() {
     this.noteScrollerToggle();
-    this.setState({notebookEditModal: false});
+    this.setState({notebookEditModal: false, notebookDeleteModal: false});
   }
 
   handleDelete(id)  {
@@ -83,7 +86,16 @@ class Notes extends React.Component  {
     this.props.editNotebook({title: this.refs.editnotebookname.value,id: this.props.currentNotebook.id}).then(() => this.toggleModal());
   }
 
+  showNotebookDeleteModal() {
+    this.setState({notebookDeleteModal: true});
+  }
+
+  hideNotebookDeleteModal() {
+    this.setState({notebookDeleteModal: false});
+  }
+
   renderNotebookEditModal() {
+
     if (this.state.notebookEditModal) {
       return (
         <div className={this.state.notebookEditModal ? 'notebookEditModal active' : 'notebookEditModal'}>
@@ -93,11 +105,39 @@ class Notes extends React.Component  {
           <h2>Overview</h2>
           <form onSubmit ={this.handleSubmit}>
             <input type="text" ref="editnotebookname" defaultValue={this.props.currentNotebook.title.slice()}/>
+            <h2>CREATOR</h2>
+            <a onClick={() => this.showNotebookDeleteModal()}>Delete Notebook</a>
             <div className = 'notebookEditModalFormButtons'>
               <Button onClick={() => this.toggleModal()}>Cancel</Button>
               <Button type="submit">Save</Button>
             </div>
           </form>
+        </div>
+      );
+    }
+  }
+
+  handleNotebookDelete(id)  {
+    this.toggleModal();
+    this.hideNotebookDeleteModal();
+    this.props.destroyNotebook(id).then((action) =>
+      this.props.history.push('/home/notes/' + `${action.notes.ordered.updated_at_desc[0] ? action.notes.ordered.updated_at_desc[0] : ''}`)
+    );
+  }
+
+  renderNotebookDeleteModal() {
+    debugger;
+    if (this.state.notebookDeleteModal) {
+      return (
+        <div className='notebookDeleteModal'>
+          <img className="gwt-Image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAjCAYAAADmOUiuAAACbElEQVR42u2XP2gTURzHg5aKQ5dSig5OtlgcstgidnAyWC2YRVPEwUVS0cGpRlwylVQcHEohggGH5nJ3uaQd5CCBgmJTSEDQoYiBDkFMIYKgg0iVxt+Tb8ur3jtyd+8Fhxw8km/uvd/v877vb0Kh3tN7/n3y+XyUyjaVdoeF1Y12E9AL3D5kNwH/JFVVvwfYFUAKWPExz/yWyv8O+DqQm6Zp3kOgJ0FHxrKsRRaLPu9KG27DMG4C8LmEqbOMWDekAZKDVxB0lduo2/T7ig/AF3DwskwHzwPoFdOFQmFPv/QxxOvo7KQ0QE3Twgj6DknCcOGtDwc30bnT0gBzudwJADactEfAT6wtjcJxaYCZTGYAQN/+0l99AH6Hg0dlb9w/qewmk8k+XlOiw53GsG37CDr2Q/rxRiCfWXCaj0MAbPG6wxjHlN1sKGidBc9ms6NumiBGXFbwGADfq3CwxoLruj4BoKqbFsQ4B8ANFYBlFrxYLEYAVHLSVC/iMgqXAGirADSx98UwXDqv6bvBNG3qMZchvg5ATQXgUwDFcbqkkWwWgGn+vcDBO2izJB2QgB4heALAKV4T2AEtAHyIOvMqHHwAh1JIdh/JFtCBBK8FgI8xT+ekAxLYbQCkARx304JOPkOdW9IB6eycgYM63LiGZIaTFgBacPCqCgcvAqCEZBEkK/N6770AcA0r/YIKwLMAqEKPA7DGNNugeS0AfIM6Z1QsklMY4g/QIwCuO2nBItnCaXNSOiCdGMMAaAXo5Bc4OKjCwX4A7vhpT9e0Q9T2l9crmtcbzUcJ/4EbIVUP9XyKEjQDwDUpxrSXnL8BI9Tv3UAALyAAAAAASUVORK5CYII=" width="40" height="35"/>
+          <h2>DELETE NOTEBOOK</h2>
+          <div className = 'notebookEditModal-seperator'/>
+          <h2>Are you sure you want to delete <strong>{this.props.currentNotebook.title}</strong>?</h2>
+          <div className = 'notebookDeleteModalButtons'>
+            <Button onClick={() => this.hideNotebookDeleteModal()}>Cancel</Button>
+            <Button onClick={()=> this.handleNotebookDelete(this.props.currentNotebook.id)} type="button">Delete</Button>
+          </div>
         </div>
       );
     }
@@ -114,6 +154,7 @@ class Notes extends React.Component  {
     let noteCount = this.props.notes.length;
     return (
       <div className ={this.state.notesScrollerClass}>
+        {this.renderNotebookDeleteModal()}
         {this.renderNotebookEditModal()}
         {this.renderHeader()}
         <div className = 'notes-subheader'>

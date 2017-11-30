@@ -19,9 +19,12 @@ ActiveRecord::Base.connection.tables.each do |table|
 end
 
 demo = User.create(email: 'demo@appacademy.io', password: 'password')
-demo_note = Note.create(author_id: demo.id, body: 'note with no title')
-demo_note2 = Note.create(author_id: demo.id)
-demo_note3 = Note.create(author_id: demo.id, title: 'note with body and title', body: 'note with no title')
+default_notebook = Notebook.create(author_id: demo.id, title:'First Notebook', lock: true)
+demo.default_notebook = default_notebook.id
+demo.save
+demo_note = Note.create(author_id: demo.id, body: 'note with no title', notebook_id: default_notebook.id)
+demo_note2 = Note.create(author_id: demo.id, notebook_id: default_notebook.id)
+demo_note3 = Note.create(author_id: demo.id, title: 'note with body and title', body: 'note with no title', notebook_id: default_notebook.id)
 demo_notebook = Notebook.create(author_id: demo.id, title:'notebook with no notes')
 demo_notebook1 = Notebook.create(author_id: demo.id, title:'notebook with notes')
 demo_note4 = Note.create(author_id: demo.id, title: 'note in a notebook', body: 'note in a notebook', notebook_id: demo_notebook1.id)
