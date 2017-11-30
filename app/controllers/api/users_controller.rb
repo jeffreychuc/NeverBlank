@@ -8,6 +8,7 @@ class Api::UsersController < ApplicationController
       @default_notebook.author_id = @user.id
       @default_notebook.save
       @user.default_notebook = @default_notebook.id
+      @user.save
       login(@user)
       render json: @user
     else

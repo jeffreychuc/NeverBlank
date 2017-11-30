@@ -95,14 +95,12 @@ class Editor extends React.Component {
 
   renderNotebookDropdown()  {
     debugger;
-    if ('noteId' in this.props.match.params)  {
       return(
-        <DropdownButton title={this.props.notebooksById[this.props.note.notebook_id].title} id="bg-nested-dropdown">
+        <DropdownButton title={this.props.notebooksById[this.props.note.notebook_id ? this.props.note.notebook_id : this.props.defaultNotebookId].title} id="bg-nested-dropdown">
           <MenuItem key={shortid()} onClick={null}>Create A New Notebook</MenuItem>
           {this.props.notebooks.map((notebook_pair) => <MenuItem key={shortid()} onClick={() => this.handleNotebookChange({notebook_id: Object.keys(notebook_pair)[0]})}>{Object.keys(notebook_pair)[0]} {this.props.notebooksById[Object.keys(notebook_pair)[0]].title}</MenuItem> )}
         </DropdownButton>
       );
-    }
   }
   render () {
     console.log(this.props.note, 'THIS IS THE CURRENT NOTE');
