@@ -27,6 +27,7 @@ class Editor extends React.Component {
   }
 
   handleSave(editorState)  {
+    debugger;
     const { title, editorHtml, id } = editorState;
     if (id === 'new') {
       this.props.createNotes({
