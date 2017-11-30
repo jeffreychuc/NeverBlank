@@ -40,7 +40,7 @@ class Landing extends React.Component{
   }
 
   debug(status)  {
-    debugger;
+
   }
 
   clearTimer() {

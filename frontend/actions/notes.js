@@ -18,11 +18,11 @@ export const fetchNotes = () => (dispatch) => (
 );
 
 export const patchNotes = (note) => (dispatch) => (
-  patchNote(note).then(() => getNotes()).then((notes) => dispatch(receiveAllNotes(notes))).then(() => dispatch(fetchNotebooks()))
+  patchNote(note).then(() => dispatch(fetchNotebooks())).then(() => dispatch(fetchNotes()))
 );
 
 export const postNotes = (note) => (dispatch) => (
-  postNote(note).then(() => getNotes()).then((notes) => dispatch(receiveAllNotes(notes))).then(() => dispatch(fetchNotebooks()))
+  postNote(note).then(() => dispatch(fetchNotebooks())).then(() => dispatch(fetchNotes()))
 );
 
 export const generateBlankNote = () => (dispatch) => dispatch(addBlankNote());

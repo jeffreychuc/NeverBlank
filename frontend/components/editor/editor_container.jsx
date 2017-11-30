@@ -5,7 +5,7 @@ import { getCurrentNote } from '../../util/route_util';
 import { patchNotes, postNotes } from '../../actions/notes';
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger;
+  //
   return(
     {
       notebooks: state.entities.notebooks.ordered.created_at_desc,

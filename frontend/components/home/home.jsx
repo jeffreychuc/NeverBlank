@@ -19,7 +19,7 @@ class Home extends React.Component  {
   }
 
   debug() {
-    debugger;
+
   }
 
   getRedirect() {
@@ -33,10 +33,10 @@ class Home extends React.Component  {
   }
 
   componentWillReceiveProps(newProps) {
-    // debugger;
+    //
     if (newProps.state.entities.notes !== null && newProps.state.entities.notebooks !== null) {
       if (('ordered' in newProps.state.entities.notes) && ('ordered' in newProps.state.entities.notebooks)) {
-        // debugger;
+        //
         console.log('wtf');
         if (this.props.state.ui.loading)  {
           this.props.setLoadingState(false);
@@ -47,7 +47,7 @@ class Home extends React.Component  {
         if (this.props.match.path === '/home/' || this.props.match.path === '/home/notes/' || newProps.match.path === '/home/notes/') {
           //add logic to check for current notebook
           const notesList = newProps.state.entities.notes.ordered.updated_at_desc;
-          // debugger;
+          //
           if (notesList.length === 0) {
             redirect = '/home/notes/';
           }
@@ -57,15 +57,15 @@ class Home extends React.Component  {
           // if ((redirect !== this.props.match.url) && (redirect !== newProps.match.url)) {
           //   this.props.history.push(redirect);
           // }
-          // debugger;
+          //
           if ((newProps.match.url === '/home/notes/' && redirect !== newProps.match.url) || ((redirect !== this.props.match.url) && (redirect !== newProps.match.url))) {
             this.props.history.push(redirect);
           }
         }
         else if (newProps.match.path === '/home/notebooks/:notebookId') {
-          // debugger;
+          //
           let notebook_id = newProps.match.params.notebookId;
-          // debugger;
+          //
           let firstNotebookNote = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebookPair) => Object.keys(notebookPair)[0] === notebook_id))[0][0];
           this.props.history.push(firstNotebookNote ? `/home/notebooks/${notebook_id}/notes/${firstNotebookNote}` : `/home/notebooks/${notebook_id}/notes/`);
         }
@@ -73,7 +73,7 @@ class Home extends React.Component  {
 
 
       //need to handle all loading in here.....
-      // debugger;
+      //
     }
   }
 
@@ -88,7 +88,7 @@ class Home extends React.Component  {
       //logic for notesToBePassed
 
       if (this.props.match.path.includes('/home/notebooks/:notebookId'))  {
-        // debugger;
+        //
         console.log('omg');
         // Object.values(test.find((notebook) => Object.keys(notebook)[0] === '6')) === undefined
         if (this.props.state.entities.notes.by_id !== undefined)  {
@@ -102,7 +102,7 @@ class Home extends React.Component  {
         notesToBePassed = this.props.state.entities.notes.ordered.updated_at_desc.map((id) => this.props.state.entities.notes.by_id[id]); // returns list of objects (notes) that belong to the user
       }
 
-      // debugger;
+      //
       // }
 
       // logic for note to be passed to editor
@@ -116,8 +116,8 @@ class Home extends React.Component  {
       }
       // this two lines need to be change to accout for switching notebooks
       let notebooksToBePassed = this.props.state.entities.notebooks;
-      // debugger;
-      // debugger;
+      //
+      //
       return (
         <div className = 'main-view'>
           <NavSidebarContainer />

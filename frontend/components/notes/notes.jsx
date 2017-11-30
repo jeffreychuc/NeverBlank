@@ -21,7 +21,7 @@ class Notes extends React.Component  {
     this.showNotebookDeleteModal = this.showNotebookDeleteModal.bind(this);
     this.hideNotebookDeleteModal = this.hideNotebookDeleteModal.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-    debugger;
+
     // console.log('in notes constructor');
   }
 
@@ -32,7 +32,7 @@ class Notes extends React.Component  {
 
   handleDelete(id)  {
     //delete the note, then push
-    // debugger;
+    //
     this.props.destroyNote(id).then((action) =>
       this.props.history.push('/home/notes/' + `${action.notes.ordered.updated_at_desc[0] ? action.notes.ordered.updated_at_desc[0] : ''}`)
     );
@@ -41,7 +41,7 @@ class Notes extends React.Component  {
   renderHeader()  {
     //lol
     const _infoIcon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABNElEQVR42u1VOw7CMAwtExPnYIE7sHGl9jiwcBBKYWjVdqtUZnY2OgU/yUZRyBcGFixZCrH9HPu5Jsv+8q00TbNt23ZHeu267gHFGXewfQzc9/2SQCoCVD6FD3yTwCloQ8F3BrnR74JAVuM4zqF1Xa9xBxv73BET/XIBp/NhGIaFyxc2+EiSqEqkLQhUSs0M2wmq38FHS3IOEiptsb2cExxtlWjtchNPxj0TV6QOBcXlHLvztQejqECiBeA1OQ7uVpzg6iMYc64wKY5XOhMghu3T7xL4WhRKENWiEMm+BFEkY8RkTMuyXLhINpPAl4DDY8qlyv55+9BsAh/48sdZJa0KBJqVmC8X8OhVYS47Lj3Xlx3O4ElrS/yyMyq5hNY12pK8ri3E73mEJ6j84TChs+wv38gTSLAjRGxKcLsAAAAASUVORK5CYII=';
-    // debugger;
+    //
     if (this.props.currentNotebook) {
       return (
         <div className = 'notes-header-container notebook'>
@@ -63,7 +63,7 @@ class Notes extends React.Component  {
     }
   }
   renderNoteCards() {
-    // debugger;
+    //
     return(
       this.props.notes.map((note) => (
         <div key={shortid.generate()} >
@@ -75,14 +75,14 @@ class Notes extends React.Component  {
   }
 
   toggleModal() {
-    debugger;
+
     this.setState({notebookEditModal: !this.state.notebookEditModal});
-    debugger;
+
   }
 
   handleSubmit(event)  {
     event.preventDefault();
-    debugger;
+
     this.props.editNotebook({title: this.refs.editnotebookname.value,id: this.props.currentNotebook.id}).then(() => this.toggleModal());
   }
 
@@ -126,7 +126,7 @@ class Notes extends React.Component  {
   }
 
   renderNotebookDeleteModal() {
-    debugger;
+
     if (this.state.notebookDeleteModal) {
       return (
         <div className='notebookDeleteModal'>
@@ -150,7 +150,7 @@ class Notes extends React.Component  {
     if (!this.props.notes)  {
       return null;
     }
-    // debugger;
+    //
     let noteCount = this.props.notes.length;
     return (
       <div className ={this.state.notesScrollerClass}>

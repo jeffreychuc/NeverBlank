@@ -17,6 +17,7 @@ ActiveRecord::Base.connection.tables.each do |table|
   # SQLite
   # ActiveRecord::Base.connection.execute("DELETE FROM #{table}")
 end
+ActiveRecord::Base.connection.close
 
 demo = User.create(email: 'demo@appacademy.io', password: 'password')
 default_notebook = Notebook.create(author_id: demo.id, title:'First Notebook', lock: true)

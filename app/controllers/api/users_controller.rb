@@ -1,17 +1,17 @@
 class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
+    @default_notebook = Notebook.new
+    @default_notebook.title = 'First Notebook'
+    @default_notebook.lock = true
     if @user.save
-      @default_notebook = Notebook.new
-      @default_notebook.title = 'First Notebook'
-      @default_notebook.lock = true
       @default_notebook.author_id = @user.id
       @default_notebook.save
-      byebug
-      # code above for default notebooks
+      @user.default_notebook = @default_notebook.id
       login(@user)
       render json: @user
     else
+      @default_notebook.delete
       render json: { session: @user.errors.full_messages }, status: 422
     end
   end

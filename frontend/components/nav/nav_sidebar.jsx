@@ -8,6 +8,7 @@ class NavSidebar extends React.Component  {
     super(props);
     this.topButtonGroup = this.topButtonGroup.bind(this);
     this.bottomButtonGroup = this.bottomButtonGroup.bind(this);
+    this.handleNoteButton = this.handleNoteButton.bind(this);
     this.profileButton = this.profileButton.bind(this);
   }
 
@@ -19,11 +20,22 @@ class NavSidebar extends React.Component  {
     );
   }
 
+  handleNoteButton()  {
+
+    console.log('wtf');
+    if (this.props.notebookSidebarVisibility) {
+      this.props.toggleNotebookVisibility(this.props.notebookSidebarVisibility);
+    }
+    debugger;
+    this.props.history.push(`/home/notes/${this.props.latestUpdatedNote ? this.props.latestUpdatedNote : ''}`);
+  }
+
   bottomButtonGroup() {
+
     return (
       <div className = 'middleButtonGroup'>
         <a className='notebooks-nav-button noselect' onClick={() => this.props.toggleNotebookVisibility(this.props.notebookSidebarVisibility)}>Notebooks</a>
-        <NavLink strict className='newNoteButton noselect' to={'/home/notes/'} >Notes</NavLink>
+        <Button className='newNoteButton' onClick={() => this.handleNoteButton()}>Notes</Button>
       </div>
     );
   }
@@ -55,3 +67,5 @@ class NavSidebar extends React.Component  {
 }
 
 export default NavSidebar;
+
+// {/* <NavLink strict className='newNoteButton noselect' to={this.props.notebookSidebarVisibility ? '/home/notes/' : '#'} >Notes</NavLink> */}

@@ -15,11 +15,11 @@ export const fetchNotebooks = () => (dispatch) => (
 );
 
 export const destroyNotebook = (id) => (dispatch) => (
-  deleteNotebook(id).then(() => dispatch(fetchNotebooks())).then(() => dispatch(fetchNotes()))
+  deleteNotebook(id).then(() => dispatch(fetchNotes())).then(() => dispatch(fetchNotebooks()))
 );
 
 export const createNotebook = (title) => (dispatch) => (
-  postNotebook(title).then(() => dispatch(fetchNotebooks())).then(() => dispatch(fetchNotes()))
+  postNotebook(title).then(() => dispatch(fetchNotes())).then(() => dispatch(fetchNotebooks()))
 );
 
 export const editNotebook = (notebook) => (dispatch) => (

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import shortid from 'shortid';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
-import isEqual from 'lodash/isequal';
+import { isEqual } from 'underscore';
 import merge from 'lodash/merge';
 
 // import striptags from 'striptags';
@@ -13,8 +13,8 @@ class Editor extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleNotebookChange = this.handleNotebookChange.bind(this);
     this.state = {title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id};
-    debugger;
     console.log('fkds;kfla');
+    this.debug = this.debug.bind(this);
     this.autoSaveTimeoutId = null;
   }
 
@@ -27,13 +27,14 @@ class Editor extends React.Component {
   }
 
   debug(data) {
-    debugger;
+    return data;
   }
 
   handleSave(editorState)  {
-    debugger;
+
     const { title, editorHtml, id, notebook_id } = editorState;
     if (id === 'new') {
+      debugger;
       this.props.createNotes({
         body: editorHtml,
         title: title,
@@ -56,7 +57,7 @@ class Editor extends React.Component {
   }
 
   handleChange (html) {
-    // debugger;
+    //
     clearTimeout(this.autoSaveTimeoutId);
     this.setState({editorHtml: html});
     if (this.props.note.body !== this.state.editorHtml) {
@@ -66,7 +67,7 @@ class Editor extends React.Component {
 
 
   componentWillReceiveProps(newProps) {
-    debugger;
+
     if (!isEqual(this.props.note,newProps.note))  {
       // this.handleSave(this.state);
       // causes double save
@@ -75,30 +76,43 @@ class Editor extends React.Component {
       if (newProps.match.params.noteId === 'new') {
         editorBody = '';
         noteId = 'new';
+        debugger;
+        notebook_id = 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : 9999;//default notebook;
       }
       else  {
         editorBody = newProps.note.body;
         noteId = newProps.note['id'];
       }
-      debugger;
+
       this.setState({editorHtml: editorBody, id: noteId, notebook_id: newProps.notebook_id});
     }
   }
 
   handleNotebookChange(newNotebook)  {
-    debugger;
+
     this.handleSave(merge({}, newNotebook, this.state));
   }
 
-  render () {
-    console.log(this.props.note, 'THIS IS THE CURRENT NOTE');
-    console.log(this.props.notebooksById, 'THESE ARE THE CURRENT NOTEBOOKS');
-    return (
-      <div>
+  renderNotebookDropdown()  {
+    debugger;
+    if ('noteId' in this.props.match.params)  {
+      return(
         <DropdownButton title={this.props.notebooksById[this.props.note.notebook_id].title} id="bg-nested-dropdown">
           <MenuItem key={shortid()} onClick={null}>Create A New Notebook</MenuItem>
           {this.props.notebooks.map((notebook_pair) => <MenuItem key={shortid()} onClick={() => this.handleNotebookChange({notebook_id: Object.keys(notebook_pair)[0]})}>{Object.keys(notebook_pair)[0]} {this.props.notebooksById[Object.keys(notebook_pair)[0]].title}</MenuItem> )}
         </DropdownButton>
+      );
+    }
+  }
+  render () {
+    console.log(this.props.note, 'THIS IS THE CURRENT NOTE');
+    console.log(this.props.notebooksById, 'THESE ARE THE CURRENT NOTEBOOKS');
+
+    // if note/new, default notebook
+    // if path
+    return (
+      <div>
+        {this.renderNotebookDropdown()}
         <ReactQuill
           theme={'snow'}
           onChange={this.handleChange}
