@@ -1,4 +1,4 @@
-import { getNotebooks, deleteNotebook, postNotebook } from '../util/notebooks_api_util';
+import { getNotebooks, deleteNotebook, postNotebook, patchNotebook } from '../util/notebooks_api_util';
 import { fetchNotes } from './notes';
 import { postNote } from '../util/notes_api_util';
 
@@ -20,4 +20,8 @@ export const destroyNotebook = (id) => (dispatch) => (
 
 export const createNotebook = (title) => (dispatch) => (
   postNotebook(title).then(() => dispatch(fetchNotebooks())).then(() => dispatch(fetchNotes()))
+);
+
+export const editNotebook = (notebook) => (dispatch) => (
+  patchNotebook(notebook).then(() => dispatch(fetchNotebooks()))
 );

@@ -33,7 +33,7 @@ class Home extends React.Component  {
   }
 
   componentWillReceiveProps(newProps) {
-    debugger;
+    // debugger;
     if (newProps.state.entities.notes !== null && newProps.state.entities.notebooks !== null) {
       if (('ordered' in newProps.state.entities.notes) && ('ordered' in newProps.state.entities.notebooks)) {
         // debugger;
@@ -84,13 +84,13 @@ class Home extends React.Component  {
       // this two lines need to be change to accout for switching notebooks
       // let notesToBePassed = this.props.state.entities.notes;
       let notesToBePassed = [];
-      let currentNotebookName;
+      let currentNotebook;
       //logic for notesToBePassed
 
       if (this.props.match.path.includes('/home/notebooks/:notebookId'))  {
         notesToBePassed = Object.values(this.props.state.entities.notes.by_id).filter((note) => note.notebook_id === parseInt(this.props.match.params.notebookId));
         //set current notebook
-        currentNotebookName = this.props.state.entities.notebooks.by_id[this.props.match.params.notebookId].title;
+        currentNotebook= this.props.state.entities.notebooks.by_id[this.props.match.params.notebookId];
         // dont render on this pass?
       }
       else if (this.props.match.path === '/home/notes/:noteId')  {
@@ -102,8 +102,6 @@ class Home extends React.Component  {
 
       // logic for note to be passed to editor
       let noteToBePassedById;
-      debugger;
-      this.props.match.params.noteId
       if ((('noteId' in this.props.match.params) && (this.props.match.params['noteId'] !== 'new') && (('by_id' in this.props.state.entities.notes) && parseInt(this.props.match.params.noteId) in this.props.state.entities.notes))) {
         noteToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
       }
@@ -118,7 +116,7 @@ class Home extends React.Component  {
         <div className = 'main-view'>
           <NavSidebarContainer />
           <div className = 'notes-sidebar'>
-            <NotesContainer currentNotebookName={currentNotebookName} notes={notesToBePassed} />
+            <NotesContainer currentNotebook={currentNotebook} notes={notesToBePassed} />
           </div>
           <div className = 'editor-main'>
             <EditorContainer note={noteToBePassedById} placeholder={'Drag files here or just start typing...'}/>

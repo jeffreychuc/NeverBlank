@@ -8,17 +8,17 @@ export const getNotebooks = (notebooks) => (
 
 export const patchNotebook = (notebook) => (
   $.ajax({
-    url: `/api/notes/${notebook.id}`,
+    url: `/api/notebooks/${notebook.id}`,
     method: 'PATCH',
     data: { notebook: {title: notebook.title} }
   })
 );
 
-export const postNotebook = (title) => (
+export const postNotebook = (notebook) => (
   $.ajax({
     url: '/api/notebooks/',
     method: 'POST',
-    data: { notebook: { title } }
+    data: { notebook: { title: notebook.title, id: notebook.id } }
   })
 );
 

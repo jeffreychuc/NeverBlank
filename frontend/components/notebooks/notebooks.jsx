@@ -1,7 +1,7 @@
 import React from 'react';
 import Notebook from './notebook';
 import shortid from 'shortid';
-import { Modal, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { createSlideToggle } from '../../util/css_util';
 
 class Notebooks extends React.Component  {
@@ -14,8 +14,11 @@ class Notebooks extends React.Component  {
     this.renderCreateNotebookModal = this.renderCreateNotebookModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-    this.setState({notebookCreateModal: false});
     // console.log('in notes constructor');
+  }
+
+  componentDidMount() {
+    this.setState({notebookCreateModal: false});
   }
 
   componentWillReceiveProps(newProps) {

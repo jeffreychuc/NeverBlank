@@ -1,4 +1,7 @@
+import merge from 'lodash/merge';
+
 export function createSlideToggle (className, classNameString) {
+  debugger;
   this.state = { [className]: classNameString + ' slideable slide-hide'};
   return (
     () => {
@@ -6,7 +9,7 @@ export function createSlideToggle (className, classNameString) {
       const slideHideIndex = classNameString.indexOf('slide-hide');
       if (slideHideIndex === -1)  {
         classNameString.push('slide-hide');
-      } 
+      }
       else {
         classNameString.splice(slideHideIndex, 1);
       }

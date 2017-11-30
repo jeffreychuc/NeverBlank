@@ -2,6 +2,7 @@ import Notes from './notes';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { destroyNote } from '../../actions/notes';
+import { editNotebook } from '../../actions/notebooks';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  destroyNote: (id) => dispatch(destroyNote(id))
+  destroyNote: (id) => dispatch(destroyNote(id)),
+  editNotebook: (notebook) => dispatch(editNotebook(notebook))
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(Notes));

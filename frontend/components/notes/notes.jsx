@@ -5,6 +5,7 @@ import pluralize from 'pluralize';
 import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { createSlideToggle } from '../../util/css_util';
+import merge from 'lodash/merge';
 
 class Notes extends React.Component  {
   constructor (props)  {
@@ -13,43 +14,40 @@ class Notes extends React.Component  {
     // console.log(props);
     const boundSlideToggle = createSlideToggle.bind(this);
     this.renderNotebookEditModal = this.renderNotebookEditModal.bind(this);
+    debugger;
     this.noteScrollerToggle = boundSlideToggle('notesScrollerClass', 'notes-scroller').bind(this);
+    this.renderNotebookEditModal = this.renderNotebookEditModal.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+    debugger;
     // console.log('in notes constructor');
   }
 
   componentDidMount() {
     this.noteScrollerToggle();
-  }
-
-  componentWillReceiveProps(newProps) {
-   console.log('notes getting new props');
-  //  debugger;
-    // if ('by_id' in newProps.notes)  {
-    //   if ((!newProps.notes.by_id['new']) && (this.props.match.params.noteId !== newProps.match.params.noteId)) {
-    //     console.log('notes setting new props');
-    //     this.setState(newProps);
-    //   }
-    // }
+    this.setState({notebookEditModal: false});
   }
 
   handleDelete(id)  {
     //delete the note, then push
-    debugger;
+    // debugger;
     this.props.destroyNote(id).then((action) =>
       this.props.history.push('/home/notes/' + `${action.notes.ordered.updated_at_desc[0] ? action.notes.ordered.updated_at_desc[0] : ''}`)
     );
   }
 
   renderHeader()  {
-    debugger;
-    if (this.props.currentNotebookName) {
+    //lol
+    const _infoIcon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABNElEQVR42u1VOw7CMAwtExPnYIE7sHGl9jiwcBBKYWjVdqtUZnY2OgU/yUZRyBcGFixZCrH9HPu5Jsv+8q00TbNt23ZHeu267gHFGXewfQzc9/2SQCoCVD6FD3yTwCloQ8F3BrnR74JAVuM4zqF1Xa9xBxv73BET/XIBp/NhGIaFyxc2+EiSqEqkLQhUSs0M2wmq38FHS3IOEiptsb2cExxtlWjtchNPxj0TV6QOBcXlHLvztQejqECiBeA1OQ7uVpzg6iMYc64wKY5XOhMghu3T7xL4WhRKENWiEMm+BFEkY8RkTMuyXLhINpPAl4DDY8qlyv55+9BsAh/48sdZJa0KBJqVmC8X8OhVYS47Lj3Xlx3O4ElrS/yyMyq5hNY12pK8ri3E73mEJ6j84TChs+wv38gTSLAjRGxKcLsAAAAASUVORK5CYII=';
+    // debugger;
+    if (this.props.currentNotebook) {
       return (
         <div className = 'notes-header-container notebook'>
-          <NavLink className='notebook-edit-icon' to={'#'}>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABNElEQVR42u1VOw7CMAwtExPnYIE7sHGl9jiwcBBKYWjVdqtUZnY2OgU/yUZRyBcGFixZCrH9HPu5Jsv+8q00TbNt23ZHeu267gHFGXewfQzc9/2SQCoCVD6FD3yTwCloQ8F3BrnR74JAVuM4zqF1Xa9xBxv73BET/XIBp/NhGIaFyxc2+EiSqEqkLQhUSs0M2wmq38FHS3IOEiptsb2cExxtlWjtchNPxj0TV6QOBcXlHLvztQejqECiBeA1OQ7uVpzg6iMYc64wKY5XOhMghu3T7xL4WhRKENWiEMm+BFEkY8RkTMuyXLhINpPAl4DDY8qlyv55+9BsAh/48sdZJa0KBJqVmC8X8OhVYS47Lj3Xlx3O4ElrS/yyMyq5hNY12pK8ri3E73mEJ6j84TChs+wv38gTSLAjRGxKcLsAAAAASUVORK5CYII=" width="24" height="24" />
-          </NavLink>
+          <Button className='notebook-edit-icon' onClick={() => this.toggleModal()}>
+            <img src={_infoIcon} width="24" height="24" />
+          </Button>
           <div className = 'notes-header notebook'>
-            <h2 className = 'notes-header-notebook'>{this.props.currentNotebookName}</h2>
+            <h2 className = 'notes-header-notebook'>{this.props.currentNotebook.title}</h2>
           </div>
         </div>
       );
@@ -76,8 +74,36 @@ class Notes extends React.Component  {
     );
   }
 
-  renderNotebookEditModal() {
+  toggleModal() {
+    debugger;
+    this.setState({notebookEditModal: !this.state.notebookEditModal});
+    debugger;
+  }
 
+  handleSubmit(event)  {
+    event.preventDefault();
+    debugger;
+    this.props.editNotebook({title: this.refs.editnotebookname.value,id: this.props.currentNotebook.id}).then(() => this.toggleModal());
+  }
+
+  renderNotebookEditModal() {
+    if (this.state.notebookEditModal) {
+      return (
+        <div className={this.state.notebookEditModal ? 'notebookEditModal active' : 'notebookEditModal'}>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAjCAYAAADmOUiuAAACzElEQVR42u1YPWtUURANSlAiGBCrkEZjQG0kFmIaxZ+RH6EQCwubLd3GIlu5vMjCut+fbDakkQiCyEKK3crKX5B04i7GNYnnyLnylDXe+97bW+XB8Jbkzsx5M3PPzL0zM2fP2TP5KRQKl6vV6hokqNfrvVqtdoD3mKLfPUjANVzrDRic32g0GptwPoScWMqQOtSdGrBcLncRTl7A2aGcHsHhe7yf4f2w0+ks5PP5S5Rms7kIeYT/PYd8hBxL55A2aCtRcJVKZQnG+3LCFDpFA/q3ACwPnSPZ6NNmUuDuwOA+DcPBJzhaiWHrPmx8Fsh92k4icgbcFtOXQA3Pw95uCORS5JqDMZPW7Ww2O5tUyWQymQsGJHwMItWkNsSvtHa73bkpsMG8STd9OVOJduvYtuaw7iXWf+fb1k+r1VolG9CXEwWJ5xi9rMNHfVU5jFyCgfVvFMVN6w4hEv5RLBavO5bEF0jasZRuiieHVh2HrUlf9NZjd/ogn2s2IQ+U3qe+AKrjsDwCm8U9AVx1cPBH73UFqLZI3T2bcHMSOSmVSld9AUTtLUr3wMbZWBE8HyFVkQCyQ5k+bw0wlUqd8wUQXWpOut+sU4z3FV8Ay+XygunNLpvkni+A2CQPrDeJoRlw0hNfADn0WtOMIWrIji+AyNY7a6IOtboxR/dpA+Q8qEl7ZH24wuLXcrYxbYCmpOgzyrjFMei2K1HbAkX07nIo0WFq2bWe0trN/f9NvFEAkpw5DGtt2rVuzcg/kIFaFOI+hZhneYyINfLzabfbvw9NkHIS51m1tW1DzPSR5LGzb1OTpwynK6G0xj92hiMZSjc3z4YLBUH3GnRehQaRQezITapJbRxz9UFnO5DHbIvs3axTTkEc1ThPImLrnMy1U83HpRO/+vgrTcviyUmXR8f/2NEj6jhTSdzrN7YmEe0eh03DaapZ/i3gmjjXbz8B/cOTqcbILfgAAAAASUVORK5CYII=" width="40" height="35"/>
+          <h2>NOTEBOOK INFO</h2>
+          <div className = 'notebookEditModal-seperator'/>
+          <h2>Overview</h2>
+          <form onSubmit ={this.handleSubmit}>
+            <input type="text" ref="editnotebookname" defaultValue={this.props.currentNotebook.title.slice()}/>
+            <div className = 'notebookEditModalFormButtons'>
+              <Button onClick={() => this.toggleModal()}>Cancel</Button>
+              <Button type="submit">Save</Button>
+            </div>
+          </form>
+        </div>
+      );
+    }
   }
 
   render()  {
