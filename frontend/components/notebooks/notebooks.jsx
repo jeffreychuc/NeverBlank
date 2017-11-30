@@ -20,6 +20,10 @@ class Notebooks extends React.Component  {
 
   componentDidMount() {
     this.setState({notebookCreateModal: false, notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay slide-hide'});
+    debugger;
+    if (this.props.match.path === '/home/notebooks/') {
+      this.props.toggleNotebookVisibility(false);
+    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -31,7 +35,6 @@ class Notebooks extends React.Component  {
     else  {
       this.setState({notebookScrollerClass: 'notebooks-scroller slideable slide-hide', notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay slide-hide'});
     }
-
   }
 
   handleDelete(id)  {

@@ -75,9 +75,7 @@ class Notes extends React.Component  {
   }
 
   toggleModal() {
-
     this.setState({notebookEditModal: !this.state.notebookEditModal});
-
   }
 
   handleSubmit(event)  {
