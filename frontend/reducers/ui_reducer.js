@@ -1,16 +1,18 @@
-import { SET_LOADING, SET_CURRENT_NOTEBOOK, TOGGLE_NOTEBOOK_MODAL } from '../actions/ui';
+import { SET_LOADING, SET_CURRENT_NOTEBOOK, TOGGLE_NOTEBOOK_MODAL, TOGGLE_NOTEBOOK_VISIBILITY } from '../actions/ui';
 import merge from 'lodash/merge';
 
 
-const _initSlideState = { loading: true, notebookModal: false };
+const _initSlideState = { loading: true, notebookModal: false, notebookSidebarVisibility: false };
 
 export default (state=_initSlideState, action) => {
   Object.freeze(state);
   switch(action.type) {
     case SET_LOADING:
-      return {loading: action.loading};
+      return merge({}, state, {loading: action.loading});
     case SET_CURRENT_NOTEBOOK:
-      return {currentNotebook: action.notebookId};
+      return merge({}, state, {currentNotebook: action.notebookId});
+    case TOGGLE_NOTEBOOK_VISIBILITY:
+      return merge({}, state, {notebookSidebarVisibility: action.notebookSidebarVisibility});
     default:
       return state;
   }

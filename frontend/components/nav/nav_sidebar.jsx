@@ -6,6 +6,9 @@ import { NavLink } from 'react-router-dom';
 class NavSidebar extends React.Component  {
   constructor(props)  {
     super(props);
+    this.topButtonGroup = this.topButtonGroup.bind(this);
+    this.bottomButtonGroup = this.bottomButtonGroup.bind(this);
+    this.profileButton = this.profileButton.bind(this);
   }
 
   topButtonGroup()  {
@@ -19,8 +22,8 @@ class NavSidebar extends React.Component  {
   bottomButtonGroup() {
     return (
       <div className = 'middleButtonGroup'>
-        <NavLink strict className='newNoteButton' to={'/home/notes/'} >Notes</NavLink>
-        <NavLink strict className='newNoteButton' to={'/home/notes/'} >Notes</NavLink>
+        <a className='notebooks-nav-button noselect' onClick={() => this.props.toggleNotebookVisibility(this.props.notebookSidebarVisibility)}>Notebooks</a>
+        <NavLink strict className='newNoteButton noselect' to={'/home/notes/'} >Notes</NavLink>
       </div>
     );
   }

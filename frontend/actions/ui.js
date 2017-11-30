@@ -30,3 +30,11 @@ export const setCurrentNotebook = (id) => {
   return {type: SET_CURRENT_NOTEBOOK,
           currentNotebook: id};
 };
+
+export const TOGGLE_NOTEBOOK_VISIBILITY = 'TOGGLE_NOTEBOOK_VISIBILITY';
+
+export const toggleNotebookVisibility = (visBool) => {
+  console.log('current notebookvisibility is ', visBool);
+  return {type: TOGGLE_NOTEBOOK_VISIBILITY,
+          notebookSidebarVisibility: !visBool};
+};

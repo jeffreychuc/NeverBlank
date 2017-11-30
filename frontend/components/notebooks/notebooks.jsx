@@ -9,21 +9,28 @@ class Notebooks extends React.Component  {
     super(props);
     // console.log("IN NOTES CONSTRUCTOR");
     // console.log(props);
-    const boundSlideToggle = createSlideToggle.bind(this);
-    this.notebookScrollerToggle = boundSlideToggle('notesScrollerClass', 'notes-scroller').bind(this);
     this.renderCreateNotebookModal = this.renderCreateNotebookModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+
+    const boundSlideToggle = createSlideToggle.bind(this);
+    this.notebookScrollerToggle = boundSlideToggle('notebookScrollerClass', 'notebooks-scroller').bind(this);
     // console.log('in notes constructor');
   }
 
   componentDidMount() {
-    this.setState({notebookCreateModal: false});
+    this.setState({notebookCreateModal: false, notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay slide-hide'});
   }
 
   componentWillReceiveProps(newProps) {
    console.log('notebooks getting new props');
   //  debugger;
+   if (newProps.notebookSidebarVisibility === true)  {
+      this.setState({notebookScrollerClass: 'notebooks-scroller slideable', notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay'});
+    }
+    else  {
+      this.setState({notebookScrollerClass: 'notebooks-scroller slideable slide-hide', notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay slide-hide'});
+    }
 
   }
 
@@ -47,9 +54,9 @@ class Notebooks extends React.Component  {
     debugger;
     return(
       this.props.notebooks.ordered['created_at_desc'].map((notebookPair) => ( //data for this should look like {3: [5]}
-        <div key={shortid.generate()} >
+        <div className = 'notebookdSlideoutCard' key={shortid.generate()} >
           <Button onClick = {() => this.handleDelete(Object.keys(notebookPair)[0])} />
-          <Notebook notebook={this.props.notebooks.by_id[Object.keys(notebookPair)[0]]} noteCount = {notebookPair[Object.keys(notebookPair)[0]].length}/>
+          <Notebook toggle={this.props.toggleNotebookVisibility}notebook={this.props.notebooks.by_id[Object.keys(notebookPair)[0]]} noteCount = {notebookPair[Object.keys(notebookPair)[0]].length}/>
         </div>
       ))
     );
@@ -91,12 +98,14 @@ class Notebooks extends React.Component  {
     // console.log(this.props);
     // debugger;
     return (
-      <div className = 'notebooksSlider'>
-        IT RENDERS
+      <div>
         {this.renderCreateNotebookModal()}
-        <h2 className = 'notebooksSlider-header'>Notebooks</h2>
-        <Button onClick={() => this.toggleModal()}>Create Notebook</Button>
-        {this.renderNotebookCards()}
+        <div className = {this.state.notebookScrollerClass}>
+          <h2 className = 'notebooksSlider-header'>Notebooks</h2>
+          <Button onClick={() => this.toggleModal()}>Create Notebook</Button>
+          {this.renderNotebookCards()}
+        </div>
+        <div className = {this.state.notebookScrollerUnderlayClassname} />
       </div>
     );
   }

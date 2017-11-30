@@ -8,16 +8,18 @@ class Notebook extends React.Component  {
   constructor (props)  {
     super(props);
     console.log(this.props);
+    debugger;
   }
 
   render()  {
     const { notebook, noteCount } = this.props;
-    console.log(noteCount, '(*$@)($*#@)($*@)#(*');
     return (
-      <NavLink to={`/home/notebooks/${notebook.id}`}>
-        <div> {notebook.title} </div>
-        <div className = 'no-select'> {noteCount} {pluralize('note', noteCount)} </div>
-      </NavLink>
+      <div onClick={() => this.props.toggle(true)}>
+        <NavLink to={`/home/notebooks/${notebook.id}`} >
+          <div className = 'notebookCardTitle no-select'> {notebook.title} </div>
+          <div className = 'notebookCardNoteCount no-select'> {noteCount} {pluralize('note', noteCount)} </div>
+        </NavLink>
+      </div>
     );
   }
 }

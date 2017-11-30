@@ -211,7 +211,7 @@
   height: calc(100vh - 100px);
 }
 
-.slideable  {
+.notes-scroller.slideable  {
   left: 0;
   position: relative;
   transition: all 0.5s ease-in-out;
@@ -238,7 +238,7 @@
 }
 
 .notebookEditModal.active {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -251,5 +251,69 @@
   text-align: center;
   align-items: center;
   justify-content: center;
+  opacity: 1;
+  transition: opacity 0.3s ease-in, visibility 0.001s 0.3s;
+}
 
+.notebook-header-edit-toggle  {
+  float: right;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.notebooks-scroller  {
+  position: fixed;
+  left: -600px;
+  width: 460px;
+  background: white;
+  height: 100%;
+  z-index: 11;
+}
+
+.notebooks-scroller.slideable  {
+  left: 74px;
+  position: fixed;
+  border-right: solid 3px rgba(236, 236, 236, 0.7);
+  transition: all 0.5s ease-in-out;
+}
+
+.notebooks-scroller.slideable.slide-hide  {
+  left: -600px;
+}
+
+.notebooks-scroller.slideable.underoverlay.slide-hide  {
+  position: fixed;
+  left: -4000px;
+  width: 100%;
+  background: white;
+  height: 100%;
+  opacity: 0.8;
+  transition: all 0.5s ease-in-out;
+}
+
+.notebooks-scroller.slideable.underoverlay  {
+  position: fixed;
+  left: 0px;
+  width: 100%;
+  background: white;
+  height: 100%;
+  opacity: 0.8;
+  z-index: 10;
+}
+
+.notebookdSlideoutCard  {
+  height: 60px;
+}
+
+.notebookCardTitle {
+  font-family: caecilia, times, serif;
+  font-size: 16px;
+}
+
+.notebookCardNoteCount  {
+  font-family: gotham, helvetica, arial, sans-serif;
+  font-size: 11px;
+  font-stretch:100%;
+  text-transform: uppercase;
 }

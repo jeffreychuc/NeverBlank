@@ -1,7 +1,4 @@
-import merge from 'lodash/merge';
-
 export function createSlideToggle (className, classNameString) {
-  debugger;
   this.state = { [className]: classNameString + ' slideable slide-hide'};
   return (
     () => {

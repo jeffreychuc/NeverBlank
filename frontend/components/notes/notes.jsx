@@ -13,9 +13,8 @@ class Notes extends React.Component  {
     // console.log("IN NOTES CONSTRUCTOR");
     // console.log(props);
     const boundSlideToggle = createSlideToggle.bind(this);
-    this.renderNotebookEditModal = this.renderNotebookEditModal.bind(this);
-    debugger;
     this.noteScrollerToggle = boundSlideToggle('notesScrollerClass', 'notes-scroller').bind(this);
+    this.renderNotebookEditModal = this.renderNotebookEditModal.bind(this);
     this.renderNotebookEditModal = this.renderNotebookEditModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
@@ -43,9 +42,7 @@ class Notes extends React.Component  {
     if (this.props.currentNotebook) {
       return (
         <div className = 'notes-header-container notebook'>
-          <Button className='notebook-edit-icon' onClick={() => this.toggleModal()}>
-            <img src={_infoIcon} width="24" height="24" />
-          </Button>
+          <img className = 'notebook-header-edit-toggle' src={_infoIcon} width="24" height="24" onClick={() => this.toggleModal()}/>
           <div className = 'notes-header notebook'>
             <h2 className = 'notes-header-notebook'>{this.props.currentNotebook.title}</h2>
           </div>
