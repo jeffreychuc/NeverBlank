@@ -119,7 +119,12 @@ class Editor extends React.Component {
           formats={Editor.formats}
           bounds={'.editor-main'}
           placeholder={this.props.placeholder}
+          className={'quill-editor'}
         />
+        <div className = 'editor-full-screen-button' onClick={null}>
+          <i className="fa fa-expand fa-2x" aria-hidden="true"/>
+        </div>
+
       </div>
     );
   }
@@ -163,5 +168,3 @@ Editor.formats = [
 // };
 
 export default Editor;
-
-// {/* <MenuItem onClick={} >Dropdown link</MenuItem> */}

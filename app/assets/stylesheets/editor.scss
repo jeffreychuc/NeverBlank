@@ -1,0 +1,38 @@
+.editor-full-screen-button:hover  {
+  overflow: hidden;
+  background-position: center;
+  background-color: #2dbe60;
+  display: inline-block;
+  vertical-align: top;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+  margin: 0 16px 0 0;
+  .fa-expand  {
+    color: white;
+  }
+}
+
+.editor-full-screen-button  {
+  height: 30px;
+  width: 30px;
+  overflow: hidden;
+  border: 1px solid #2dbe60;
+  border-radius: 4px;
+  padding: 5px 6px;
+  background-position: center;
+  display: inline-block;
+  vertical-align: top;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+  margin: 0 16px 0 0;
+  .fa-expand  {
+    color: #2dbe60;
+  }
+}
+
+.editor-full-screen-button i  {
+  position: relative;
+  top: -5px;
+  left: -4px;
+}
