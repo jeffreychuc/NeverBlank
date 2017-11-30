@@ -108,11 +108,18 @@ class Home extends React.Component  {
       // logic for note to be passed to editor
       let noteToBePassedById;
       console.log('NOT LIKE THIS');
+      // debugger;
       if ((('noteId' in this.props.match.params) && (this.props.match.params['noteId'] !== 'new') && (('by_id' in this.props.state.entities.notes) && parseInt(this.props.match.params.noteId) in this.props.state.entities.notes.by_id))) {
         noteToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
       }
       else  {
-        noteToBePassedById = {body: '', id: 'new'};
+        if (this.props.match.path === '/home/notebooks/:notebookId/notes')  {
+          let noteId = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebook_pair) => Object.keys(notebook_pair)[0] === this.props.match.params.notebookId))[0][0];
+          noteToBePassedById = this.props.state.entities.notes.by_id[noteId];
+        }
+        else  {
+          noteToBePassedById = {body: '', id: 'new'};
+        }
       }
       // this two lines need to be change to accout for switching notebooks
       let notebooksToBePassed = this.props.state.entities.notebooks;

@@ -20,7 +20,6 @@ class Notebooks extends React.Component  {
 
   componentDidMount() {
     this.setState({notebookCreateModal: false, notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay slide-hide'});
-    debugger;
     if (this.props.match.path === '/home/notebooks/') {
       this.props.toggleNotebookVisibility(false);
     }
@@ -48,13 +47,11 @@ class Notebooks extends React.Component  {
   }
 
   handleSubmit(event)  {
-
     event.preventDefault();
     this.props.createNotebook(this.refs.newnotebookname.value).then(() => this.toggleModal());
   }
 
   renderNotebookCards() {
-
     return(
       this.props.notebooks.ordered['created_at_desc'].map((notebookPair) => ( //data for this should look like {3: [5]}
         <div className = 'notebookdSlideoutCard' key={shortid.generate()} >

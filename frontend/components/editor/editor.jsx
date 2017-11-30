@@ -12,6 +12,7 @@ class Editor extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleNotebookChange = this.handleNotebookChange.bind(this);
+    debugger;
     this.state = {title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id};
     console.log('fkds;kfla');
     this.debug = this.debug.bind(this);
@@ -31,7 +32,7 @@ class Editor extends React.Component {
   }
 
   handleSave(editorState)  {
-
+    debugger;
     const { title, editorHtml, id, notebook_id } = editorState;
     if (id === 'new') {
       debugger;
@@ -67,7 +68,7 @@ class Editor extends React.Component {
 
 
   componentWillReceiveProps(newProps) {
-
+    debugger;
     if (!isEqual(this.props.note,newProps.note))  {
       // this.handleSave(this.state);
       // causes double save
@@ -89,12 +90,11 @@ class Editor extends React.Component {
   }
 
   handleNotebookChange(newNotebook)  {
-
+    debugger;
     this.handleSave(merge({}, newNotebook, this.state));
   }
 
   renderNotebookDropdown()  {
-    debugger;
       return(
         <DropdownButton title={this.props.notebooksById[this.props.note.notebook_id ? this.props.note.notebook_id : this.props.defaultNotebookId].title} id="bg-nested-dropdown">
           <MenuItem key={shortid()} onClick={null}>Create A New Notebook</MenuItem>
