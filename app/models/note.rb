@@ -15,7 +15,6 @@
 class Note < ApplicationRecord
   validates :author_id, presence: true
   validates :title, presence: true
-  before_validation :init
 
   belongs_to :author,
   primary_key: :id,
@@ -27,12 +26,5 @@ class Note < ApplicationRecord
   foreign_key: :notebook_id,
   class_name: :Notebook,
   optional: true
-
-  # init
-  # sets default title of note as Untitled if user
-  # does not include a title.
-  def init
-    self.title ||= 'Untitled'
-  end
 
 end

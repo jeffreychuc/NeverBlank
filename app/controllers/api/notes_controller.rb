@@ -15,9 +15,13 @@ class Api::NotesController < ApplicationController
   end
 
   def create
+    byebug
     if current_user
       @note = Note.new(note_params)
       @note.author_id = current_user.id
+      if @note.title.empty?
+        @note.title = 'Untitled'
+      end
       if @note.save
         render json: @note
       else

@@ -31,9 +31,10 @@ class Editor extends React.Component {
   }
 
   handleSave(editorState)  {
-    debugger;
+
     const { title, editorHtml, id, notebook_id } = editorState;
-    if (id === 'new') {
+    debugger;
+    if (!id) {
       debugger;
       this.props.createNotes({
         body: editorHtml,
@@ -60,7 +61,9 @@ class Editor extends React.Component {
     //
     clearTimeout(this.autoSaveTimeoutId);
     this.setState({editorHtml: html});
-    if (this.props.note.body !== this.state.editorHtml) {
+    debugger;
+    console.log('wtf');
+    if ((this.props.note ? this.props.note.body : '') !== this.state.editorHtml) {
       this.autoSaveTimeoutId = setTimeout(() => this.handleSave(this.state), 1000);
     }
   }
@@ -73,18 +76,24 @@ class Editor extends React.Component {
       // causes double save
       let editorBody;
       let noteId;
-      if (newProps.match.params.noteId === 'new') {
+      let notebookId;
+      let title;
+      debugger;
+      if (newProps.match.params.noteId === 'new' || newProps.note === undefined) {
         editorBody = '';
+        title = '';
         noteId = 'new';
-        debugger;
-        notebook_id = 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : 9999;//default notebook;
+        // debugger;
+        notebookId = 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : this.props.defaultNotebookId;//default notebook;
       }
       else  {
         editorBody = newProps.note.body;
         noteId = newProps.note['id'];
+        notebookId = newProps.note.notebook_id;
+        title = newProps.note.title;
       }
 
-      this.setState({editorHtml: editorBody, id: noteId, notebook_id: newProps.notebook_id});
+      this.setState({editorHtml: editorBody,title: title, id: noteId, notebook_id: notebookId});
     }
   }
 

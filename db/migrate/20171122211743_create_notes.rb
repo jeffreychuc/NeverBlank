@@ -3,7 +3,7 @@ class CreateNotes < ActiveRecord::Migration[5.1]
     create_table :notes do |t|
       t.integer :author_id, null: false
       t.integer :notebook_id
-      t.string :title, null: false
+      t.string :title, null: false, default: 'Untitled'
       t.string :body
       t.string :bodypreview
       t.timestamps
