@@ -102,7 +102,9 @@ class Home extends React.Component  {
 
       // logic for note to be passed to editor
       let noteToBePassedById;
-      if ((('noteId' in this.props.match.params) && (this.props.match.params['noteId'] !== 'new') && (('by_id' in this.props.state.entities.notes) && parseInt(this.props.match.params.noteId) in this.props.state.entities.notes))) {
+      debugger;
+      console.log('NOT LIKE THIS');
+      if ((('noteId' in this.props.match.params) && (this.props.match.params['noteId'] !== 'new') && (('by_id' in this.props.state.entities.notes) && parseInt(this.props.match.params.noteId) in this.props.state.entities.notes.by_id))) {
         noteToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
       }
       else  {

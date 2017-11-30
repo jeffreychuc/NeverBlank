@@ -23,6 +23,7 @@ class Editor extends React.Component {
   }
 
   handleSave(editorState)  {
+    debugger;
     const { title, editorHtml, id } = editorState;
     if (id === 'new') {
       this.props.createNotes({
@@ -43,6 +44,7 @@ class Editor extends React.Component {
   }
 
   handleChange (html) {
+    debugger;
     clearTimeout(this.autoSaveTimeoutId);
     this.setState({editorHtml: html});
     if (this.props.note.body !== this.state.editorHtml) {
@@ -52,7 +54,7 @@ class Editor extends React.Component {
 
 
   componentWillReceiveProps(newProps) {
-    // debugger;
+    debugger;
     if (this.props.match.params.noteId !== newProps.match.params.noteId)  {
       // this.handleSave(this.state);
       // causes double save
