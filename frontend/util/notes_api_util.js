@@ -6,19 +6,20 @@ export const getNotes = (notes) => (
   })
 );
 
-export const patchNote = (note) => (
-  $.ajax({
+export const patchNote = (note) => {
+  debugger;
+  return ($.ajax({
     url: `/api/notes/${note.id}`,
     method: 'PATCH',
-    data: { note: {title: note.title, body: note.body, bodypreview: note.bodypreview} }
-  })
-);
+    data: { note: {title: note.title, body: note.body, bodypreview: note.bodypreview, notebook_id: note.notebook_id} }
+  }));
+};
 
 export const postNote = (note) => (
   $.ajax({
     url: '/api/notes/',
     method: 'POST',
-    data: { note: {title: note.title, body: note.body, bodypreview: note.bodypreview} }
+    data: { note: {title: note.title, body: note.body, bodypreview: note.bodypreview, notebook_id: note.notebook_id} }
   })
 );
 

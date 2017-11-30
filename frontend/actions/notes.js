@@ -1,4 +1,5 @@
 import { getNotes, patchNote, postNote, deleteNote } from '../util/notes_api_util';
+import { fetchNotebooks } from './notebooks';
 
 export const RECEIVE_ALL_NOTES = 'RECEIVE_ALL_NOTES';
 export const ADD_BLANK_NOTE = 'ADD_BLANK_NOTE';
@@ -17,15 +18,15 @@ export const fetchNotes = () => (dispatch) => (
 );
 
 export const patchNotes = (note) => (dispatch) => (
-  patchNote(note).then(() => getNotes()).then((notes) => dispatch(receiveAllNotes(notes)))
+  patchNote(note).then(() => getNotes()).then((notes) => dispatch(receiveAllNotes(notes))).then(() => dispatch(fetchNotebooks()))
 );
 
 export const postNotes = (note) => (dispatch) => (
-  postNote(note).then(() => getNotes()).then((notes) => dispatch(receiveAllNotes(notes)))
+  postNote(note).then(() => getNotes()).then((notes) => dispatch(receiveAllNotes(notes))).then(() => dispatch(fetchNotebooks()))
 );
 
 export const generateBlankNote = () => (dispatch) => dispatch(addBlankNote());
 
 export const destroyNote = (id) => dispatch => (
-  deleteNote(id).then(() => getNotes()).then((notes) => dispatch(receiveAllNotes(notes)))
+  deleteNote(id).then(() => getNotes()).then((notes) => dispatch(receiveAllNotes(notes))).then(() => dispatch(fetchNotebooks()))
 );
