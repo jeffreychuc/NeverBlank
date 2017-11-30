@@ -84,12 +84,13 @@ class Home extends React.Component  {
       // this two lines need to be change to accout for switching notebooks
       // let notesToBePassed = this.props.state.entities.notes;
       let notesToBePassed = [];
-
+      let currentNotebookName;
       //logic for notesToBePassed
 
       if (this.props.match.path.includes('/home/notebooks/:notebookId'))  {
         notesToBePassed = Object.values(this.props.state.entities.notes.by_id).filter((note) => note.notebook_id === parseInt(this.props.match.params.notebookId));
         //set current notebook
+        currentNotebookName = this.props.state.entities.notebooks.by_id[this.props.match.params.notebookId].title;
         // dont render on this pass?
       }
       else if (this.props.match.path === '/home/notes/:noteId')  {
@@ -117,7 +118,7 @@ class Home extends React.Component  {
         <div className = 'main-view'>
           <NavSidebarContainer />
           <div className = 'notes-sidebar'>
-            <NotesContainer notes={notesToBePassed} />
+            <NotesContainer currentNotebookName={currentNotebookName} notes={notesToBePassed} />
           </div>
           <div className = 'editor-main'>
             <EditorContainer note={noteToBePassedById} placeholder={'Drag files here or just start typing...'}/>

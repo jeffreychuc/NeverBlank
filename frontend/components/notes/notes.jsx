@@ -2,6 +2,7 @@ import React from 'react';
 import Note from './note';
 import shortid from 'shortid';
 import pluralize from 'pluralize';
+import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { createSlideToggle } from '../../util/css_util';
 
@@ -11,6 +12,7 @@ class Notes extends React.Component  {
     // console.log("IN NOTES CONSTRUCTOR");
     // console.log(props);
     const boundSlideToggle = createSlideToggle.bind(this);
+    this.renderNotebookEditModal = this.renderNotebookEditModal.bind(this);
     this.noteScrollerToggle = boundSlideToggle('notesScrollerClass', 'notes-scroller').bind(this);
     // console.log('in notes constructor');
   }
@@ -38,6 +40,30 @@ class Notes extends React.Component  {
     );
   }
 
+  renderHeader()  {
+    debugger;
+    if (this.props.currentNotebookName) {
+      return (
+        <div className = 'notes-header-container notebook'>
+          <NavLink className='notebook-edit-icon' to={'#'}>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABNElEQVR42u1VOw7CMAwtExPnYIE7sHGl9jiwcBBKYWjVdqtUZnY2OgU/yUZRyBcGFixZCrH9HPu5Jsv+8q00TbNt23ZHeu267gHFGXewfQzc9/2SQCoCVD6FD3yTwCloQ8F3BrnR74JAVuM4zqF1Xa9xBxv73BET/XIBp/NhGIaFyxc2+EiSqEqkLQhUSs0M2wmq38FHS3IOEiptsb2cExxtlWjtchNPxj0TV6QOBcXlHLvztQejqECiBeA1OQ7uVpzg6iMYc64wKY5XOhMghu3T7xL4WhRKENWiEMm+BFEkY8RkTMuyXLhINpPAl4DDY8qlyv55+9BsAh/48sdZJa0KBJqVmC8X8OhVYS47Lj3Xlx3O4ElrS/yyMyq5hNY12pK8ri3E73mEJ6j84TChs+wv38gTSLAjRGxKcLsAAAAASUVORK5CYII=" width="24" height="24" />
+          </NavLink>
+          <div className = 'notes-header notebook'>
+            <h2 className = 'notes-header-notebook'>{this.props.currentNotebookName}</h2>
+          </div>
+        </div>
+      );
+    }
+    else  {
+      return(
+        <div className = 'notes-header-container'>
+          <div className = 'notes-header'>
+            <h2 className = 'notes-header-text'>NOTES</h2>
+          </div>
+        </div>
+      );
+    }
+  }
   renderNoteCards() {
     // debugger;
     return(
@@ -48,6 +74,10 @@ class Notes extends React.Component  {
         </div>
       ))
     );
+  }
+
+  renderNotebookEditModal() {
+
   }
 
   render()  {
@@ -61,9 +91,8 @@ class Notes extends React.Component  {
     let noteCount = this.props.notes.length;
     return (
       <div className ={this.state.notesScrollerClass}>
-        <div className = 'notes-header'>
-          <h2 className = 'notes-header-text'>NOTES</h2>
-        </div>
+        {this.renderNotebookEditModal()}
+        {this.renderHeader()}
         <div className = 'notes-subheader'>
           <p className = 'notes-count'>{noteCount} {pluralize('note', noteCount)}</p>
         </div>

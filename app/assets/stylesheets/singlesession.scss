@@ -25,7 +25,7 @@
 }
 
 .signin-logo img  {
-  display: block; /*for the img inside your div */ 
+  display: block; /*for the img inside your div */
   margin: 0 auto;
   height: 70px;
   width: 70px;
@@ -59,8 +59,9 @@
   font-size: 16px;
   font-family: Gotham_SSm_5r, helvetica, arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   height: 46px;
-  margin: 0 auto;  
+  margin: 0 auto;
 }
 
 .signin-form-element  {
@@ -72,6 +73,7 @@
   width: 320px;
   margin: 0 auto;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-family: Gotham_SSm_5r, helvetica, arial, sans-serif;
   font-size: 15px;
@@ -102,11 +104,13 @@
   font-style: normal;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .single-session-form .form-control {
   background: white;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-family: Gotham_SSm_5r, helvetica, arial, sans-serif;
   font-size: 16px;
