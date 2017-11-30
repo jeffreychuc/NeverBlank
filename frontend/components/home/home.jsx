@@ -88,7 +88,12 @@ class Home extends React.Component  {
       //logic for notesToBePassed
 
       if (this.props.match.path.includes('/home/notebooks/:notebookId'))  {
-        notesToBePassed = Object.values(this.props.state.entities.notes.by_id).filter((note) => note.notebook_id === parseInt(this.props.match.params.notebookId));
+        debugger;
+        console.log('omg');
+        // Object.values(test.find((notebook) => Object.keys(notebook)[0] === '6')) === undefined
+        if (this.props.state.entities.notes.by_id !== undefined)  {
+          notesToBePassed = Object.values(this.props.state.entities.notes.by_id).filter((note) => note.notebook_id === parseInt(this.props.match.params.notebookId));
+        }
         //set current notebook
         currentNotebook= this.props.state.entities.notebooks.by_id[this.props.match.params.notebookId];
         // dont render on this pass?
