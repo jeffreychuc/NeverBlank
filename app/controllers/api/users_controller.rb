@@ -2,10 +2,12 @@ class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # @default_notebook = Notebook.new
-      # @default_notebook.title = 'Default Notebook'
-      # @default_notebook.author_id = @user.id
-      # @default_notebook.save
+      @default_notebook = Notebook.new
+      @default_notebook.title = 'First Notebook'
+      @default_notebook.lock = true
+      @default_notebook.author_id = @user.id
+      @default_notebook.save
+      byebug
       # code above for default notebooks
       login(@user)
       render json: @user

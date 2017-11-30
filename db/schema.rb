@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171128062320) do
   create_table "notebooks", force: :cascade do |t|
     t.integer "author_id", null: false
     t.string "title", null: false
+    t.boolean "lock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_notebooks_on_author_id"

@@ -5,9 +5,11 @@ import { getCurrentNote } from '../../util/route_util';
 import { patchNotes, postNotes } from '../../actions/notes';
 
 const mapStateToProps = (state, ownProps) => {
+  // debugger;
   return(
     {
-      notes: state.entities.notes
+      notebooks: state.entities.notebooks.ordered.created_at_desc,
+      notebooksById: state.entities.notebooks.by_id,
     }
   );
 };
@@ -17,4 +19,4 @@ const mapDispatchToProps = (dispatch) => ({
   createNotes: (note) => dispatch(postNotes(note))
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(Editor));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Editor));

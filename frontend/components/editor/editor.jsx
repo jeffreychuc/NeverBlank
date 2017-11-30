@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
+import shortid from 'shortid';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 // import striptags from 'striptags';
 
 class Editor extends React.Component {
@@ -7,6 +9,8 @@ class Editor extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = {title: '', editorHtml: this.props.note['body'], id: this.props.note['id']};
+    debugger;
+    console.log('fkds;kfla');
     this.autoSaveTimeoutId = null;
   }
 
@@ -23,7 +27,6 @@ class Editor extends React.Component {
   }
 
   handleSave(editorState)  {
-    debugger;
     const { title, editorHtml, id } = editorState;
     if (id === 'new') {
       this.props.createNotes({
@@ -73,8 +76,12 @@ class Editor extends React.Component {
   }
 
   render () {
+
     return (
       <div>
+        <DropdownButton title="Notebooks" id="bg-nested-dropdown">
+          {this.props.notebooks.map((notebook_pair) => <MenuItem key={shortid()} onClick={null}>{this.props.notebooksById[Object.keys(notebook_pair)[0]].title}</MenuItem> )}
+        </DropdownButton>
         <ReactQuill
           theme={'snow'}
           onChange={this.handleChange}
@@ -127,3 +134,5 @@ Editor.formats = [
 // };
 
 export default Editor;
+
+// {/* <MenuItem onClick={} >Dropdown link</MenuItem> */}
