@@ -88,7 +88,7 @@ class Home extends React.Component  {
       //logic for notesToBePassed
 
       if (this.props.match.path.includes('/home/notebooks/:notebookId'))  {
-        debugger;
+        // debugger;
         console.log('omg');
         // Object.values(test.find((notebook) => Object.keys(notebook)[0] === '6')) === undefined
         if (this.props.state.entities.notes.by_id !== undefined)  {
