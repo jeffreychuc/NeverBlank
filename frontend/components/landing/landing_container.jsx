@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createNewUser, loginDemo } from '../../actions/session';
+import { createNewUser, loginDemo, logout } from '../../actions/session';
 import { clearErrors } from '../../actions/errors';
 import Landing from './landing';
 import { withRouter } from 'react-router-dom';
@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch) => ({
   createNewUser: (formUser) => dispatch(createNewUser(formUser)),
   loginDemo: () => dispatch(loginDemo()),
   clearErrors: () => dispatch(clearErrors()),
-  fetchNotes: () => dispatch(fetchNotes())
+  fetchNotes: () => dispatch(fetchNotes()),
+  logout: () => dispatch(logout()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Landing));

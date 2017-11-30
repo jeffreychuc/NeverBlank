@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Jumbotron, Col, Navbar, NavItem, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 import { Link } from 'react-router';
 import { logoLink } from '../assets';
+import { isEqual } from 'underscore';
 
 class Landing extends React.Component{
   constructor(props, ownProps) {
@@ -35,8 +36,9 @@ class Landing extends React.Component{
   handleSubmit(event) {
     console.log(this.props);
     event.preventDefault();
+    let currentUser = this.props.session.currentUser;
     this.props.createNewUser(this.state)
-      .then(() => this.props.session.currentUser ? this.props.history.push('/home/notes') : null ); //acts as redirect
+      .then(() => !isEqual(currentUser ,this.props.session.currentUser) ? this.props.history.push('/home/notes') : null ); //acts as redirect
   }
 
   debug(status)  {
