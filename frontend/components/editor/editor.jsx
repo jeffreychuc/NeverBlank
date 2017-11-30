@@ -13,8 +13,7 @@ class Editor extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleNotebookChange = this.handleNotebookChange.bind(this);
     debugger;
-    this.state = {title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id};
-    console.log('fkds;kfla');
+    this.state = this.props.note ? {title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id} : {title: '', editorHtml: '', notebook_id: this.props.match.params.notebookId};
     this.debug = this.debug.bind(this);
     this.autoSaveTimeoutId = null;
   }
@@ -95,12 +94,13 @@ class Editor extends React.Component {
   }
 
   renderNotebookDropdown()  {
-      return(
-        <DropdownButton title={this.props.notebooksById[this.props.note.notebook_id ? this.props.note.notebook_id : this.props.defaultNotebookId].title} id="bg-nested-dropdown">
-          <MenuItem key={shortid()} onClick={null}>Create A New Notebook</MenuItem>
-          {this.props.notebooks.map((notebook_pair) => <MenuItem key={shortid()} onClick={() => this.handleNotebookChange({notebook_id: Object.keys(notebook_pair)[0]})}>{Object.keys(notebook_pair)[0]} {this.props.notebooksById[Object.keys(notebook_pair)[0]].title}</MenuItem> )}
-        </DropdownButton>
-      );
+    debugger;
+    return(
+      <DropdownButton title={this.props.notebooksById[this.props.note ? this.props.note.notebook_id : this.props.match.params.notebookId ? this.props.match.params.notebookId : this.props.defaultNotebookId].title} id="bg-nested-dropdown">
+        <MenuItem key={shortid()} onClick={null}>Create A New Notebook</MenuItem>
+        {this.props.notebooks.map((notebook_pair) => <MenuItem key={shortid()} onClick={() => this.handleNotebookChange({notebook_id: Object.keys(notebook_pair)[0]})}>{Object.keys(notebook_pair)[0]} {this.props.notebooksById[Object.keys(notebook_pair)[0]].title}</MenuItem> )}
+      </DropdownButton>
+    );
   }
   render () {
     console.log(this.props.note, 'THIS IS THE CURRENT NOTE');
