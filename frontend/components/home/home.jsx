@@ -14,7 +14,7 @@ class Home extends React.Component  {
     // fetches notes then sets active note to first note in list.
     console.log('home did mount');
     this.props.setLoadingState(true);
-    this.props.fetchNotes().then();
+    this.props.fetchNotes();
     this.props.fetchNotebooks();
     //add logic for rerouting base on path
   }
@@ -76,9 +76,9 @@ class Home extends React.Component  {
           notebookNotes = sortBy(notebookNotes, (note) => (
             this.props.state.entities.notes.ordered.updated_at_desc.indexOf(note.id))
           );
-          let firstNotebookNote = notebookNotes[0].id;
+          let orderedNotebookNotes = notebookNotes[0];
           debugger;
-          this.props.history.push(firstNotebookNote ? `/home/notebooks/${notebook_id}/notes/${firstNotebookNote}` : `/home/notebooks/${notebook_id}/notes/`);
+          this.props.history.push(orderedNotebookNotes ? `/home/notebooks/${notebook_id}/notes/${orderedNotebookNotes.id}` : `/home/notebooks/${notebook_id}/notes/`);
         }
       }
 
@@ -174,8 +174,6 @@ class Home extends React.Component  {
           this.props.history.push(`/home/notebooks/${notebookId}/notes/${notesToBePassed[0].id}`);
         }
       }
-      //build
-      // this two lines need to be change to accout for switching notebooks
       let notebooksToBePassed = this.props.state.entities.notebooks;
       //
       //

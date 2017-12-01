@@ -14,11 +14,11 @@ export const patchNotebook = (notebook) => (
   })
 );
 
-export const postNotebook = (notebook) => (
+export const postNotebook = (title) => (
   $.ajax({
     url: '/api/notebooks/',
     method: 'POST',
-    data: { notebook: { title: notebook.title, id: notebook.id } }
+    data: { notebook: { title: title} }
   })
 );
 

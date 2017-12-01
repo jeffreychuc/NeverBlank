@@ -12,6 +12,7 @@ class Notebooks extends React.Component  {
     this.renderCreateNotebookModal = this.renderCreateNotebookModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.handleNewNotebookRedirect = this.handleNewNotebookRedirect.bind(this);
 
     const boundSlideToggle = createSlideToggle.bind(this);
     this.notebookScrollerToggle = boundSlideToggle('notebookScrollerClass', 'notebooks-scroller').bind(this);
@@ -27,7 +28,7 @@ class Notebooks extends React.Component  {
 
   componentWillReceiveProps(newProps) {
    console.log('notebooks getting new props');
-  //
+    debugger;
    if (newProps.notebookSidebarVisibility === true)  {
       this.setState({notebookScrollerClass: 'notebooks-scroller slideable', notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay'});
     }
@@ -48,7 +49,12 @@ class Notebooks extends React.Component  {
 
   handleSubmit(event)  {
     event.preventDefault();
-    this.props.createNotebook(this.refs.newnotebookname.value).then(() => this.toggleModal());
+    this.props.createNotebook(this.refs.newnotebookname.value).then((data) => this.handleNewNotebookRedirect(data)).then(() => this.toggleModal()).then(() => this.props.toggleNotebookVisibility(true));
+  }
+
+  handleNewNotebookRedirect(action) {
+    let newNotebookId = Object.keys(action.notebooks.ordered.created_at_desc[0])[0];
+    this.props.history.push(`/home/notebooks/${newNotebookId}/`);
   }
 
   renderNotebookCards() {
@@ -87,12 +93,10 @@ class Notebooks extends React.Component  {
   }
 
   toggleModal() {
+    debugger;
     this.setState({notebookCreateModal: !this.state.notebookCreateModal});
   }
 
-  debug() {
-
-  }
   render()  {
     console.log('in notebooks render');
     // console.log(this.props.selected, 'THIS SHOULD BE A BOOL');
