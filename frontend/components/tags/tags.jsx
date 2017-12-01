@@ -23,8 +23,11 @@ class Tags extends React.Component  {
   }
 
   componentWillReceiveProps(newProps) {
+    debugger;
     if (!isEqual(this.state, newProps)) {
-      this.setState({userTags: Object.values(newProps.userTags.by_id), tagCounts: Object.values(newProps.userTags.counts)});
+      if ('userTags' in  newProps)  {
+        this.setState({userTags: Object.values(newProps.userTags.by_id), tagCounts: Object.values(newProps.userTags.counts), tagSlider: newProps.tagSlider});
+      }
     }
   }
 
@@ -33,7 +36,7 @@ class Tags extends React.Component  {
     //
   }
 
-  toggleModal() {
+  toggleDeleteModal() {
     this.setState({tagSlider: !this.state.tagSlider});
   }
 
@@ -54,7 +57,7 @@ class Tags extends React.Component  {
             <form onSubmit ={this.handleSubmit}>
               <input type="text" ref="newtagname" placeholder="Name your tag"/>
               <div className = 'modalformbuttons tagcreateformbuttons'>
-                <Button onClick={() => this.toggleModal()}>Cancel</Button>
+                <Button onClick={() => this.props.setTagSidebarVisibility()}>Cancel</Button>
                 <Button type="submit">Create Tag</Button>
               </div>
             </form>
@@ -73,7 +76,7 @@ class Tags extends React.Component  {
           <div className = 'notebookEditModal-seperator'/>
           <h2>Are you sure you want to delete <strong>{}</strong>?</h2>
           <div className = 'notebookDeleteModalButtons'>
-            <Button onClick={() => this.hideTagDeleteModal()}>Cancel</Button>
+            <Button onClick={() => this.toggleDeleteModal()}>Cancel</Button>
             <Button onClick={()=> this.handleTagDelete()} type="button">Delete</Button>
           </div>
         </div>

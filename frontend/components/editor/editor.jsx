@@ -123,7 +123,14 @@ class Editor extends React.Component {
   }
 
   renderTagArea() {
-    return null;
+    if (this.props.noteTags !== undefined)  {
+      return (
+        <div className = 'tags-above-editor'>
+          {Object.values(this.props.noteTags).map((tag) => <p key={shortid()}>{tag.name}</p>)}
+          <input type='text' placeholder='+' />
+        </div>
+      );
+    }
   }
   render () {
     console.log(this.props.note, 'THIS IS THE CURRENT NOTE');

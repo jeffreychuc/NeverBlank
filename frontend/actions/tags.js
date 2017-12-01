@@ -1,5 +1,6 @@
 import { getTags } from '../util/tags_api_util';
-import { getNoteTags } from '../util/notes_api_util';
+import { getNoteTags, postTag } from '../util/notes_api_util';
+import { postTagging, deleteTagging} from '../util/taggings_api_util';
 
 export const RECEIVE_ALL_TAGS = 'RECEIVE_ALL_TAGS';
 export const RECEIVE_NOTE_TAGS = 'RECEIVE_NOTE_TAGS';
@@ -26,3 +27,11 @@ export const getAllTagsForNote = (id) => (dispatch) => (
 export const debug = (tags) => {
   return tags;
 };
+
+export const taggingNote = (tagging) => (dispatch) => (
+  postTagging(tagging).then(() => dispatch(getAllUserTags()))
+);
+
+export const removeTagging = (tagging) => (dispatch) => (
+  deleteTagging(tagging).then(() => dispatch(getAllUserTags()))
+);
