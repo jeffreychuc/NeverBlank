@@ -2,7 +2,7 @@ class Api::TaggingsController < ApplicationController
   def create
     if current_user
       @tagging = Tagging.new(tagging_params)
-      if @tagging.save
+      if @tagging.save!
         render json: @tagging, status: 200
       else
         render json: @tagging.errors.full_messages, status: 500

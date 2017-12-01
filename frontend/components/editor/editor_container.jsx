@@ -3,7 +3,7 @@ import Editor from './editor';
 import { withRouter } from 'react-router-dom';
 import { getCurrentNote } from '../../util/route_util';
 import { patchNotes, postNotes } from '../../actions/notes';
-import { getAllTagsForNote } from '../../actions/tags';
+import { getAllTagsForNote, taggingNote, createTag } from '../../actions/tags';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -21,7 +21,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => ({
   saveNotes: (note) => dispatch(patchNotes(note)),
   createNotes: (note) => dispatch(postNotes(note)),
-  getAllTagsForNote: (id) => dispatch(getAllTagsForNote(id))
+  getAllTagsForNote: (id) => dispatch(getAllTagsForNote(id)),
+  createNewTagging: ({tagging, tagName}) => dispatch(createTag(tagName)).then(() => dispatch(taggingNote(tagging)))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Editor));

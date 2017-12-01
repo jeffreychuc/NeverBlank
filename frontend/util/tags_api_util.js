@@ -8,8 +8,8 @@ export const getTags = () => (
 export const postTag = (tag) => (
   $.ajax({
     url: '/api/tags',
-    method: 'GET',
-    data: { tag }
+    method: 'POST',
+    data: { tag: {name: tag } }
   })
 );
 

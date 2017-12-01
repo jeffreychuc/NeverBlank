@@ -2,6 +2,7 @@ export const postTagging = (tagging) => (
   $.ajax({
     url: '/api/taggings/',
     method: 'POST',
+    data: { tagging }
   })
 );
 

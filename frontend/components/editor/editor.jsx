@@ -15,6 +15,7 @@ class Editor extends React.Component {
     this.state = this.props.note ? { title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id} : {title: '', editorHtml: '', notebook_id: this.props.match.params.notebookId};
     this.buildRedirect = this.buildRedirect.bind(this);
     this.renderTagRea = this.renderTagArea.bind(this);
+    this.addNewTag = this.addNewTag.bind(this);
     this.autoSaveTimeoutId = null;
   }
 
@@ -127,11 +128,22 @@ class Editor extends React.Component {
       return (
         <div className = 'tags-above-editor'>
           {Object.values(this.props.noteTags).map((tag) => <p key={shortid()}>{tag.name}</p>)}
-          <input type='text' placeholder='+' />
+          <form onSubmit={(e) => this.addNewTag(e)}>
+            <input ref='newtagname' type='text' placeholder='+' />
+          </form>
         </div>
       );
     }
   }
+
+  addNewTag(e) {
+    e.preventDefault();
+    debugger;
+    this.props.createNewTagging({tagging: {note_id: this.props.note.id, tag_id: this.props.note.id}, tagName: this.refs.newtagname.value});
+    debugger;
+    this.refs.newtagname.value = '';
+  }
+
   render () {
     console.log(this.props.note, 'THIS IS THE CURRENT NOTE');
     console.log(this.props.notebooksById, 'THESE ARE THE CURRENT NOTEBOOKS');
