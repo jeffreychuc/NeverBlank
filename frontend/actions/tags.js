@@ -40,3 +40,8 @@ export const createTag = (tagName) => (dispatch) => (
 export const removeTagging = (tagging) => (dispatch) => (
   deleteTagging(tagging).then(() => dispatch(getAllUserTags()))
 );
+
+export const createTagAndAttach = ({note_id, tagName}) => (dispatch) => (
+  postTag(tagName).then((tag) => postTagging({tag_id: tag.id, note_id: note_id})).then(()=> getAllUserTags()
+));
+

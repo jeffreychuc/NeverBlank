@@ -35,7 +35,7 @@ class Home extends React.Component  {
   }
 
   componentWillReceiveProps(newProps) {
-    // debugger;
+    // 
     if (newProps.state.entities.notes !== null && newProps.state.entities.notebooks !== null) {
       if (('ordered' in newProps.state.entities.notes) && ('ordered' in newProps.state.entities.notebooks)) {
         //
@@ -69,7 +69,7 @@ class Home extends React.Component  {
           let notebook_id = newProps.match.params.notebookId;
           //
 
-          // debugger;
+          // 
           console.log('fjkahsfjdhasj');
           // let notebookNotes = this.props.state.entities.notes.by_id.filter((note) => note.notebook_id === notebook_id);
           let notebookNotes = Object.keys(this.props.state.entities.notes.by_id).map((id) => this.props.state.entities.notes.by_id[id]);
@@ -78,7 +78,7 @@ class Home extends React.Component  {
             this.props.state.entities.notes.ordered.updated_at_desc.indexOf(note.id))
           );
           let orderedNotebookNotes = notebookNotes[0];
-          // debugger;
+          // 
           this.props.history.push(orderedNotebookNotes ? `/home/notebooks/${notebook_id}/notes/${orderedNotebookNotes.id}` : `/home/notebooks/${notebook_id}/notes/`);
         }
       }
@@ -111,7 +111,7 @@ class Home extends React.Component  {
           notesToBePassed = sortBy(notesToBePassed, (note) => (
             this.props.state.entities.notes.ordered.updated_at_desc.indexOf(note.id))
           );
-          // debugger;
+          // 
           console.log('lkdsjflksajflk');
 
 
@@ -148,11 +148,11 @@ class Home extends React.Component  {
         let notebookArray = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebookObject) => Object.keys(notebookObject)[0] === this.props.match.params.notebookId))[0];
         if(notebookArray.includes(parseInt(noteId)))  {
           noteToBePassedById = this.props.state.entities.notes.by_id[noteId];
-          // debugger;
+          // 
         }
         else if (notebookArray.length > 0)  {
           this.props.history.push(`/home/notebooks/${notebookId}/notes/${notesToBePassed[0].id}`);
-          // debugger;
+          // 
         }
       }
       let notebooksToBePassed = this.props.state.entities.notebooks;

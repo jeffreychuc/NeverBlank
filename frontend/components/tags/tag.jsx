@@ -9,7 +9,7 @@ class Tag extends React.Component  {
   constructor (props)  {
     super(props);
     this.state = {tagName: this.props.tag.name, tagId: this.props.tag.id, count: this.props.count};
-    // debugger;
+    //
   }
 
   componentWillReceiveProps(newProps) {
@@ -24,7 +24,7 @@ class Tag extends React.Component  {
 
   render()  {
     console.log('in tag render');
-    // debugger;
+    //
     return (
         <div key={shortid()}>
           <h2>{this.state.tagName}</h2>

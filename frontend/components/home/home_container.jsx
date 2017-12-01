@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchNotes: () => dispatch(fetchNotes()),
   fetchNotebooks: () => dispatch(fetchNotebooks()),
   setLoadingState: (loadingState) => dispatch(setLoadingState(loadingState)),
+  
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

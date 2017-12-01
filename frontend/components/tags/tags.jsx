@@ -19,13 +19,13 @@ class Tags extends React.Component  {
     // if ('noteId' in  this.props.match.params && this.props.match.params.noteId !== 'new') {
     //   this.props.getAllTagsForNote(this.props.match.params.noteId);
     // }
-    debugger;
+
   }
 
   componentWillReceiveProps(newProps) {
-    debugger;
-    if (!isEqual(this.state, newProps)) {
-      if ('userTags' in  newProps)  {
+
+    if (!isEqual(this.state.userTags, newProps.userTags)) {
+      if (('userTags' in  newProps) && ('by_id' in newProps.userTags))  {
         this.setState({userTags: Object.values(newProps.userTags.by_id), tagCounts: Object.values(newProps.userTags.counts), tagSlider: newProps.tagSlider});
       }
     }
@@ -92,24 +92,25 @@ class Tags extends React.Component  {
     console.log('in tags render');
     // console.log(this.props.selected, 'THIS SHOULD BE A BOOL');
     // console.log(this.props);
-    // debugger;
+    //
     if (isEmpty(this.props.userTags))  {
       return null;
     }
     else  {
-      debugger;
+
       return (
         <div>
         {this.renderTagAddModal()}
         {this.renderTagDeleteModal()}
-        {this.props.userTags.ordered.map((tagPair) => (
+        {this.props.userTags.ordered ? this.props.userTags.ordered.map((tagPair) => (
+
           <div key={shortid()}>
             <h2>{tagPair[0][0]}</h2>
             <div>
               {tagPair[1].map((tag) => (<Tag key={shortid()} tag={tag} count={this.state.tagCounts[tag.id]}/>))}
             </div>
           </div>
-        ))}
+        )): null }
         </div>
       );
     }

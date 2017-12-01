@@ -12,7 +12,7 @@ class Editor extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleNotebookChange = this.handleNotebookChange.bind(this);
-    this.state = this.props.note ? { title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id} : {title: '', editorHtml: '', notebook_id: this.props.match.params.notebookId};
+    this.state = this.props.note ? { currentNoteTags: [], title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id} : {title: '', editorHtml: '', notebook_id: this.props.match.params.notebookId};
     this.buildRedirect = this.buildRedirect.bind(this);
     this.renderTagRea = this.renderTagArea.bind(this);
     this.addNewTag = this.addNewTag.bind(this);
@@ -20,7 +20,7 @@ class Editor extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
+
     this.props.getAllTagsForNote(parseInt(this.props.match.params.noteId));
   }
 
@@ -36,10 +36,10 @@ class Editor extends React.Component {
   }
 
   handleSave(editorState)  {
-    debugger;
+
     const { title, editorHtml, id, notebook_id } = editorState;
     if (!id || id === 'new') {
-      //debugger;
+      //
       this.props.createNotes({
         body: editorHtml,
         title: title,
@@ -62,7 +62,7 @@ class Editor extends React.Component {
     //
     clearTimeout(this.autoSaveTimeoutId);
     this.setState({editorHtml: html});
-    //debugger;
+    //
     console.log('wtf');
     if ((this.props.note ? this.props.note.body : '') !== this.state.editorHtml) {
       this.autoSaveTimeoutId = setTimeout(() => this.handleSave(this.state), 1000);
@@ -72,21 +72,28 @@ class Editor extends React.Component {
 
   componentWillReceiveProps(newProps) {
     debugger;
-    if (!isEqual(this.props.note, newProps.note))  {
+    console.log('fdlksjlksajflkjs');
+    console.log('dsfklajlfkjsaklfj');
+    if (!isEqual(this.props, newProps))  {
       // this.handleSave(this.state);
       // causes double save
+      debugger;
+      if (!isEqual(this.props.currentNoteTags, newProps.currentNoteTags)) {
+        this.setState({currentNoteTags: newProps.currentNoteTags});
+      }
+
       let editorBody;
       let noteId;
       let notebookId;
       let title;
       let tags;
       // sorry
-      //debugger;
+      //
       if (newProps.match.params.noteId === 'new' || newProps.note === undefined) {
         editorBody = '';
         title = '';
         noteId = 'new';
-        // //debugger;
+        // //
         notebookId = 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : this.props.defaultNotebookId;//default notebook;
       }
       else  {
@@ -97,24 +104,24 @@ class Editor extends React.Component {
         this.props.getAllTagsForNote(noteId);
 
       }
-      debugger;
+
       console.log('fsadkfa;sk');
       this.setState({editorHtml: editorBody,title: title, id: noteId, notebook_id: notebookId});
     }
   }
   debug(tags)  {
-    debugger;
+
   }
 
   handleNotebookChange(newNotebook)  {
-    //debugger;
-    debugger;
+    //
+
     console.log('fsldiuflkdsaj');
     this.handleSave(merge({}, this.state, newNotebook ));
   }
 
   renderNotebookDropdown()  {
-    //debugger;
+    //
     return(
       <DropdownButton title={this.props.notebooksById[this.props.note ? this.props.note.notebook_id : this.props.match.params.notebookId ? this.props.match.params.notebookId : this.props.defaultNotebookId].title} id="bg-nested-dropdown">
         <MenuItem key={shortid()} onClick={null}>Create A New Notebook</MenuItem>
@@ -124,10 +131,11 @@ class Editor extends React.Component {
   }
 
   renderTagArea() {
-    if (this.props.noteTags !== undefined)  {
+
+    if (this.props.currentNoteTags !== undefined)  {
       return (
         <div className = 'tags-above-editor'>
-          {Object.values(this.props.noteTags).map((tag) => <p key={shortid()}>{tag.name}</p>)}
+          {Object.values(this.state.currentNoteTags).map((tag) => <p key={shortid()}>{tag.name}</p>)}
           <form onSubmit={(e) => this.addNewTag(e)}>
             <input ref='newtagname' type='text' placeholder='+' />
           </form>
@@ -138,9 +146,9 @@ class Editor extends React.Component {
 
   addNewTag(e) {
     e.preventDefault();
-    debugger;
-    this.props.createNewTagging({tagging: {note_id: this.props.note.id, tag_id: this.props.note.id}, tagName: this.refs.newtagname.value});
-    debugger;
+
+    this.props.createTagAndAttach({note_id: this.props.note.id, tagName: this.refs.newtagname.value}).then(() => this.props.getAllTagsForNote(this.props.note.id));
+
     this.refs.newtagname.value = '';
   }
 

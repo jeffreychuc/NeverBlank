@@ -28,7 +28,7 @@ class Notebooks extends React.Component  {
 
   componentWillReceiveProps(newProps) {
    console.log('notebooks getting new props');
-    // debugger;
+    // 
    if (newProps.notebookSidebarVisibility === true)  {
       this.setState({notebookScrollerClass: 'notebooks-scroller slideable', notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay'});
     }
@@ -58,7 +58,7 @@ class Notebooks extends React.Component  {
   }
 
   renderNotebookCards() {
-    // debugger;
+    // 
     return(
       this.props.notebooks.ordered['created_at_desc'].map((notebookPair) => ( //data for this should look like {3: [5]}
         <div className = 'notebookdSlideoutCard' key={shortid.generate()} >
@@ -93,7 +93,7 @@ class Notebooks extends React.Component  {
   }
 
   toggleModal() {
-    debugger;
+    
     this.setState({notebookCreateModal: !this.state.notebookCreateModal});
   }
 

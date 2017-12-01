@@ -5,11 +5,11 @@ export const getTags = () => (
   })
 );
 
-export const postTag = (tag) => (
+export const postTag = (name) => (
   $.ajax({
     url: '/api/tags',
     method: 'POST',
-    data: { tag: {name: tag } }
+    data: {tag: { name: name } }
   })
 );
 

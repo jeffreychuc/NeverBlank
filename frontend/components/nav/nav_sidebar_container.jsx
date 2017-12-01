@@ -6,7 +6,7 @@ import NavSidebar from './nav_sidebar';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
-  // //debugger;
+  // //
   return ({
     notebookSidebarVisibility: state.ui.notebookSidebarVisibility,
     latestUpdatedNote: state.entities.notes.ordered.updated_at_desc[0]

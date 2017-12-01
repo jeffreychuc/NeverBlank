@@ -2,18 +2,20 @@ class Api::TagsController < ApplicationController
 
   def index
     if current_user
-      @tags = current_user.tags
+      @tags = current_user.tags ||= []
       @tag_ids = []
       @tags.order(:name).each do |tag|
         @tag_ids.push(tag.id)
       end
       @alpha_tags = {}
       @count = {}
-      current_user.tags.each do |tag|
-        letter = tag.name.slice(0,1).upcase
-        @alpha_tags[letter] ||= []
-        @alpha_tags[letter] << tag
-        @count[tag.id] = tag.notes.length
+      if current_user.tags
+        @tags.each do |tag|
+          letter = tag.name.slice(0,1).upcase
+          @alpha_tags[letter] ||= []
+          @alpha_tags[letter] << tag
+          @count[tag.id] = tag.notes.length
+        end
       end
       render :index
     end
@@ -23,7 +25,7 @@ class Api::TagsController < ApplicationController
     if current_user
       @tag = Tag.new(tag_params)
       @tag.author_id = current_user.id
-      if @tag.save
+      if @tag.name.length > 0 && @tag.save
         render json: @tag
       else
         render json: @tag.errors.full_messages, status: 500
