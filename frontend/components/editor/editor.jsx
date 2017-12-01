@@ -19,11 +19,7 @@ class Editor extends React.Component {
   }
 
   stripTags(html) {
-    html = html.replace(/<p>/g,'');
-    html = html.replace(/<\/p>/g,'\n\n');
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = html;
-    return tempDiv.textContent||tempDiv.innerText;
+    return html.replace(/(<([^>]+)>)/ig,' ').replace(/\s{2,}/gi, ' ').trim();
   }
 
   buildRedirect(action) {
