@@ -3,6 +3,7 @@ import NotesContainer from '../notes/notes_container';
 import NavSidebarContainer from '../nav/nav_sidebar_container';
 import EditorContainer from '../editor/editor_container';
 import NotebooksContainer from '../notebooks/notebooks_container';
+import { sortBy } from 'underscore';
 
 class Home extends React.Component  {
   constructor (props)  {
@@ -92,7 +93,18 @@ class Home extends React.Component  {
         console.log('omg');
         // Object.values(test.find((notebook) => Object.keys(notebook)[0] === '6')) === undefined
         if (this.props.state.entities.notes.by_id !== undefined)  {
+
+          console.log('fdklsajflk');
           notesToBePassed = Object.values(this.props.state.entities.notes.by_id).filter((note) => note.notebook_id === parseInt(this.props.match.params.notebookId));
+          // https://stackoverflow.com/questions/13304543/javascript-sort-array-based-on-another-array
+          notesToBePassed = sortBy(notesToBePassed, (note) => (
+            this.props.state.entities.notes.ordered.updated_at_desc.indexOf(note.id))
+          );
+          debugger;
+          console.log('lkdsjflksajflk');
+
+
+
         }
         //set current notebook
         currentNotebook= this.props.state.entities.notebooks.by_id[this.props.match.params.notebookId];
