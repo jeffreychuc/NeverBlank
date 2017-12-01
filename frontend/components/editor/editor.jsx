@@ -29,11 +29,11 @@ class Editor extends React.Component {
   }
 
   buildRedirect(action) {
-    debugger;
+    
     if ('notebookId' in this.props.match.params)  { //lol
       return `/home/notebooks/${this.props.match.params.notebookId}/notes/${action.notebooks.ordered.created_at_desc[this.props.match.params.notebookId][this.props.match.params.notebookId][action.notebooks.ordered.created_at_desc[this.props.match.params.notebookId][this.props.match.params.notebookId].length-1]}`;
     }
-    debugger;
+    
     return action;
   }
 
@@ -41,7 +41,7 @@ class Editor extends React.Component {
 
     const { title, editorHtml, id, notebook_id } = editorState;
     if (!id || id === 'new') {
-      debugger;
+      
       this.props.createNotes({
         body: editorHtml,
         title: title,
@@ -75,7 +75,7 @@ class Editor extends React.Component {
   componentWillReceiveProps(newProps) {
     // ((newProps.note.id !== 'new') ? this.props.getAllTagsForNote(newProps.note.id) : null)();
     //
-    debugger;
+    
     if ((newProps.note !== undefined) && (this.props.note !== undefined))  {
       if ((newProps.note.id !== this.props.note.id) && (newProps.note.id !== 'new')) {
 
@@ -144,7 +144,7 @@ class Editor extends React.Component {
   }
 
   renderTagArea() {
-    debugger;
+    
     if (this.props.currentNoteTags !== undefined && this.state.id !== undefined)  {
       return (
         <div className = 'tags-above-editor'>

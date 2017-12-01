@@ -71,7 +71,7 @@ class Home extends React.Component  {
             if (this.props.state.entities.notes.ordered.updated_at_desc.length !== 0) {
             //
              
-              debugger;
+              
               // let notebookNotes = this.props.state.entities.notes.by_id.filter((note) => note.notebook_id === notebook_id);
               let notebookNotes = Object.keys(this.props.state.entities.notes.by_id).map((id) => this.props.state.entities.notes.by_id[id]);
               notebookNotes = notebookNotes.filter((note) => note.notebook_id === parseInt(notebook_id));
@@ -140,7 +140,7 @@ class Home extends React.Component  {
       }
       // logic for no notebook
       if (notebookId === undefined && (noteId !== undefined && noteId !== 'new')) {
-        debugger;
+        
         noteToBePassedById = this.props.state.entities.notes.by_id[noteId];
       }//logic for notebook with active note
       else if (noteId === 'new')  {
