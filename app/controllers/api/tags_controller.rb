@@ -3,6 +3,18 @@ class Api::TagsController < ApplicationController
   def index
     if current_user
       @tags = current_user.tags
+      @tag_ids = []
+      @tags.order(:name).each do |tag|
+        @tag_ids.push(tag.id)
+      end
+      @alpha_tags = {}
+      @count = {}
+      current_user.tags.each do |tag|
+        letter = tag.name.slice(0,1).upcase
+        @alpha_tags[letter] ||= []
+        @alpha_tags[letter] << tag
+        @count[tag.id] = tag.notes.length
+      end
       render :index
     end
   end
@@ -36,6 +48,17 @@ class Api::TagsController < ApplicationController
       render json: @tag
     else
       render json: @tag.errors.full_messages, status: 500
+    end
+  end
+
+  def show
+    if current_user
+      @notes = current_user.tags.find(params[:id]).notes
+      @note_ids = []
+      @notes.each do |note|
+        @note_ids.push(note.id)
+      end
+      render :show
     end
   end
 

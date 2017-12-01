@@ -14,6 +14,17 @@ class Api::NotesController < ApplicationController
     end
   end
 
+  def show
+    if current_user
+      @note = current_user.notes.find_by(id: params[:id])
+      if @note
+        render :show
+      else
+        render json: 'error', status: 500
+      end
+    end
+  end
+
   def create
     # byebug
     if current_user

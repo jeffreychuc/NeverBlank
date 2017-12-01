@@ -3,6 +3,7 @@ import NotesContainer from '../notes/notes_container';
 import NavSidebarContainer from '../nav/nav_sidebar_container';
 import EditorContainer from '../editor/editor_container';
 import NotebooksContainer from '../notebooks/notebooks_container';
+import TagsContainer from '../tags/tags_container';
 import { sortBy, filter } from 'underscore';
 
 class Home extends React.Component  {
@@ -34,7 +35,7 @@ class Home extends React.Component  {
   }
 
   componentWillReceiveProps(newProps) {
-    //
+    // debugger;
     if (newProps.state.entities.notes !== null && newProps.state.entities.notebooks !== null) {
       if (('ordered' in newProps.state.entities.notes) && ('ordered' in newProps.state.entities.notebooks)) {
         //
@@ -68,7 +69,7 @@ class Home extends React.Component  {
           let notebook_id = newProps.match.params.notebookId;
           //
 
-          debugger;
+          // debugger;
           console.log('fjkahsfjdhasj');
           // let notebookNotes = this.props.state.entities.notes.by_id.filter((note) => note.notebook_id === notebook_id);
           let notebookNotes = Object.keys(this.props.state.entities.notes.by_id).map((id) => this.props.state.entities.notes.by_id[id]);
@@ -77,7 +78,7 @@ class Home extends React.Component  {
             this.props.state.entities.notes.ordered.updated_at_desc.indexOf(note.id))
           );
           let orderedNotebookNotes = notebookNotes[0];
-          debugger;
+          // debugger;
           this.props.history.push(orderedNotebookNotes ? `/home/notebooks/${notebook_id}/notes/${orderedNotebookNotes.id}` : `/home/notebooks/${notebook_id}/notes/`);
         }
       }
@@ -110,7 +111,7 @@ class Home extends React.Component  {
           notesToBePassed = sortBy(notesToBePassed, (note) => (
             this.props.state.entities.notes.ordered.updated_at_desc.indexOf(note.id))
           );
-          debugger;
+          // debugger;
           console.log('lkdsjflksajflk');
 
 
@@ -124,30 +125,8 @@ class Home extends React.Component  {
         notesToBePassed = this.props.state.entities.notes.ordered.updated_at_desc.map((id) => this.props.state.entities.notes.by_id[id]); // returns list of objects (notes) that belong to the user
       }
 
-      //
-      // }
-
       // logic for note to be passed to editor
       let noteToBePassedById;
-      console.log('NOT LIKE THIS');
-      // //debugger;
-      // //debugger;
-      //debugger;
-      // if ((('noteId' in this.props.match.params) && (this.props.match.params['noteId'] !== 'new') && (('by_id' in this.props.state.entities.notes) && parseInt(this.props.match.params.noteId) in this.props.state.entities.notes.by_id))) {
-      //   noteToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
-      // }
-      // else  {
-      //   if ((this.props.match.path === '/home/notebooks/:notebookId/notes') || (this.props.match.path === '/home/notebooks/:notebookId'))  {
-      //     let noteId = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebook_pair) => Object.keys(notebook_pair)[0] === this.props.match.params.notebookId))[0][0];
-      //     debugger;
-      //     console.log('flkdjsflksdj');
-      //     noteToBePassedById = this.props.state.entities.notes.by_id[noteId];
-      //   }
-      //   else  {
-      //     noteToBePassedById = {body: '', title: '', notebook_id: 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : this.props.state.session.currentUser.default_notebook};
-      //   }
-      // }
-      // debugger;
       let noteId;
       let notebookId;
       if ('noteId' in this.props.match.params)  {
@@ -169,9 +148,11 @@ class Home extends React.Component  {
         let notebookArray = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebookObject) => Object.keys(notebookObject)[0] === this.props.match.params.notebookId))[0];
         if(notebookArray.includes(parseInt(noteId)))  {
           noteToBePassedById = this.props.state.entities.notes.by_id[noteId];
+          // debugger;
         }
         else if (notebookArray.length > 0)  {
           this.props.history.push(`/home/notebooks/${notebookId}/notes/${notesToBePassed[0].id}`);
+          // debugger;
         }
       }
       let notebooksToBePassed = this.props.state.entities.notebooks;
@@ -188,6 +169,9 @@ class Home extends React.Component  {
           </div>
           <div className = 'notebooks-sidebar'>
             <NotebooksContainer notebooks={notebooksToBePassed} />
+          </div>
+          <div className = 'tags-sidebar'>
+            <TagsContainer />
           </div>
         </div>
       );

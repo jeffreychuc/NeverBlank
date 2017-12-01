@@ -7,7 +7,7 @@ export const getNotes = (notes) => (
 );
 
 export const patchNote = (note) => {
-  debugger;
+  // debugger;
   return ($.ajax({
     url: `/api/notes/${note.id}`,
     method: 'PATCH',
@@ -27,5 +27,12 @@ export const deleteNote = (id) => (
   $.ajax({
     url: `api/notes/${id}`,
     method: 'DELETE'
+  })
+);
+
+export const getNoteTags = (id) => (
+  $.ajax({
+    url: `/api/notes/${id}`,
+    method: 'GET',
   })
 );

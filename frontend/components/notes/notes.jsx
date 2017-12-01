@@ -93,7 +93,7 @@ class Notes extends React.Component  {
   }
 
   renderNotebookEditModal() {
-    debugger;
+    // debugger;
     if (this.state.notebookEditModal) {
       return (
         <div className={this.state.notebookEditModal ? 'notebookEditModal active' : 'notebookEditModal'}>

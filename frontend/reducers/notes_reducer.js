@@ -18,9 +18,6 @@ export default (state=null, action) => {
     case RECEIVE_ALL_NOTES:
       console.log('receiving all notes');
       return action.notes;
-    case ADD_BLANK_NOTE:
-      console.log('adding blank note');
-      return merge({}, state, BLANK_NOTE);
     default:
       return state;
   }

@@ -12,10 +12,15 @@ class Editor extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleNotebookChange = this.handleNotebookChange.bind(this);
-    //debugger;
-    this.state = this.props.note ? {title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id} : {title: '', editorHtml: '', notebook_id: this.props.match.params.notebookId};
+    this.state = this.props.note ? { title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id} : {title: '', editorHtml: '', notebook_id: this.props.match.params.notebookId};
     this.buildRedirect = this.buildRedirect.bind(this);
+    this.renderTagRea = this.renderTagArea.bind(this);
     this.autoSaveTimeoutId = null;
+  }
+
+  componentDidMount() {
+    debugger;
+    this.props.getAllTagsForNote(parseInt(this.props.match.params.noteId));
   }
 
   stripTags(html) {
@@ -66,13 +71,15 @@ class Editor extends React.Component {
 
   componentWillReceiveProps(newProps) {
     debugger;
-    if (!isEqual(this.props.note,newProps.note))  {
+    if (!isEqual(this.props.note, newProps.note))  {
       // this.handleSave(this.state);
       // causes double save
       let editorBody;
       let noteId;
       let notebookId;
       let title;
+      let tags;
+      // sorry
       //debugger;
       if (newProps.match.params.noteId === 'new' || newProps.note === undefined) {
         editorBody = '';
@@ -86,10 +93,16 @@ class Editor extends React.Component {
         noteId = newProps.note['id'];
         notebookId = newProps.note.notebook_id;
         title = newProps.note.title;
-      }
+        this.props.getAllTagsForNote(noteId);
 
+      }
+      debugger;
+      console.log('fsadkfa;sk');
       this.setState({editorHtml: editorBody,title: title, id: noteId, notebook_id: notebookId});
     }
+  }
+  debug(tags)  {
+    debugger;
   }
 
   handleNotebookChange(newNotebook)  {
@@ -108,6 +121,10 @@ class Editor extends React.Component {
       </DropdownButton>
     );
   }
+
+  renderTagArea() {
+    return null;
+  }
   render () {
     console.log(this.props.note, 'THIS IS THE CURRENT NOTE');
     console.log(this.props.notebooksById, 'THESE ARE THE CURRENT NOTEBOOKS');
@@ -117,6 +134,7 @@ class Editor extends React.Component {
     return (
       <div>
         {this.renderNotebookDropdown()}
+        {this.renderTagArea()}
         <ReactQuill
           theme={'snow'}
           onChange={this.handleChange}
