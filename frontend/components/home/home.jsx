@@ -108,8 +108,9 @@ class Home extends React.Component  {
       // logic for note to be passed to editor
       let noteToBePassedById;
       console.log('NOT LIKE THIS');
-      // debugger;
-      // debugger;
+      // //debugger;
+      // //debugger;
+      //debugger;
       if ((('noteId' in this.props.match.params) && (this.props.match.params['noteId'] !== 'new') && (('by_id' in this.props.state.entities.notes) && parseInt(this.props.match.params.noteId) in this.props.state.entities.notes.by_id))) {
         noteToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
       }
@@ -119,7 +120,6 @@ class Home extends React.Component  {
           noteToBePassedById = this.props.state.entities.notes.by_id[noteId];
         }
         else  {
-          debugger;
           noteToBePassedById = {body: '', title: '', notebook_id: 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : this.props.state.session.currentUser.default_notebook};
         }
       }

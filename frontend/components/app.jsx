@@ -16,7 +16,7 @@ export default () => (
     <Switch>
       <ProtectedRoute path="/home/notes/:noteId" component={HomeContainer}/>
       <ProtectedRoute path="/home/notes/" component={HomeContainer}/>
-      <ProtectedRoute path="/home/notebooks/:notebookId/notes/noteId" component={HomeContainer}/>
+      <ProtectedRoute path="/home/notebooks/:notebookId/notes/:noteId" component={HomeContainer}/>
       <ProtectedRoute path="/home/notebooks/:notebookId/notes" component={HomeContainer}/>
       <ProtectedRoute path="/home/notebooks/:notebookId" component={HomeContainer}/>
       <ProtectedRoute path="/home/notebooks/" component={HomeContainer}/>

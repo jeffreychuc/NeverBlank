@@ -13,10 +13,16 @@ class NavSidebar extends React.Component  {
   }
 
   topButtonGroup()  {
-    debugger;
+    let redirect;
+    if ('notebookId' in this.props.match.params)  {
+      redirect = `/home/notebooks/${this.props.match.params.notebookId}/notes/new`;
+    }
+    else  {
+      redirect = '/home/notes/new/';
+    }
     return (
       <div className = 'topButtonGroup'>
-        <Button className='newNoteButton' onClick={() => this.props.history.push('/home/notes/new/')} block>Add New Note</Button>
+        <Button className='newNoteButton' onClick={() => this.props.history.push(redirect)} block>Add New Note</Button>
       </div>
     );
   }
@@ -24,11 +30,12 @@ class NavSidebar extends React.Component  {
   handleNoteButton()  {
 
     console.log('wtf');
+    let redirect;
     if (this.props.notebookSidebarVisibility) {
       this.props.toggleNotebookVisibility(this.props.notebookSidebarVisibility);
     }
-    debugger;
-    this.props.history.push(`/home/notes/${this.props.latestUpdatedNote ? this.props.latestUpdatedNote : ''}`);
+    redirect = `/home/notes/${this.props.latestUpdatedNote ? this.props.latestUpdatedNote : ''}`;
+    this.props.history.push(redirect);
   }
 
   bottomButtonGroup() {
@@ -36,7 +43,7 @@ class NavSidebar extends React.Component  {
     return (
       <div className = 'middleButtonGroup'>
         <a className='notebooks-nav-button noselect' onClick={() => this.props.toggleNotebookVisibility(this.props.notebookSidebarVisibility)}>Notebooks</a>
-        <Button className='newNoteButton' onClick={() => this.handleNoteButton()}>Notes</Button>
+        <Button className='notesButton' onClick={() => this.handleNoteButton()}>Notes</Button>
       </div>
     );
   }

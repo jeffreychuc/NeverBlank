@@ -15,7 +15,7 @@ class Api::NotesController < ApplicationController
   end
 
   def create
-    byebug
+    # byebug
     if current_user
       @note = Note.new(note_params)
       @note.author_id = current_user.id

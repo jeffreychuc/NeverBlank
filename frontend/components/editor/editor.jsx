@@ -12,9 +12,9 @@ class Editor extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleNotebookChange = this.handleNotebookChange.bind(this);
-    debugger;
+    //debugger;
     this.state = this.props.note ? {title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id} : {title: '', editorHtml: '', notebook_id: this.props.match.params.notebookId};
-    this.debug = this.debug.bind(this);
+    this.buildRedirect = this.buildRedirect.bind(this);
     this.autoSaveTimeoutId = null;
   }
 
@@ -26,25 +26,33 @@ class Editor extends React.Component {
     return tempDiv.textContent||tempDiv.innerText;
   }
 
-  debug(data) {
-    return data;
+  buildRedirect(action) {
+    debugger;
+    console.log('kdfljsafk');
+    if ('notebookId' in this.props.match.params)  {
+      return `/home/notebooks/${this.props.match.params.notebookId}/notes/${action.notes.ordered.updated_at_desc[0]}`;
+    }
+    return action;
+
+
+
+    // this.props.match.path.split('/').slice(0,this.props.match.path.split('/').length-1).join('/')
+    // + '/'
+    // + action.notes.ordered.updated_at_desc[0]));
   }
 
   handleSave(editorState)  {
 
     const { title, editorHtml, id, notebook_id } = editorState;
     debugger;
-    if (!id) {
-      debugger;
+    if (!id || id === 'new') {
+      //debugger;
       this.props.createNotes({
         body: editorHtml,
         title: title,
         bodypreview: this.stripTags(editorHtml).substring(0, 200),
         notebook_id: notebook_id
-      }).then((action) => this.props.history.push(
-        this.props.match.path.split('/').slice(0,this.props.match.path.split('/').length-1).join('/')
-        + '/'
-        + action.notes.ordered.updated_at_desc[0]));
+      }).then((action) => this.buildRedirect(action)).then((redirect) => this.props.history.push(redirect));
     }
     else  {
       this.props.saveNotes({
@@ -61,7 +69,7 @@ class Editor extends React.Component {
     //
     clearTimeout(this.autoSaveTimeoutId);
     this.setState({editorHtml: html});
-    debugger;
+    //debugger;
     console.log('wtf');
     if ((this.props.note ? this.props.note.body : '') !== this.state.editorHtml) {
       this.autoSaveTimeoutId = setTimeout(() => this.handleSave(this.state), 1000);
@@ -70,7 +78,7 @@ class Editor extends React.Component {
 
 
   componentWillReceiveProps(newProps) {
-    debugger;
+    //debugger;
     if (!isEqual(this.props.note,newProps.note))  {
       // this.handleSave(this.state);
       // causes double save
@@ -78,12 +86,12 @@ class Editor extends React.Component {
       let noteId;
       let notebookId;
       let title;
-      debugger;
+      //debugger;
       if (newProps.match.params.noteId === 'new' || newProps.note === undefined) {
         editorBody = '';
         title = '';
         noteId = 'new';
-        // debugger;
+        // //debugger;
         notebookId = 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : this.props.defaultNotebookId;//default notebook;
       }
       else  {
@@ -98,12 +106,12 @@ class Editor extends React.Component {
   }
 
   handleNotebookChange(newNotebook)  {
-    debugger;
+    //debugger;
     this.handleSave(merge({}, newNotebook, this.state));
   }
 
   renderNotebookDropdown()  {
-    debugger;
+    //debugger;
     return(
       <DropdownButton title={this.props.notebooksById[this.props.note ? this.props.note.notebook_id : this.props.match.params.notebookId ? this.props.match.params.notebookId : this.props.defaultNotebookId].title} id="bg-nested-dropdown">
         <MenuItem key={shortid()} onClick={null}>Create A New Notebook</MenuItem>
