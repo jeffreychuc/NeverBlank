@@ -34,7 +34,7 @@ class Landing extends React.Component{
   }
 
   handleSubmit(event) {
-   
+
     event.preventDefault();
     let currentUser = this.props.session.currentUser;
     this.props.createNewUser(this.state)
@@ -53,8 +53,8 @@ class Landing extends React.Component{
   }
 
   handleDemo(event) {
-   
-   
+
+
     this.simType('demo@app-academy.io', 'email');
     this.simType('gibjobpls', 'password');
     this.demoLogin = setTimeout(this.handleDemoLogin, 1250);
@@ -63,12 +63,12 @@ class Landing extends React.Component{
   simType (input, field) {
     let chars = input.split('');
     let finChars = "";
-   
+
     let i = 0;
     let typeAction = setInterval(() => {
       finChars+=chars[i++];
       this.setState({[field]: finChars});
-     
+
       if (i === chars.length) {
         clearInterval(typeAction);
       }
@@ -83,11 +83,11 @@ class Landing extends React.Component{
     const email = this.state.email;
     const regex = require('regex-email');
     if (regex.test(email)) {
-     
+
       return 'success';
     }
     else {
-     
+
       return 'warning';
     }
   }
@@ -101,7 +101,7 @@ class Landing extends React.Component{
   }
 
   renderErrors()  {
-   
+
     if (this.props.errors.session.constructor === Array)  {
       return (
         this.props.errors.session.map((error, i) => (
@@ -205,8 +205,8 @@ class Landing extends React.Component{
               {this.renderSignUpForm()}
             </Col>
           </div>
-          <div className='ALOTOFROOM'>
-          </div>
+
+
         </Grid>
       </div>
     );
@@ -214,3 +214,6 @@ class Landing extends React.Component{
 }
 
 export default Landing;
+
+// <div className='ALOTOFROOM'>
+// </div>
