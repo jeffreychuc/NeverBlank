@@ -71,7 +71,14 @@ class Editor extends React.Component {
 
 
   componentWillReceiveProps(newProps) {
-    debugger;
+    // ((newProps.note.id !== 'new') ? this.props.getAllTagsForNote(newProps.note.id) : null)();
+    // debugger;
+    if (newProps.note)  {
+      if ((newProps.note.id !== this.props.note.id) && newProps.note.id !== 'new') {
+        this.props.getAllTagsForNote(newProps.note.id);
+      }
+    }
+
     console.log('fdlksjlksajflkjs');
     console.log('dsfklajlfkjsaklfj');
     if (!isEqual(this.props, newProps))  {
