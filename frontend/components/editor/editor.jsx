@@ -29,9 +29,11 @@ class Editor extends React.Component {
   }
 
   buildRedirect(action) {
-    if ('notebookId' in this.props.match.params)  {
-      return `/home/notebooks/${this.props.match.params.notebookId}/notes/${action.notes.ordered.updated_at_desc[0]}`;
+    debugger;
+    if ('notebookId' in this.props.match.params)  { //lol
+      return `/home/notebooks/${this.props.match.params.notebookId}/notes/${action.notebooks.ordered.created_at_desc[this.props.match.params.notebookId][this.props.match.params.notebookId][action.notebooks.ordered.created_at_desc[this.props.match.params.notebookId][this.props.match.params.notebookId].length-1]}`;
     }
+    debugger;
     return action;
   }
 
@@ -39,7 +41,7 @@ class Editor extends React.Component {
 
     const { title, editorHtml, id, notebook_id } = editorState;
     if (!id || id === 'new') {
-      //
+      debugger;
       this.props.createNotes({
         body: editorHtml,
         title: title,
