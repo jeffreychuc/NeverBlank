@@ -29,6 +29,6 @@ class Api::TaggingsController < ApplicationController
   private
 
   def tagging_params
-    require(:tagging).permit(:note_id, :tag_id)
+    params.require(:tagging).permit(:note_id, :tag_id)
   end
 end

@@ -36,12 +36,10 @@ ActiveRecord::Schema.define(version: 20171201065640) do
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.bigint "notes_id"
-    t.bigint "tag_id"
+    t.integer "note_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["notes_id"], name: "index_taggings_on_notes_id"
-    t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -62,6 +60,4 @@ ActiveRecord::Schema.define(version: 20171201065640) do
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
 
-  add_foreign_key "taggings", "notes", column: "notes_id"
-  add_foreign_key "taggings", "tags"
 end

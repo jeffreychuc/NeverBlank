@@ -42,6 +42,6 @@ class Api::TagsController < ApplicationController
   private
 
   def tag_params
-    params.require(:tag).permit(:name)
+    params.require(:tag).permit(:name, :author_id)
   end
 end
