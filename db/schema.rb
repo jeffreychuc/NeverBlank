@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128062320) do
+ActiveRecord::Schema.define(version: 20171201065640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,12 +27,28 @@ ActiveRecord::Schema.define(version: 20171128062320) do
   create_table "notes", force: :cascade do |t|
     t.integer "author_id", null: false
     t.integer "notebook_id"
-    t.string "title", null: false
+    t.string "title", default: "Untitled", null: false
     t.string "body"
     t.string "bodypreview"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_notes_on_author_id"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "notes_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notes_id"], name: "index_taggings_on_notes_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,4 +62,6 @@ ActiveRecord::Schema.define(version: 20171128062320) do
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
 
+  add_foreign_key "taggings", "notes", column: "notes_id"
+  add_foreign_key "taggings", "tags"
 end

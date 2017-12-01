@@ -6,7 +6,7 @@
 #  email            :string           not null
 #  password_digest  :string           not null
 #  session_token    :string           not null
-#  default_notebook :integer
+#  default_notebook :integer          not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
@@ -34,6 +34,11 @@ class User < ApplicationRecord
   primary_key: :id,
   foreign_key: :author_id,
   class_name: :Notebook
+
+  has_many :tags,
+  primary_key: :id,
+  foreign_key: :author_id,
+  class_name: :Tag
 
   attr_reader :password
 

@@ -5,7 +5,7 @@
 #  id          :integer          not null, primary key
 #  author_id   :integer          not null
 #  notebook_id :integer
-#  title       :string           not null
+#  title       :string           default("Untitled"), not null
 #  body        :string
 #  bodypreview :string
 #  created_at  :datetime         not null

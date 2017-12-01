@@ -6,18 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# https://stackoverflow.com/questions/6985222/how-to-clear-whole-database-in-rails-seeds-rb
-ActiveRecord::Base.establish_connection
-ActiveRecord::Base.connection.tables.each do |table|
-  next if table == 'schema_migrations'
+# # https://stackoverflow.com/questions/6985222/how-to-clear-whole-database-in-rails-seeds-rb
+# ActiveRecord::Base.establish_connection
+# ActiveRecord::Base.connection.tables.each do |table|
+#   next if table == 'schema_migrations'
 
-  # MySQL and PostgreSQL
-  ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
+#   # MySQL and PostgreSQL
+#   ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
 
-  # SQLite
-  # ActiveRecord::Base.connection.execute("DELETE FROM #{table}")
-end
-ActiveRecord::Base.connection.close
+#   # SQLite
+#   # ActiveRecord::Base.connection.execute("DELETE FROM #{table}")
+# end
+# ActiveRecord::Base.connection.close
 
 demo = User.create(email: 'demo@appacademy.io', password: 'password')
 default_notebook = Notebook.create(author_id: demo.id, title:'First Notebook', lock: true)
