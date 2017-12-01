@@ -93,7 +93,7 @@ class Notes extends React.Component  {
   }
 
   renderNotebookEditModal() {
-
+    debugger;
     if (this.state.notebookEditModal) {
       return (
         <div className={this.state.notebookEditModal ? 'notebookEditModal active' : 'notebookEditModal'}>
@@ -104,7 +104,7 @@ class Notes extends React.Component  {
           <form onSubmit ={this.handleSubmit}>
             <input type="text" ref="editnotebookname" defaultValue={this.props.currentNotebook.title.slice()}/>
             <h2>CREATOR</h2>
-            <a onClick={() => this.showNotebookDeleteModal()}>Delete Notebook</a>
+            {this.props.defaultNotebook ? null : <a onClick={() => this.showNotebookDeleteModal()}>Delete Notebook</a>}
             <div className = 'notebookEditModalFormButtons'>
               <Button onClick={() => this.toggleModal()}>Cancel</Button>
               <Button type="submit">Save</Button>
@@ -118,9 +118,12 @@ class Notes extends React.Component  {
   handleNotebookDelete(id)  {
     this.toggleModal();
     this.hideNotebookDeleteModal();
-    this.props.destroyNotebook(id).then((action) =>
-      this.props.history.push('/home/notes/' + `${action.notes.ordered.updated_at_desc[0] ? action.notes.ordered.updated_at_desc[0] : ''}`)
-    );
+    // this.props.destroyNotebook(id).then((action) =>
+    //   this.props.history.push('/home/notes/' + `${action.notes.ordered.updated_at_desc[0] ? action.notes.ordered.updated_at_desc[0] : ''}`)
+    // );
+    this.props.destroyNotebook(id);
+    this.props.history.push('/home/notes/');
+
   }
 
   renderNotebookDeleteModal() {
