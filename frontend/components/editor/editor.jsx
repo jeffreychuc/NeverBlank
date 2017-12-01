@@ -72,19 +72,22 @@ class Editor extends React.Component {
 
   componentWillReceiveProps(newProps) {
     // ((newProps.note.id !== 'new') ? this.props.getAllTagsForNote(newProps.note.id) : null)();
-    // debugger;
-    if (newProps.note)  {
-      if ((newProps.note.id !== this.props.note.id) && newProps.note.id !== 'new') {
+    //
+    debugger;
+    if ((newProps.note !== undefined) && (this.props.note !== undefined))  {
+      if ((newProps.note.id !== this.props.note.id) && (newProps.note.id !== 'new')) {
+
         this.props.getAllTagsForNote(newProps.note.id);
       }
     }
 
     console.log('fdlksjlksajflkjs');
     console.log('dsfklajlfkjsaklfj');
-    if (!isEqual(this.props, newProps))  {
+
+    if (!isEqual(this.props.note, newProps.note) || !isEqual(this.props.currentNoteTags, newProps.currentNoteTags))  {
       // this.handleSave(this.state);
       // causes double save
-      debugger;
+
       if (!isEqual(this.props.currentNoteTags, newProps.currentNoteTags)) {
         this.setState({currentNoteTags: newProps.currentNoteTags});
       }
@@ -138,17 +141,18 @@ class Editor extends React.Component {
   }
 
   renderTagArea() {
-
-    if (this.props.currentNoteTags !== undefined)  {
+    debugger;
+    if (this.props.currentNoteTags !== undefined && this.state.id !== undefined)  {
       return (
         <div className = 'tags-above-editor'>
-          {Object.values(this.state.currentNoteTags).map((tag) => <p key={shortid()}>{tag.name}</p>)}
+          {this.props.currentNoteTags ? Object.values(this.props.currentNoteTags).map((tag) => <p key={shortid()}>{tag.name}</p>) : null}
           <form onSubmit={(e) => this.addNewTag(e)}>
             <input ref='newtagname' type='text' placeholder='+' />
           </form>
         </div>
       );
     }
+    return null;
   }
 
   addNewTag(e) {

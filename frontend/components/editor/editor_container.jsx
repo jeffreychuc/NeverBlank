@@ -8,7 +8,7 @@ import { isEmpty } from "underscore";
 
 
 const mapStateToProps = (state, ownProps) => {
-  debugger;
+
   console.log( state.entities.tag);
   return(
     {
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
       notebooksById: state.entities.notebooks.by_id,
       defaultNotebookId: state.session.currentUser.default_notebook,
       noteTags: state.entities.tags.by_id,
-      currentNoteTags: !isEmpty(state.entities.tags) ? state.entities.tags.currentNoteTags ? state.entities.tags.currentNoteTags.currentNoteTags: [] : []
+      currentNoteTags: !isEmpty(state.entities.tags) ? !isEmpty(state.entities.tags.currentNoteTags) ? state.entities.tags.currentNoteTags.currentNoteTags: [] : []
     }
   );
 };
