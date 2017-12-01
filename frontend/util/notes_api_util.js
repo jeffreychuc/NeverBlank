@@ -7,7 +7,7 @@ export const getNotes = (notes) => (
 );
 
 export const patchNote = (note) => {
-
+  debugger;
   return ($.ajax({
     url: `/api/notes/${note.id}`,
     method: 'PATCH',

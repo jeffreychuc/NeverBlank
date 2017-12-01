@@ -3,7 +3,7 @@ import NotesContainer from '../notes/notes_container';
 import NavSidebarContainer from '../nav/nav_sidebar_container';
 import EditorContainer from '../editor/editor_container';
 import NotebooksContainer from '../notebooks/notebooks_container';
-import { sortBy } from 'underscore';
+import { sortBy, filter } from 'underscore';
 
 class Home extends React.Component  {
   constructor (props)  {
@@ -67,7 +67,17 @@ class Home extends React.Component  {
           //
           let notebook_id = newProps.match.params.notebookId;
           //
-          let firstNotebookNote = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebookPair) => Object.keys(notebookPair)[0] === notebook_id))[0][0];
+
+          debugger;
+          console.log('fjkahsfjdhasj');
+          // let notebookNotes = this.props.state.entities.notes.by_id.filter((note) => note.notebook_id === notebook_id);
+          let notebookNotes = Object.keys(this.props.state.entities.notes.by_id).map((id) => this.props.state.entities.notes.by_id[id]);
+          notebookNotes = notebookNotes.filter((note) => note.notebook_id === parseInt(notebook_id));
+          notebookNotes = sortBy(notebookNotes, (note) => (
+            this.props.state.entities.notes.ordered.updated_at_desc.indexOf(note.id))
+          );
+          let firstNotebookNote = notebookNotes[0].id;
+
           this.props.history.push(firstNotebookNote ? `/home/notebooks/${notebook_id}/notes/${firstNotebookNote}` : `/home/notebooks/${notebook_id}/notes/`);
         }
       }
@@ -123,18 +133,48 @@ class Home extends React.Component  {
       // //debugger;
       // //debugger;
       //debugger;
-      if ((('noteId' in this.props.match.params) && (this.props.match.params['noteId'] !== 'new') && (('by_id' in this.props.state.entities.notes) && parseInt(this.props.match.params.noteId) in this.props.state.entities.notes.by_id))) {
-        noteToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
+      // if ((('noteId' in this.props.match.params) && (this.props.match.params['noteId'] !== 'new') && (('by_id' in this.props.state.entities.notes) && parseInt(this.props.match.params.noteId) in this.props.state.entities.notes.by_id))) {
+      //   noteToBePassedById = this.props.state.entities.notes.by_id[this.props.match.params['noteId']];
+      // }
+      // else  {
+      //   if ((this.props.match.path === '/home/notebooks/:notebookId/notes') || (this.props.match.path === '/home/notebooks/:notebookId'))  {
+      //     let noteId = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebook_pair) => Object.keys(notebook_pair)[0] === this.props.match.params.notebookId))[0][0];
+      //     debugger;
+      //     console.log('flkdjsflksdj');
+      //     noteToBePassedById = this.props.state.entities.notes.by_id[noteId];
+      //   }
+      //   else  {
+      //     noteToBePassedById = {body: '', title: '', notebook_id: 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : this.props.state.session.currentUser.default_notebook};
+      //   }
+      // }
+      // debugger;
+      let noteId;
+      let notebookId;
+      if ('noteId' in this.props.match.params)  {
+        noteId = this.props.match.params.noteId;
       }
-      else  {
-        if ((this.props.match.path === '/home/notebooks/:notebookId/notes') || (this.props.match.path === '/home/notebooks/:notebookId'))  {
-          let noteId = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebook_pair) => Object.keys(notebook_pair)[0] === this.props.match.params.notebookId))[0][0];
+      if ('notebookId' in this.props.match.params)  {
+        notebookId = this.props.match.params.notebookId;
+      }
+      // logic for no notebook
+      if (notebookId === undefined && (noteId !== undefined && noteId !== 'new')) {
+        noteToBePassedById = this.props.state.entities.notes.by_id[noteId];
+      }//logic for notebook with active note
+      else if (noteId === 'new')  {
+        noteToBePassedById = {body: '', title: '', notebook_id: 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : this.props.state.session.currentUser.default_notebook};
+      }
+      else if ((notebookId !== undefined) && (noteId !== undefined))  {
+        //check if note is in notebook
+        // gets notebook array of notes
+        let notebookArray = Object.values(this.props.state.entities.notebooks.ordered.created_at_desc.find((notebookObject) => Object.keys(notebookObject)[0] === this.props.match.params.notebookId))[0];
+        if(notebookArray.includes(parseInt(noteId)))  {
           noteToBePassedById = this.props.state.entities.notes.by_id[noteId];
         }
-        else  {
-          noteToBePassedById = {body: '', title: '', notebook_id: 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : this.props.state.session.currentUser.default_notebook};
+        else if (notebookArray.length > 0)  {
+          this.props.history.push(`/home/notebooks/${notebookId}/notes/${notesToBePassed[0]}`);
         }
       }
+      //build
       // this two lines need to be change to accout for switching notebooks
       let notebooksToBePassed = this.props.state.entities.notebooks;
       //

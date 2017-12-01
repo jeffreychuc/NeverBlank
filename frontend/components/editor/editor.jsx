@@ -27,7 +27,6 @@ class Editor extends React.Component {
   }
 
   buildRedirect(action) {
-    debugger;
     console.log('kdfljsafk');
     if ('notebookId' in this.props.match.params)  {
       return `/home/notebooks/${this.props.match.params.notebookId}/notes/${action.notes.ordered.updated_at_desc[0]}`;
@@ -42,9 +41,8 @@ class Editor extends React.Component {
   }
 
   handleSave(editorState)  {
-
-    const { title, editorHtml, id, notebook_id } = editorState;
     debugger;
+    const { title, editorHtml, id, notebook_id } = editorState;
     if (!id || id === 'new') {
       //debugger;
       this.props.createNotes({
@@ -78,7 +76,7 @@ class Editor extends React.Component {
 
 
   componentWillReceiveProps(newProps) {
-    //debugger;
+    debugger;
     if (!isEqual(this.props.note,newProps.note))  {
       // this.handleSave(this.state);
       // causes double save
@@ -107,7 +105,9 @@ class Editor extends React.Component {
 
   handleNotebookChange(newNotebook)  {
     //debugger;
-    this.handleSave(merge({}, newNotebook, this.state));
+    debugger;
+    console.log('fsldiuflkdsaj');
+    this.handleSave(merge({}, this.state, newNotebook ));
   }
 
   renderNotebookDropdown()  {
