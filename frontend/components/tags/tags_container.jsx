@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
-import { getAllUserTags } from '../../actions/tags';
 import { withRouter } from 'react-router-dom';
 import Tags from './tags';
+import { getAllUserTags } from '../../actions/tags';
+import { setTagSidebarVisibility } from '../../actions/ui';
 
 
 const mapStateToProps = (state) => {
@@ -16,6 +17,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getTags: () => dispatch(getAllUserTags()),
+  setTagSidebarVisibility: () => dispatch(setTagSidebarVisibility())
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Tags));

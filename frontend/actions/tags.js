@@ -24,6 +24,5 @@ export const getAllTagsForNote = (id) => (dispatch) => (
 );
 
 export const debug = (tags) => {
-  debugger;
   return tags;
 };

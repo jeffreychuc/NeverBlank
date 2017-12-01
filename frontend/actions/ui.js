@@ -38,3 +38,11 @@ export const toggleNotebookVisibility = (visBool) => {
   return {type: TOGGLE_NOTEBOOK_VISIBILITY,
           notebookSidebarVisibility: !visBool};
 };
+
+export const TOGGLE_TAGS_VISIBILITY = 'TOGGLE_TAGS_VISIBILITY';
+
+export const setTagSidebarVisibility = (visBool) => {
+  console.log('current tagsidebarvis is ', visBool);
+  return {type: TOGGLE_TAGS_VISIBILITY,
+          tagsSidebarVisibility: visBool};
+};
