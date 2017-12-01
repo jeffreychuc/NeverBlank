@@ -27,17 +27,10 @@ class Editor extends React.Component {
   }
 
   buildRedirect(action) {
-    console.log('kdfljsafk');
     if ('notebookId' in this.props.match.params)  {
       return `/home/notebooks/${this.props.match.params.notebookId}/notes/${action.notes.ordered.updated_at_desc[0]}`;
     }
     return action;
-
-
-
-    // this.props.match.path.split('/').slice(0,this.props.match.path.split('/').length-1).join('/')
-    // + '/'
-    // + action.notes.ordered.updated_at_desc[0]));
   }
 
   handleSave(editorState)  {

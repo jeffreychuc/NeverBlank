@@ -77,7 +77,7 @@ class Home extends React.Component  {
             this.props.state.entities.notes.ordered.updated_at_desc.indexOf(note.id))
           );
           let firstNotebookNote = notebookNotes[0].id;
-
+          debugger;
           this.props.history.push(firstNotebookNote ? `/home/notebooks/${notebook_id}/notes/${firstNotebookNote}` : `/home/notebooks/${notebook_id}/notes/`);
         }
       }
@@ -171,7 +171,7 @@ class Home extends React.Component  {
           noteToBePassedById = this.props.state.entities.notes.by_id[noteId];
         }
         else if (notebookArray.length > 0)  {
-          this.props.history.push(`/home/notebooks/${notebookId}/notes/${notesToBePassed[0]}`);
+          this.props.history.push(`/home/notebooks/${notebookId}/notes/${notesToBePassed[0].id}`);
         }
       }
       //build
