@@ -38,6 +38,7 @@
   height: inherit;
   background: white;
   overflow: auto;
+  overflow-x: hidden;
 }
 
 .notes-view ol  {
@@ -317,3 +318,17 @@
   font-stretch:100%;
   text-transform: uppercase;
 }
+
+
+.dropdown-toggle.btn.btn-default  {
+  color: #606060;
+  line-height: 14px;
+  margin: 6px 6px 0 7px;
+  max-width: 190px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position:relative;
+  top:38px;
+}
+

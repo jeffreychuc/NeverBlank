@@ -1,3 +1,7 @@
+.body{
+  height: 80vh;
+  overflow: hidden;
+}
 .editor-full-screen-button:hover  {
   overflow: hidden;
   background-position: center;
@@ -14,8 +18,11 @@
 }
 
 .editor-full-screen-button  {
-  height: 30px;
-  width: 30px;
+  position:absolute;
+  top: 20px;
+  right: 20px;
+  height: 25px;
+  width: 25px;
   overflow: hidden;
   border: 1px solid #2dbe60;
   border-radius: 4px;
@@ -31,8 +38,153 @@
   }
 }
 
-.editor-full-screen-button i  {
+.editor-full-screen-button i.fa.fa-expand.fa-2x  {
   position: relative;
-  top: -5px;
-  left: -4px;
+  top: -7px;
+  left: -6px;
+  height: 15px;
+  width: 15px;
+}
+
+.editor-view  {
+  display:flex;
+  flex-direction: row;
+  justify-content:space-evenly;
+}
+
+.ql-toolbar.ql-snow {
+  position: relative;
+  left: 180px;
+  top: 17px;
+  border: transparent;
+}
+
+
+.ql-container.ql-snow {
+  border: transparent;
+  left: 20px;
+  top: 40px;
+  width: 900px;
+  height: 900px;
+}
+
+.notebookDropdown {
+  position: relative;
+  top: 14px;
+  display: flex;
+}
+
+
+.reactnotebookdropdown button {
+  color: #606060;
+  background-color: #black;;
+  vertical-align: top;
+  border: 1px solid #ececec;
+  padding: 1px 8px 1px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.tags-above-editor  {
+  display: flex;
+  position: relative;
+  left: 100px;
+}
+
+.tags-above-editor li .btn {
+  background: clear;
+  outline: none;
+  border: 1px #202020;
+  color: #606060;
+}
+.tags-above-editor li .btn:hover{
+  background: clear;
+}
+
+.tags-above-editor .btn.btn-default  {
+  background: clear;
+  outline: none;
+  border: 0px;
+  color: transparent;
+}
+
+.tags-above-editor li .btn p {
+  padding: 4px;
+  outline: none;
+  border: 1px #202020;
+  color: #606060;
+}
+.tags-above-editor li  {
+  background: clear;
+  outline: none;
+  border: 0px;
+  color: transparent;
+}
+
+.tags-above-editor .btn-default{
+  font-size: 13px;
+}
+
+.tags-above-editor .btn-default:hover{
+  background-color: transparent;
+
+}
+
+.tags-above-editor .btn-default:active{
+  outline: none;
+  border: transparent;
+  color: #606060;
+}
+
+.tags-icon {
+  top: 9px;
+  position: absolute;
+}
+
+
+.tags-above-editor .tag-div{
+  background-color: lightgray;
+  position: relative;
+  outline: none;
+  height: 20px;
+  border-radius: 4px;
+  text-align: center;
+  top: 9px;
+  min-width: 30px;
+  width: 40px;
+}
+
+.btn-default p {
+  background: #f8f8f84f;
+  border-radius: 4px;
+  text-align: center;
+}
+
+
+.delete-note-button {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  position: relative;
+}
+
+div .btn.btn-default {
+  padding: 5px;
+  color: #606060;
+  background-color: transparent;
+  border-color: transparent;
+
+  float: right;
+  top: -30px;
+  margin-bottom: -30px;
+}
+
+
+.note-card.noselect div .btn.btn-default:hover {
+  padding: 5px;
+  color: #606060;
+  background-color: transparent;
+  border-color: transparent;
 }

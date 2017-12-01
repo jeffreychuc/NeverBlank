@@ -6,7 +6,7 @@ import { editNotebook, destroyNotebook } from '../../actions/notebooks';
 
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state, 'IN MAP TO PROPS IN NOTES CONTAINER');
+ 
   return({
     defaultNotebook: state.session.currentUser.default_notebook
   });

@@ -5,7 +5,7 @@ import Signup from './signup';
 import { clearErrors } from '../../actions/errors';
 
 const mapStateToProps = (state) => {
-  console.log(state, 'IN MAP TO PROPS IN HOME CONTAINER');
+ 
   return ({ errors: state.errors });
 };
 

@@ -6,7 +6,7 @@ import { toggleNotebookVisibility } from '../../actions/ui';
 
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state, 'IN MAP TO PROPS IN NOTES CONTAINER');
+ 
   return({
     notebooks: state.entities.notebooks,
     notebookSidebarVisibility: state.ui.notebookSidebarVisibility

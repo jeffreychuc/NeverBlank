@@ -7,8 +7,8 @@ import { createSlideToggle } from '../../util/css_util';
 class Notebooks extends React.Component  {
   constructor (props)  {
     super(props);
-    // console.log("IN NOTES CONSTRUCTOR");
-    // console.log(props);
+    //
+    //
     this.renderCreateNotebookModal = this.renderCreateNotebookModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
@@ -16,7 +16,7 @@ class Notebooks extends React.Component  {
 
     const boundSlideToggle = createSlideToggle.bind(this);
     this.notebookScrollerToggle = boundSlideToggle('notebookScrollerClass', 'notebooks-scroller').bind(this);
-    // console.log('in notes constructor');
+    //
   }
 
   componentDidMount() {
@@ -27,7 +27,7 @@ class Notebooks extends React.Component  {
   }
 
   componentWillReceiveProps(newProps) {
-   console.log('notebooks getting new props');
+  
     // 
    if (newProps.notebookSidebarVisibility === true)  {
       this.setState({notebookScrollerClass: 'notebooks-scroller slideable', notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay'});
@@ -98,9 +98,9 @@ class Notebooks extends React.Component  {
   }
 
   render()  {
-    console.log('in notebooks render');
-    // console.log(this.props.selected, 'THIS SHOULD BE A BOOL');
-    // console.log(this.props);
+   
+    //
+    //
     //
     return (
       <div>

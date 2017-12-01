@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
 import shortid from 'shortid';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { DropdownButton, MenuItem, Button } from 'react-bootstrap';
 import { isEqual } from 'underscore';
 import merge from 'lodash/merge';
 
@@ -65,7 +65,7 @@ class Editor extends React.Component {
     clearTimeout(this.autoSaveTimeoutId);
     this.setState({editorHtml: html});
     //
-    console.log('wtf');
+
     if ((this.props.note ? this.props.note.body : '') !== this.state.editorHtml) {
       this.autoSaveTimeoutId = setTimeout(() => this.handleSave(this.state), 1000);
     }
@@ -83,8 +83,7 @@ class Editor extends React.Component {
       }
     }
 
-    console.log('fdlksjlksajflkjs');
-    console.log('dsfklajlfkjsaklfj');
+
 
     if (!isEqual(this.props.note, newProps.note) || !isEqual(this.props.currentNoteTags, newProps.currentNoteTags))  {
       // this.handleSave(this.state);
@@ -117,7 +116,7 @@ class Editor extends React.Component {
 
       }
 
-      console.log('fsadkfa;sk');
+
       this.setState({editorHtml: editorBody,title: title, id: noteId, notebook_id: notebookId});
     }
   }
@@ -128,17 +127,19 @@ class Editor extends React.Component {
   handleNotebookChange(newNotebook)  {
     //
 
-    console.log('fsldiuflkdsaj');
+
     this.handleSave(merge({}, this.state, newNotebook ));
   }
 
   renderNotebookDropdown()  {
     //
     return(
-      <DropdownButton title={this.props.notebooksById[this.props.note ? this.props.note.notebook_id : this.props.match.params.notebookId ? this.props.match.params.notebookId : this.props.defaultNotebookId].title} id="bg-nested-dropdown">
-        <MenuItem key={shortid()} onClick={null}>Create A New Notebook</MenuItem>
-        {this.props.notebooks.map((notebook_pair) => <MenuItem key={shortid()} onClick={() => this.handleNotebookChange({notebook_id: Object.keys(notebook_pair)[0]})}>{Object.keys(notebook_pair)[0]} {this.props.notebooksById[Object.keys(notebook_pair)[0]].title}</MenuItem> )}
-      </DropdownButton>
+      <div className = 'notebookDropdown'>
+        <DropdownButton className='reactnotebookdropdown' title={this.props.notebooksById[this.props.note ? this.props.note.notebook_id : this.props.match.params.notebookId ? this.props.match.params.notebookId : this.props.defaultNotebookId].title} id="bg-nested-dropdown">
+          <MenuItem key={shortid()} onClick={null}>Create A New Notebook</MenuItem>
+          {this.props.notebooks.map((notebook_pair) => <MenuItem key={shortid()} onClick={() => this.handleNotebookChange({notebook_id: Object.keys(notebook_pair)[0]})}>{Object.keys(notebook_pair)[0]} {this.props.notebooksById[Object.keys(notebook_pair)[0]].title}</MenuItem> )}
+        </DropdownButton>
+      </div>
     );
   }
 
@@ -147,9 +148,12 @@ class Editor extends React.Component {
     if (this.props.currentNoteTags !== undefined && this.state.id !== undefined)  {
       return (
         <div className = 'tags-above-editor'>
-          {this.props.currentNoteTags ? Object.values(this.props.currentNoteTags).map((tag) => <p key={shortid()}>{tag.name}</p>) : null}
-          <form onSubmit={(e) => this.addNewTag(e)}>
-            <input ref='newtagname' type='text' placeholder='+' />
+        <div className = 'tags-icon'>
+          <i class="fa fa-tags" aria-hidden="true"></i>
+        </div>
+          {this.props.currentNoteTags ? Object.values(this.props.currentNoteTags).map((tag) => <li> <Button onClick={null} > <p key={shortid()}>{tag.name}</p> </Button> </li>) : null}
+          <form className = 'tag-input-form' onSubmit={(e) => this.addNewTag(e)}>
+            <input className = 'tag-div' ref='newtagname' type='text' placeholder='+' />
           </form>
         </div>
       );
@@ -159,21 +163,22 @@ class Editor extends React.Component {
 
   addNewTag(e) {
     e.preventDefault();
-
     this.props.createTagAndAttach({note_id: this.props.note.id, tagName: this.refs.newtagname.value}).then(() => this.props.getAllTagsForNote(this.props.note.id));
-
     this.refs.newtagname.value = '';
   }
 
   render () {
-    console.log(this.props.note, 'THIS IS THE CURRENT NOTE');
-    console.log(this.props.notebooksById, 'THESE ARE THE CURRENT NOTEBOOKS');
+
+
 
     // if note/new, default notebook
     // if path
     return (
-      <div>
+      <div className='editorView'>
         {this.renderNotebookDropdown()}
+        <div className = 'editor-full-screen-button' onClick={null}>
+          <i className="fa fa-expand fa-2x" aria-hidden="true"/>
+        </div>
         {this.renderTagArea()}
         <ReactQuill
           theme={'snow'}
@@ -185,9 +190,7 @@ class Editor extends React.Component {
           placeholder={this.props.placeholder}
           className={'quill-editor'}
         />
-        <div className = 'editor-full-screen-button' onClick={null}>
-          <i className="fa fa-expand fa-2x" aria-hidden="true"/>
-        </div>
+
 
       </div>
     );

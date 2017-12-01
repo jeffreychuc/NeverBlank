@@ -16,7 +16,7 @@ export default (state=null, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_ALL_NOTES:
-      console.log('receiving all notes');
+     
       return action.notes;
     default:
       return state;

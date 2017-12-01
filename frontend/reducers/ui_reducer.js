@@ -2,7 +2,7 @@ import { SET_LOADING, SET_CURRENT_NOTEBOOK, TOGGLE_NOTEBOOK_MODAL, TOGGLE_NOTEBO
 import merge from 'lodash/merge';
 
 
-const _initSlideState = { loading: true, notebookModal: false, notebookSidebarVisibility: false, tagSlider: false };
+const _initSlideState = { loading: true, notebookModal: false, notebookSidebarVisibility: false, tagSlider: true };
 
 export default (state=_initSlideState, action) => {
   Object.freeze(state);

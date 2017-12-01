@@ -30,7 +30,7 @@ class Signin extends React.Component{
   }
 
   handleSubmit(event) {
-    console.log(this.props);
+   
     event.preventDefault();
     this.props.login(this.state)
       .then(() => this.props.history.push('/home/notes')); //acts as redirect
@@ -54,11 +54,11 @@ class Signin extends React.Component{
     const email = this.state.email;
     const regex = require('regex-email');
     if (regex.test(email)) {
-      console.log('email!');
+     
       return 'success';
     }
     else {
-      console.log('not email');
+     
       return 'warning';
     } 
   }
@@ -72,7 +72,7 @@ class Signin extends React.Component{
   }
 
   renderErrors()  {
-    console.log(this.props, 'in render errors');
+   
     if (this.props.errors.session.constructor === Array)  {
       return (
         this.props.errors.session.map((error, i) => (
@@ -90,8 +90,8 @@ class Signin extends React.Component{
   }
 
   handleDemo(event) {
-    console.log("logging in as demo?");
-    console.log(this);
+   
+   
     this.simType('demo@app-academy.io', 'email');
     this.simType('gibjobpls', 'password');
     this.demoLogin = setTimeout(this.handleDemoLogin, 2000);
@@ -100,12 +100,12 @@ class Signin extends React.Component{
   simType (input, field) {
     let chars = input.split('');
     let finChars = "";
-    console.log(chars);
+   
     let i = 0;
     let typeAction = setInterval(() => { 
       finChars+=chars[i++];
       this.setState({[field]: finChars});
-      console.log(finChars);
+     
       if (i === chars.length) { 
         clearInterval(typeAction);  
       } 

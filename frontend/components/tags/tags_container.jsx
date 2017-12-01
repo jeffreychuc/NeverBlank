@@ -6,9 +6,9 @@ import { setTagSidebarVisibility } from '../../actions/ui';
 
 
 const mapStateToProps = (state) => {
-  console.log(state, 'IN MAP TO PROPS IN HOME CONTAINER');
+ 
   // 
-  console.log('USER TAGS SHOULD BE ', state.entities.tags);
+ 
   return ({
     userTags: state.entities.tags,
     tagSlider: state.ui.tagSlider

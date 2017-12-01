@@ -7,7 +7,7 @@ import pluralize from 'pluralize';
 class Notebook extends React.Component  {
   constructor (props)  {
     super(props);
-    console.log(this.props);
+   
 
   }
 

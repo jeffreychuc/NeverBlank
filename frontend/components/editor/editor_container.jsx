@@ -9,7 +9,7 @@ import { isEmpty } from "underscore";
 
 const mapStateToProps = (state, ownProps) => {
 
-  console.log( state.entities.tag);
+ 
   return(
     {
       notebooks: state.entities.notebooks.ordered.created_at_desc,
@@ -25,7 +25,8 @@ const mapDispatchToProps = (dispatch) => ({
   saveNotes: (note) => dispatch(patchNotes(note)),
   createNotes: (note) => dispatch(postNotes(note)),
   getAllTagsForNote: (id) => dispatch(getAllTagsForNote(id)),
-  createTagAndAttach:({note_id, tagName}) => dispatch(createTagAndAttach({note_id, tagName}))
+  createTagAndAttach:({note_id, tagName}) => dispatch(createTagAndAttach({note_id, tagName})),
+  deleteTag: (id) => dispatch()
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Editor));

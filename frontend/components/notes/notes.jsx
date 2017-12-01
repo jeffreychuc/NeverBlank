@@ -10,8 +10,8 @@ import merge from 'lodash/merge';
 class Notes extends React.Component  {
   constructor (props)  {
     super(props);
-    // console.log("IN NOTES CONSTRUCTOR");
-    // console.log(props);
+    //
+    //
     const boundSlideToggle = createSlideToggle.bind(this);
     this.noteScrollerToggle = boundSlideToggle('notesScrollerClass', 'notes-scroller').bind(this);
     this.renderNotebookEditModal = this.renderNotebookEditModal.bind(this);
@@ -22,7 +22,7 @@ class Notes extends React.Component  {
     this.hideNotebookDeleteModal = this.hideNotebookDeleteModal.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
 
-    // console.log('in notes constructor');
+    //
   }
 
   componentDidMount() {
@@ -67,7 +67,7 @@ class Notes extends React.Component  {
     return(
       this.props.notes.map((note) => (
         <div key={shortid.generate()} >
-          <Button onClick = {() => this.handleDelete(note.id)} />
+          <Button class='delete-note-button' onClick = {() => this.handleDelete(note.id)} ><i class="fa fa-trash-o fa-3" aria-hidden="true"></i> </Button>
           <Note match={this.props.match}note={note}/>
         </div>
       ))
@@ -145,9 +145,9 @@ class Notes extends React.Component  {
   }
 
   render()  {
-    console.log('in notes render');
-    // console.log(this.props.selected, 'THIS SHOULD BE A BOOL');
-    // console.log(this.props);
+
+    //
+    //
     if (!this.props.notes)  {
       return null;
     }

@@ -23,12 +23,11 @@ class Tag extends React.Component  {
   }
 
   render()  {
-    console.log('in tag render');
+
     //
     return (
         <div key={shortid()}>
-          <h2>{this.state.tagName}</h2>
-          <p>{this.state.count}</p>
+          <h3>{this.state.tagName} t{this.state.count}</h3>
         </div>
     );
   }

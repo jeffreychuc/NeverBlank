@@ -89,9 +89,9 @@ class Tags extends React.Component  {
   }
 
   render()  {
-    console.log('in tags render');
-    // console.log(this.props.selected, 'THIS SHOULD BE A BOOL');
-    // console.log(this.props);
+
+    //
+    //
     //
     if (isEmpty(this.props.userTags))  {
       return null;
@@ -102,8 +102,8 @@ class Tags extends React.Component  {
         <div>
         {this.renderTagAddModal()}
         {this.renderTagDeleteModal()}
+        <div className={this.props.tagSlider ? 'tag-slider slideable slide-hide' : 'tag-slider slideable'}>
         {this.props.userTags.ordered ? this.props.userTags.ordered.map((tagPair) => (
-
           <div key={shortid()}>
             <h2>{tagPair[0][0]}</h2>
             <div>
@@ -111,6 +111,7 @@ class Tags extends React.Component  {
             </div>
           </div>
         )): null }
+        </div>
         </div>
       );
     }
