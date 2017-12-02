@@ -55,7 +55,7 @@
 .ql-toolbar.ql-snow {
   position: relative;
   left: 180px;
-  top: 17px;
+  top: 65px;
   border: transparent;
 }
 
@@ -63,7 +63,7 @@
 .ql-container.ql-snow {
   border: transparent;
   left: 20px;
-  top: 40px;
+  top: 60px;
   width: 900px;
   height: 900px;
 }
@@ -170,16 +170,16 @@
   position: relative;
 }
 
-div .btn.btn-default {
-  padding: 5px;
-  color: #606060;
-  background-color: transparent;
-  border-color: transparent;
+// div .btn.btn-default {
+//   padding: 5px;
+//   color: #606060;
+//   background-color: transparent;
+//   border-color: transparent;
 
-  float: right;
-  top: -30px;
-  margin-bottom: -30px;
-}
+//   float: right;
+//   top: -30px;
+//   margin-bottom: -30px;
+// }
 
 
 .note-card.noselect div .btn.btn-default:hover {
@@ -187,4 +187,11 @@ div .btn.btn-default {
   color: #606060;
   background-color: transparent;
   border-color: transparent;
+}
+
+.dropdown-toggle.btn.btn-default {
+  position: fixed;
+  float: left;
+  left: 470px;
+  top: 65px;
 }

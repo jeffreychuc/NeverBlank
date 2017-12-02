@@ -13,7 +13,7 @@ class Home extends React.Component  {
 
   componentDidMount() {
     // fetches notes then sets active note to first note in list.
-   
+
     this.props.setLoadingState(true);
     this.props.fetchNotes();
     this.props.fetchNotebooks();
@@ -39,7 +39,7 @@ class Home extends React.Component  {
     if (newProps.state.entities.notes !== null && newProps.state.entities.notebooks !== null) {
       if (('ordered' in newProps.state.entities.notes) && ('ordered' in newProps.state.entities.notebooks)) {
         //
-       
+
         if (this.props.state.ui.loading)  {
           this.props.setLoadingState(false);
         }
@@ -70,8 +70,8 @@ class Home extends React.Component  {
             //
             if (this.props.state.entities.notes.ordered.updated_at_desc.length !== 0) {
             //
-             
-              
+
+
               // let notebookNotes = this.props.state.entities.notes.by_id.filter((note) => note.notebook_id === notebook_id);
               let notebookNotes = Object.keys(this.props.state.entities.notes.by_id).map((id) => this.props.state.entities.notes.by_id[id]);
               notebookNotes = notebookNotes.filter((note) => note.notebook_id === parseInt(notebook_id));
@@ -95,7 +95,7 @@ class Home extends React.Component  {
   render()  {
     // check for loaded data, set in compoenent did mount
     if (!this.props.state.ui.loading)  {
-     
+
       // this two lines need to be change to accout for switching notebooks
       // let notesToBePassed = this.props.state.entities.notes;
       let notesToBePassed = [];
@@ -104,18 +104,18 @@ class Home extends React.Component  {
 
       if (this.props.match.path.includes('/home/notebooks/:notebookId'))  {
         //
-       
+
         // Object.values(test.find((notebook) => Object.keys(notebook)[0] === '6')) === undefined
         if (this.props.state.entities.notes.by_id !== undefined)  {
 
-         
+
           notesToBePassed = Object.values(this.props.state.entities.notes.by_id).filter((note) => note.notebook_id === parseInt(this.props.match.params.notebookId));
           // https://stackoverflow.com/questions/13304543/javascript-sort-array-based-on-another-array
           notesToBePassed = sortBy(notesToBePassed, (note) => (
             this.props.state.entities.notes.ordered.updated_at_desc.indexOf(note.id))
           );
           //
-         
+
 
 
 
@@ -140,7 +140,7 @@ class Home extends React.Component  {
       }
       // logic for no notebook
       if (notebookId === undefined && (noteId !== undefined && noteId !== 'new')) {
-        
+
         noteToBePassedById = this.props.state.entities.notes.by_id[noteId];
       }//logic for notebook with active note
       else if (noteId === 'new')  {
@@ -181,7 +181,7 @@ class Home extends React.Component  {
       );
     }
     else  {
-     
+
       return null;
     }
   }

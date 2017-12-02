@@ -90,9 +90,6 @@ class Tags extends React.Component  {
 
   render()  {
 
-    //
-    //
-    //
     if (isEmpty(this.props.userTags))  {
       return null;
     }
