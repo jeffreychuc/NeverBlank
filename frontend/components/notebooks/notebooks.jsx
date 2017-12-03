@@ -110,7 +110,7 @@ class Notebooks extends React.Component  {
           <Button onClick={() => this.toggleModal()}>Create Notebook</Button>
           {this.renderNotebookCards()}
         </div>
-        <div onClick={()=> this.props.toggleNotebookVisibility(false)} className = {this.state.notebookScrollerUnderlayClassname} />
+        <div onClick={()=> this.props.toggleNotebookVisibility(true)} className = {this.state.notebookScrollerUnderlayClassname} />
       </div>
     );
   }

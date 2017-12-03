@@ -31,7 +31,7 @@ class Editor extends React.Component {
   buildRedirect(action) {
 
     if ('notebookId' in this.props.match.params)  { //lol
-      return `/home/notebooks/${this.props.match.params.notebookId}/notes/${action.notes.ordered.created_at_desc[0]}}`;
+      return `/home/notebooks/${this.props.match.params.notebookId}/notes/${action.notes.ordered.created_at_desc[0]}`;
     }
     else  {
       debugger;
