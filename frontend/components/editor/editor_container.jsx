@@ -9,10 +9,10 @@ import { isEmpty } from "underscore";
 
 const mapStateToProps = (state, ownProps) => {
 
- 
   return(
     {
       notebooks: state.entities.notebooks.ordered.created_at_desc,
+      notes: state.entities.notes.by_id,
       notebooksById: state.entities.notebooks.by_id,
       defaultNotebookId: state.session.currentUser.default_notebook,
       noteTags: state.entities.tags.by_id,

@@ -16,11 +16,11 @@ class Notebooks extends React.Component  {
 
     const boundSlideToggle = createSlideToggle.bind(this);
     this.notebookScrollerToggle = boundSlideToggle('notebookScrollerClass', 'notebooks-scroller').bind(this);
+    this.state = ({notebookCreateModal: false, notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay slide-hide'});
     //
   }
 
   componentDidMount() {
-    this.setState({notebookCreateModal: false, notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay slide-hide'});
     if (this.props.match.path === '/home/notebooks/') {
       this.props.toggleNotebookVisibility(false);
     }

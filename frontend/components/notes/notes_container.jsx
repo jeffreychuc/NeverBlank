@@ -6,9 +6,11 @@ import { editNotebook, destroyNotebook } from '../../actions/notebooks';
 
 
 const mapStateToProps = (state, ownProps) => {
- 
   return({
-    defaultNotebook: state.session.currentUser.default_notebook
+    defaultNotebook: state.session.currentUser.default_notebook,
+    notesById: state.entities.notes.by_id,
+    notesOrdered: state.entities.notes.ordered.updated_at_desc,
+    notebooks: state.entities.notebooks.by_id
   });
 };
 

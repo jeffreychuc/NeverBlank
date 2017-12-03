@@ -12,16 +12,22 @@ class Editor extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleNotebookChange = this.handleNotebookChange.bind(this);
-    this.state = this.props.note ? { currentNoteTags: [], title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id} : {title: '', editorHtml: '', notebook_id: this.props.match.params.notebookId};
+    // this.state = this.props.note ? { currentNoteTags: [], title: this.props.note.title, editorHtml: this.props.note.body, id: this.props.note.id, notebook_id: this.props.note.notebook_id} : {title: '', editorHtml: '', notebook_id: this.props.match.params.notebookId};
     this.buildRedirect = this.buildRedirect.bind(this);
     this.renderTagRea = this.renderTagArea.bind(this);
     this.addNewTag = this.addNewTag.bind(this);
     this.autoSaveTimeoutId = null;
+    // logic for setting initial state of editor
+    // if (this.)
+    // debugger;
+    // let currentNote = this.props.notes[this.props.match.params.noteId];
+    // debugger;
+    // this.state = {currentNoteTags: [], title: currentNote.title, editorHtml: currentNote.body, id: currentNote.id, notebook_id: currentNote.notebook_id};
+    this.state = {editorHtml: this.props.match.params.noteId ? this.props.notes[this.props.match.params.noteId].body :''};
   }
 
   componentDidMount() {
-
-    this.props.getAllTagsForNote(parseInt(this.props.match.params.noteId));
+    // this.props.getAllTagsForNote(parseInt(this.props.match.params.noteId));
   }
 
   stripTags(html) {
@@ -44,7 +50,7 @@ class Editor extends React.Component {
 
     const { title, editorHtml, id, notebook_id } = editorState;
     if (!id || id === 'new') {
-
+      debugger;
       this.props.createNotes({
         body: editorHtml,
         title: title,
@@ -59,7 +65,7 @@ class Editor extends React.Component {
         bodypreview: this.stripTags(editorHtml).substring(0, 200),
         id: id,
         notebook_id: notebook_id
-      });
+      }).then((redirect) => this.props.history.push(redirect));
     }
   }
 
@@ -67,81 +73,106 @@ class Editor extends React.Component {
     //
     clearTimeout(this.autoSaveTimeoutId);
     this.setState({editorHtml: html});
-    //
-
-    if ((this.props.note ? this.props.note.body : '') !== this.state.editorHtml) {
+    if (this.props.match.params.noteId === 'new') {
+      this.autoSaveTimeoutId = setTimeout(() => this.handleSave(this.state), 1000);
+    }
+    else if (this.props.notes[this.props.match.params.noteId].body !== this.state.editorHtml) {
       this.autoSaveTimeoutId = setTimeout(() => this.handleSave(this.state), 1000);
     }
   }
 
 
   componentWillReceiveProps(newProps) {
-    // ((newProps.note.id !== 'new') ? this.props.getAllTagsForNote(newProps.note.id) : null)();
-    //
-
-    if ((newProps.note !== undefined) && (this.props.note !== undefined))  {
-      if ((newProps.note.id !== this.props.note.id) && (newProps.note.id !== 'new')) {
-
-        this.props.getAllTagsForNote(newProps.note.id);
-      }
-    }
-
-
-    // debugger;
-    console.log('sfadjlksa');
-    if (!isEqual(this.props.note, newProps.note) || !isEqual(this.props.currentNoteTags, newProps.currentNoteTags))  {
-      // this.handleSave(this.state);
-      // causes double save
-      debugger;
-      if (!isEqual(this.props.currentNoteTags, newProps.currentNoteTags)) {
-        this.setState({currentNoteTags: newProps.currentNoteTags});
-      }
-
+    debugger;
+    if ((this.props.match.params.noteId !== newProps.match.params.noteId) && newProps.match.params.noteId !== undefined) {
+      console.log('in new note!');
+      let noteId = newProps.match.params.noteId;
       let editorBody;
-      let noteId;
       let notebookId;
       let title;
       let tags;
-
-      console.log('sfadjlksa');
-      if (newProps.match.params.noteId === 'new' || newProps.note === undefined) {
+      if ('notes' in newProps && Number.isInteger(parseInt(noteId))) {
+        debugger;
+        editorBody = newProps.notes[noteId].body;
+        notebookId = newProps.notes[noteId].notebook_id;
+        title = newProps.notes[noteId].title;
+      }
+      else  {
         editorBody = '';
         title = '';
         noteId = 'new';
-        // //
         notebookId = 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : this.props.defaultNotebookId;//default notebook;
       }
-      else  {
-        editorBody = newProps.note.body;
-        noteId = newProps.note['id'];
-        notebookId = newProps.note.notebook_id;
-        title = newProps.note.title;
-        this.props.getAllTagsForNote(noteId);
-
-      }
-
-
-      this.setState({editorHtml: editorBody,title: title, id: noteId, notebook_id: notebookId});
+      debugger;
+      this.setState({editorHtml: editorBody, title: title, id: noteId, notebook_id: notebookId});
     }
+    // ((newProps.note.id !== 'new') ? this.props.getAllTagsForNote(newProps.note.id) : null)();
+    //
+
+    // if ((newProps.note !== undefined) && (this.props.note !== undefined))  {
+    //   if ((newProps.note.id !== this.props.note.id) && (newProps.note.id !== 'new')) {
+
+    //     this.props.getAllTagsForNote(newProps.note.id);
+    //   }
+    // }
+
+
+    // // debugger;
+    // console.log('sfadjlksa');
+    // if (!isEqual(this.props.note, newProps.note) || !isEqual(this.props.currentNoteTags, newProps.currentNoteTags))  {
+    //   // this.handleSave(this.state);
+    //   // causes double save
+    //   debugger;
+    //   // if (!isEqual(this.props.currentNoteTags, newProps.currentNoteTags)) {
+    //   //   this.setState({currentNoteTags: newProps.currentNoteTags});
+    //   // }
+
+    //   let editorBody;
+    //   let noteId;
+    //   let notebookId;
+    //   let title;
+    //   let tags;
+
+    //   console.log('sfadjlksa');
+    //   if (newProps.match.params.noteId === 'new' || newProps.note === undefined) {
+    //     editorBody = '';
+    //     title = '';
+    //     noteId = 'new';
+    //     // //
+    //     notebookId = 'notebookId' in this.props.match.params ? this.props.match.params.notebookId : this.props.defaultNotebookId;//default notebook;
+    //   }
+    //   else  {
+    //     editorBody = newProps.note.body;
+    //     noteId = newProps.note['id'];
+    //     notebookId = newProps.note.notebook_id;
+    //     title = newProps.note.title;
+    //     this.props.getAllTagsForNote(noteId);
+
+    //   }
+
+
+      // this.setState({editorHtml: editorBody,title: title, id: noteId, notebook_id: notebookId});
+    // }
   }
   debug(tags)  {
 
   }
 
   handleNotebookChange(newNotebook)  {
-    //
-
-
     this.handleSave(merge({}, this.state, newNotebook ));
   }
 
   renderNotebookDropdown()  {
     debugger;
+    let currentNotebook;
+    if (this.props.match.params.notebookId) {
+
+    }
     return(
       <div className = 'notebookDropdown'>
-        <DropdownButton className='reactnotebookdropdown' title={this.props.notebooksById[this.props.note ? this.props.note.notebook_id : this.props.match.params.notebookId ? this.props.match.params.notebookId : this.props.defaultNotebookId].title} id="bg-nested-dropdown">
+        <DropdownButton className='reactnotebookdropdown' title={this.props.notebooksById[this.props.match.params.noteId !== 'new' ? this.props.notes ? this.props.notes[this.props.match.params.noteId] ? this.props.notes[this.props.match.params.noteId].notebook_id: this.props.defaultNotebookId : this.props.defaultNotebookId : this.props.defaultNotebookId].title} id="bg-nested-dropdown">
           <MenuItem key={shortid()} onClick={null}>Create A New Notebook</MenuItem>
-          {this.props.notebooks.map((notebook_pair) => <MenuItem key={shortid()} onClick={() => this.handleNotebookChange({notebook_id: Object.keys(notebook_pair)[0]})}>{Object.keys(notebook_pair)[0]} {this.props.notebooksById[Object.keys(notebook_pair)[0]].title}</MenuItem> )}
+          {this.props.notebooks.map((notebook_pair) => <MenuItem key={shortid()} onClick={() => this.handleNotebookChange({notebook_id: Object.keys(notebook_pair)[0]})}> {this.props.notebooksById[Object.keys(notebook_pair)[0]].title}</MenuItem> )}
         </DropdownButton>
       </div>
     );
@@ -182,31 +213,35 @@ class Editor extends React.Component {
   render () {
 
 
+    if ('noteId' in this.props.match.params)  {
+      // if note/new, default notebook
+      // if path
 
-    // if note/new, default notebook
-    // if path
-    // {this.renderNotebookDropdown()}
-    return (
-      <div className='editorView'>
+      // {this.renderTagArea()}
+      return (
+        <div className='editorView'>
+          {
+            this.renderNotebookDropdown()
+          }
+          <div className = 'editor-full-screen-button' onClick={null}>
+            <i className="fa fa-expand fa-2x" aria-hidden="true"/>
+          </div>
+          <ReactQuill
+            theme={'snow'}
+            onChange={this.handleChange}
+            value={this.state.editorHtml}
+            modules={Editor.modules}
+            formats={Editor.formats}
+            bounds={'.editor-main'}
+            placeholder={this.props.placeholder}
+            className={'quill-editor'}
+          />
 
-        <div className = 'editor-full-screen-button' onClick={null}>
-          <i className="fa fa-expand fa-2x" aria-hidden="true"/>
+
         </div>
-        {this.renderTagArea()}
-        <ReactQuill
-          theme={'snow'}
-          onChange={this.handleChange}
-          value={this.state.editorHtml}
-          modules={Editor.modules}
-          formats={Editor.formats}
-          bounds={'.editor-main'}
-          placeholder={this.props.placeholder}
-          className={'quill-editor'}
-        />
-
-
-      </div>
-    );
+      );
+    }
+    return null;
   }
 }
 

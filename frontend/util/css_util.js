@@ -1,5 +1,5 @@
 export function createSlideToggle (className, classNameString) {
-  this.state = { [className]: classNameString + ' slideable slide-hide'};
+  this.state = { [className]: classNameString + ' slideable slide-hide', notebookEditModal: false, notebookDeleteModal: false, currentNotebook: this.props.defaultNotebook};
   return (
     () => {
       classNameString = this.state[className].split(' ');

@@ -6,7 +6,6 @@ import { Button } from 'react-bootstrap';
 class Note extends React.Component  {
   constructor (props)  {
     super(props);
-   
   }
 
   render()  {

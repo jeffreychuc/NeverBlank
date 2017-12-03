@@ -9,24 +9,18 @@ const receiveAllNotes = (notes) => ({
   notes: notes
 });
 
-const addBlankNote = () => ({
-  type: ADD_BLANK_NOTE
-});
-
 export const fetchNotes = () => (dispatch) => (
   getNotes().then((notes) => dispatch(receiveAllNotes(notes)))
 );
 
 export const patchNotes = (note) => (dispatch) => (
-  patchNote(note).then(() => dispatch(fetchNotebooks())).then(() => dispatch(fetchNotes()))
+  patchNote(note).then(() => dispatch(fetchNotes()))
 );
 
 export const postNotes = (note) => (dispatch) => (
-  postNote(note).then(() => dispatch(fetchNotebooks())).then(() => dispatch(fetchNotes()))
+  postNote(note).then(() => dispatch(fetchNotes()))
 );
 
-export const generateBlankNote = () => (dispatch) => dispatch(addBlankNote());
-
 export const destroyNote = (id) => dispatch => (
-  deleteNote(id).then(() => getNotes()).then((notes) => dispatch(receiveAllNotes(notes))).then(() => dispatch(fetchNotebooks()))
+  deleteNote(id).then(() => dispatch(fetchNotes()))
 );

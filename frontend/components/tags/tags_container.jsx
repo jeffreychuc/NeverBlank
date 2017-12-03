@@ -6,9 +6,6 @@ import { setTagSidebarVisibility } from '../../actions/ui';
 
 
 const mapStateToProps = (state) => {
- 
-  // 
- 
   return ({
     userTags: state.entities.tags,
     tagSlider: state.ui.tagSlider
