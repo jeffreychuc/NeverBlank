@@ -41,7 +41,7 @@ class NavSidebar extends React.Component  {
     return (
       <div className = 'middleButtonGroup'>
         <a className='tags-nav-button noselect' onClick={() => this.props.setTagSidebarVisibility(!this.props.tagSlider)}>Tags</a>
-        <a className='notebooks-nav-button noselect' onClick={() => this.props.toggleNotebookVisibility(!this.props.notebookSidebarVisibility)}>Notebooks</a>
+        <a className='notebooks-nav-button noselect' onClick={() => this.props.toggleNotebookVisibility(this.props.notebookSidebarVisibility)}>Notebooks</a>
         <Button className='notesButton' onClick={() => this.handleNoteButton()}>Notes</Button>
       </div>
     );

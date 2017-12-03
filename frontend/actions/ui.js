@@ -36,7 +36,7 @@ export const TOGGLE_NOTEBOOK_VISIBILITY = 'TOGGLE_NOTEBOOK_VISIBILITY';
 export const toggleNotebookVisibility = (visBool) => {
 
   return {type: TOGGLE_NOTEBOOK_VISIBILITY,
-          notebookSidebarVisibility: visBool};
+          notebookSidebarVisibility: !visBool};
 };
 
 export const TOGGLE_TAGS_VISIBILITY = 'TOGGLE_TAGS_VISIBILITY';

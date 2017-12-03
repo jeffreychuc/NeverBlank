@@ -67,7 +67,7 @@ class Notes extends React.Component  {
     return(
       this.props.notes.map((note) => (
         <div key={shortid.generate()} >
-          <Button class='delete-note-button' onClick = {() => this.handleDelete(note.id)} ><i class="fa fa-trash-o fa-3" aria-hidden="true"></i> </Button>
+          <Button className='delete-note-button' onClick = {() => this.handleDelete(note.id)} ><i className="fa fa-trash-o fa-3" aria-hidden="true"></i> </Button>
           <Note match={this.props.match}note={note}/>
         </div>
       ))

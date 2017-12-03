@@ -29,11 +29,14 @@ class Editor extends React.Component {
   }
 
   buildRedirect(action) {
-    
+
     if ('notebookId' in this.props.match.params)  { //lol
-      return `/home/notebooks/${this.props.match.params.notebookId}/notes/${action.notebooks.ordered.created_at_desc[this.props.match.params.notebookId][this.props.match.params.notebookId][action.notebooks.ordered.created_at_desc[this.props.match.params.notebookId][this.props.match.params.notebookId].length-1]}`;
+      return `/home/notebooks/${this.props.match.params.notebookId}/notes/${action.notes.ordered.created_at_desc[0]}}`;
     }
-    
+    else  {
+      debugger;
+      return `/home/notes/${action.notes.ordered.created_at_desc[0]}`;
+    }
     return action;
   }
 
@@ -41,7 +44,7 @@ class Editor extends React.Component {
 
     const { title, editorHtml, id, notebook_id } = editorState;
     if (!id || id === 'new') {
-      
+
       this.props.createNotes({
         body: editorHtml,
         title: title,
@@ -75,7 +78,7 @@ class Editor extends React.Component {
   componentWillReceiveProps(newProps) {
     // ((newProps.note.id !== 'new') ? this.props.getAllTagsForNote(newProps.note.id) : null)();
     //
-    
+
     if ((newProps.note !== undefined) && (this.props.note !== undefined))  {
       if ((newProps.note.id !== this.props.note.id) && (newProps.note.id !== 'new')) {
 
@@ -84,11 +87,12 @@ class Editor extends React.Component {
     }
 
 
-
+    // debugger;
+    console.log('sfadjlksa');
     if (!isEqual(this.props.note, newProps.note) || !isEqual(this.props.currentNoteTags, newProps.currentNoteTags))  {
       // this.handleSave(this.state);
       // causes double save
-
+      debugger;
       if (!isEqual(this.props.currentNoteTags, newProps.currentNoteTags)) {
         this.setState({currentNoteTags: newProps.currentNoteTags});
       }
@@ -98,8 +102,8 @@ class Editor extends React.Component {
       let notebookId;
       let title;
       let tags;
-      // sorry
-      //
+
+      console.log('sfadjlksa');
       if (newProps.match.params.noteId === 'new' || newProps.note === undefined) {
         editorBody = '';
         title = '';
@@ -132,7 +136,7 @@ class Editor extends React.Component {
   }
 
   renderNotebookDropdown()  {
-    //
+    debugger;
     return(
       <div className = 'notebookDropdown'>
         <DropdownButton className='reactnotebookdropdown' title={this.props.notebooksById[this.props.note ? this.props.note.notebook_id : this.props.match.params.notebookId ? this.props.match.params.notebookId : this.props.defaultNotebookId].title} id="bg-nested-dropdown">
@@ -144,12 +148,12 @@ class Editor extends React.Component {
   }
 
   renderTagArea() {
-    
+
     if (this.props.currentNoteTags !== undefined && this.state.id !== undefined)  {
       return (
         <div className = 'tags-above-editor'>
         <div className = 'tags-icon'>
-          <i class="fa fa-tags" aria-hidden="true"></i>
+        <i className="fa fa-tags" aria-hidden="true"></i>
         </div>
           {this.props.currentNoteTags ? Object.values(this.props.currentNoteTags).map((tag) => <li> <Button onClick={null} > <p key={shortid()}>{tag.name}</p> </Button> </li>) : null}
           <form className = 'tag-input-form' onSubmit={(e) => this.addNewTag(e)}>
@@ -158,7 +162,15 @@ class Editor extends React.Component {
         </div>
       );
     }
-    return null;
+    else  {
+      return (
+        <div className = 'tags-above-editor'>
+          <div className = 'tags-icon'>
+            <i className="fa fa-tags" aria-hidden="true"></i>
+          </div>
+        </div>
+      );
+    }
   }
 
   addNewTag(e) {
@@ -173,9 +185,10 @@ class Editor extends React.Component {
 
     // if note/new, default notebook
     // if path
+    // {this.renderNotebookDropdown()}
     return (
       <div className='editorView'>
-        {this.renderNotebookDropdown()}
+
         <div className = 'editor-full-screen-button' onClick={null}>
           <i className="fa fa-expand fa-2x" aria-hidden="true"/>
         </div>

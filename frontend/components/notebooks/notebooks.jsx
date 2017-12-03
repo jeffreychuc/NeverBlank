@@ -27,8 +27,8 @@ class Notebooks extends React.Component  {
   }
 
   componentWillReceiveProps(newProps) {
-  
-    // 
+
+    //
    if (newProps.notebookSidebarVisibility === true)  {
       this.setState({notebookScrollerClass: 'notebooks-scroller slideable', notebookScrollerUnderlayClassname: 'notebooks-scroller slideable underoverlay'});
     }
@@ -58,7 +58,7 @@ class Notebooks extends React.Component  {
   }
 
   renderNotebookCards() {
-    // 
+    //
     return(
       this.props.notebooks.ordered['created_at_desc'].map((notebookPair) => ( //data for this should look like {3: [5]}
         <div className = 'notebookdSlideoutCard' key={shortid.generate()} >
@@ -93,12 +93,12 @@ class Notebooks extends React.Component  {
   }
 
   toggleModal() {
-    
+
     this.setState({notebookCreateModal: !this.state.notebookCreateModal});
   }
 
   render()  {
-   
+
     //
     //
     //
@@ -110,7 +110,7 @@ class Notebooks extends React.Component  {
           <Button onClick={() => this.toggleModal()}>Create Notebook</Button>
           {this.renderNotebookCards()}
         </div>
-        <div onClick={()=> this.props.toggleNotebookVisibility(true)} className = {this.state.notebookScrollerUnderlayClassname} />
+        <div onClick={()=> this.props.toggleNotebookVisibility(false)} className = {this.state.notebookScrollerUnderlayClassname} />
       </div>
     );
   }
