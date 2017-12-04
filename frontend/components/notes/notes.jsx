@@ -83,23 +83,26 @@ class Notes extends React.Component  {
   }
   renderNoteCards() {
     let noteCardsToBeRendered = [];
-    if (this.props.match.params.notebookId) {
-      noteCardsToBeRendered = Object.values(this.props.notesById).filter((note)=>note.notebook_id === parseInt(this.props.match.params.notebookId));
-      noteCardsToBeRendered = sortBy(noteCardsToBeRendered, 'updated_at').reverse();
-      noteCardsToBeRendered = noteCardsToBeRendered.map((note) => note.id);
-    }
-    else  {
-      noteCardsToBeRendered = this.props.notesOrdered;
-    }
     debugger;
-    return(
-      noteCardsToBeRendered.map((noteId) => (
-        <div key={shortid.generate()} >
-          <Button className='delete-note-button' onClick = {() => this.handleDelete(noteId)} ><i className="fa fa-trash-o fa-3" aria-hidden="true"></i> </Button>
-          <Note match={this.props.match} note={this.props.notesById[noteId]}/>
-        </div>
-      ))
-    );
+    if (this.props.notesById) {
+      if (this.props.match.params.notebookId) {
+        noteCardsToBeRendered = Object.values(this.props.notesById).filter((note)=>note.notebook_id === parseInt(this.props.match.params.notebookId));
+        noteCardsToBeRendered = sortBy(noteCardsToBeRendered, 'updated_at').reverse();
+        noteCardsToBeRendered = noteCardsToBeRendered.map((note) => note.id);
+      }
+      else  {
+        noteCardsToBeRendered = this.props.notesOrdered;
+      }
+      debugger;
+      return(
+        noteCardsToBeRendered.map((noteId) => (
+          <div key={shortid.generate()} >
+            <Button className='delete-note-button' onClick = {() => this.handleDelete(noteId)} ><i className="fa fa-trash-o fa-3" aria-hidden="true"></i> </Button>
+            <Note match={this.props.match} note={this.props.notesById[noteId]}/>
+          </div>
+        ))
+      );
+    }
   }
 
   toggleModal() {
@@ -207,6 +210,6 @@ export default Notes;
 //     }
 //     //
 //
-// {this.renderNotebookEditModal()}
+
 
 //

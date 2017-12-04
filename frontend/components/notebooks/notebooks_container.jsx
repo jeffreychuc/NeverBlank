@@ -6,9 +6,10 @@ import { toggleNotebookVisibility } from '../../actions/ui';
 
 
 const mapStateToProps = (state, ownProps) => {
- 
+
   return({
     notebooks: state.entities.notebooks,
+    notes: state.entities.notes,
     notebookSidebarVisibility: state.ui.notebookSidebarVisibility
   });
 };

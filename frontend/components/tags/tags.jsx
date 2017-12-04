@@ -23,7 +23,6 @@ class Tags extends React.Component  {
   }
 
   componentWillReceiveProps(newProps) {
-
     if (!isEqual(this.state.userTags, newProps.userTags)) {
       if (('userTags' in  newProps) && ('by_id' in newProps.userTags))  {
         this.setState({userTags: Object.values(newProps.userTags.by_id), tagCounts: Object.values(newProps.userTags.counts), tagSlider: newProps.tagSlider});

@@ -181,6 +181,9 @@ class Home extends React.Component  {
           <div className = 'notebooks-sidebar'>
             <NotebooksContainer />
          </div>
+         <div className = 'tags-sidebar'>
+          <TagsContainer />
+        </div>
         </div>
       );
     }
@@ -195,8 +198,6 @@ export default Home;
 // {/* <div className = 'editor-main'>
 
 
-// <div className = 'tags-sidebar'>
-// <TagsContainer />
-// </div> */}
+
 
 // {/*  */}

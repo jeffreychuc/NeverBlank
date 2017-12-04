@@ -27,7 +27,7 @@ class Editor extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.getAllTagsForNote(parseInt(this.props.match.params.noteId));
+    this.props.getAllTagsForNote(parseInt(this.props.match.params.noteId));
   }
 
   stripTags(html) {
@@ -35,7 +35,6 @@ class Editor extends React.Component {
   }
 
   buildRedirect(action) {
-
     if ('notebookId' in this.props.match.params)  { //lol
       return `/home/notebooks/${this.props.match.params.notebookId}/notes/${action.notes.ordered.created_at_desc[0]}`;
     }
@@ -43,7 +42,6 @@ class Editor extends React.Component {
       debugger;
       return `/home/notes/${action.notes.ordered.created_at_desc[0]}`;
     }
-    return action;
   }
 
   handleSave(editorState)  {
@@ -91,11 +89,13 @@ class Editor extends React.Component {
       let notebookId;
       let title;
       let tags;
+      debugger;
       if ('notes' in newProps && Number.isInteger(parseInt(noteId))) {
         debugger;
         editorBody = newProps.notes[noteId].body;
         notebookId = newProps.notes[noteId].notebook_id;
         title = newProps.notes[noteId].title;
+        this.props.getAllTagsForNote(this.props.match.params.noteId);
       }
       else  {
         editorBody = '';
@@ -180,7 +180,7 @@ class Editor extends React.Component {
 
   renderTagArea() {
 
-    if (this.props.currentNoteTags !== undefined && this.state.id !== undefined)  {
+    if (this.props.currentNoteTags !== undefined && (this.props.match.params.noteId !== undefined || this.props.match.params.noteId !== 'new'))  {
       return (
         <div className = 'tags-above-editor'>
         <div className = 'tags-icon'>
@@ -206,7 +206,7 @@ class Editor extends React.Component {
 
   addNewTag(e) {
     e.preventDefault();
-    this.props.createTagAndAttach({note_id: this.props.note.id, tagName: this.refs.newtagname.value}).then(() => this.props.getAllTagsForNote(this.props.note.id));
+    this.props.createTagAndAttach({note_id: this.props.match.params.noteId, tagName: this.refs.newtagname.value}).then(() => this.props.getAllTagsForNote(this.props.match.params.noteId));
     this.refs.newtagname.value = '';
   }
 
@@ -217,9 +217,10 @@ class Editor extends React.Component {
       // if note/new, default notebook
       // if path
 
-      // {this.renderTagArea()}
       return (
         <div className='editorView'>
+          {this.renderTagArea()}
+
           {
             this.renderNotebookDropdown()
           }
