@@ -197,8 +197,10 @@
 }
 
 .middleButtonGroup  {
-  display:flex;
+  display: flex;
   flex-direction: column;
+  position: relative;
+  top: -400px;
 }
 
 .tag-slider {
@@ -213,4 +215,8 @@
 
 button.newNoteButton.btn.btn-default.btn-block  {
   font-size: 8px;
+}
+
+.reactnotebookdropdown.dropdown-toggle.btn.btn-default {
+  top: 85px;
 }

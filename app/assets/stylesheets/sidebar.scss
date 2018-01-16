@@ -1,0 +1,84 @@
+.newNoteButton.btn.btn-default.btn-block  {
+  background: url(https://res.cloudinary.com/malice/image/upload/v1500410337/plus_ljiox4.png) no-repeat center center;
+  background-size: 36px;
+  height: 40px;
+  border: none;
+  position: relative;
+  top: -185px;
+}
+
+.newNoteButton.btn.btn-default.btn-block:hover  {
+  background: url(https://res.cloudinary.com/malice/image/upload/v1500410337/plus-hover_dtjetq.png) no-repeat center center;
+  background-size: 36px;
+  height: 40px;
+  border: none;
+  position: relative;
+  top: -185px;
+}
+
+
+.tags-nav-button.noselect {
+  background: url(https://res.cloudinary.com/malice/image/upload/v1500410338/tag_bheb2i.png) no-repeat center center;
+  background-size: 36px;
+  height: 40px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.tags-nav-button.noselect:hover {
+  background: url(https://res.cloudinary.com/malice/image/upload/v1500410338/tag-hover_afcspp.png) no-repeat center center;
+  background-size: 36px;
+  height: 40px;
+  cursor: pointer
+}
+
+.notebooks-nav-button.noselect  {
+  background: url(https://res.cloudinary.com/malice/image/upload/v1500410337/notebook_dqo08r.png) no-repeat center center;
+  background-size: 36px;
+  height: 40px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.notebooks-nav-button.noselect:hover  {
+  background: url(https://res.cloudinary.com/malice/image/upload/v1500410337/notebook-hover_q7teqo.png) no-repeat center center;
+  background-size: 36px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.notesButton.btn.btn-default  {
+  background: url(https://res.cloudinary.com/malice/image/upload/v1500410337/note_wyhtsu.png) no-repeat center center;
+  margin-top: 140px;
+  background-size: 36px;
+  height: 40px;
+  border: none;
+}
+
+.notesButton.btn.btn-default:hover  {
+  background: url(https://res.cloudinary.com/malice/image/upload/v1500410337/note-hover_h3ozkl.png) no-repeat center center;
+  margin-top: 140px;
+  background-size: 36px;
+  height: 40px;
+  border: none;
+}
+
+.delete-note-button.btn.btn-default {
+  border: none;
+  background: transparent;
+}
+
+.note-select  {
+  border-bottom: 1px solid gray;
+}
+
+.logout.btn.btn-default.btn-block {
+  width: 40px;
+  height: 40px;
+  // margin-right: 5px;
+  background: url(https://res.cloudinary.com/malice/image/upload/v1501241893/logout-gray_g8gy8m.png) no-repeat center center;
+  background-size: 20px;
+  position: relative;
+  left: 20px;
+  border: none;
+}

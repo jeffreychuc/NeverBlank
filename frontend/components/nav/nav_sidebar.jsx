@@ -22,7 +22,7 @@ class NavSidebar extends React.Component  {
     }
     return (
       <div className = 'topButtonGroup'>
-        <Button className='newNoteButton' onClick={() => this.props.history.push(redirect)} block>Add New Note</Button>
+        <Button className='newNoteButton' onClick={() => this.props.history.push(redirect)} block></Button>
       </div>
     );
   }
@@ -40,9 +40,9 @@ class NavSidebar extends React.Component  {
 
     return (
       <div className = 'middleButtonGroup'>
-        <a className='tags-nav-button noselect' onClick={() => this.props.setTagSidebarVisibility(!this.props.tagSlider)}>Tags</a>
-        <a className='notebooks-nav-button noselect' onClick={() => this.props.toggleNotebookVisibility(this.props.notebookSidebarVisibility)}>Notebooks</a>
-        <Button className='notesButton' onClick={() => this.handleNoteButton()}>Notes</Button>
+        <Button className='notesButton' onClick={() => this.handleNoteButton()}></Button>
+        <a className='notebooks-nav-button noselect' onClick={() => this.props.toggleNotebookVisibility(this.props.notebookSidebarVisibility)}>​</a>
+        <a className='tags-nav-button noselect' onClick={() => this.props.setTagSidebarVisibility(!this.props.tagSlider)}>​</a>
       </div>
     );
   }
@@ -50,7 +50,7 @@ class NavSidebar extends React.Component  {
   profileButton() {
     return (
       <div className = 'profileButton'>
-        <Button className='logout' onClick={() => this.handleLogout()} block>Logout</Button>
+        <Button className='logout' onClick={() => this.handleLogout()} block></Button>
       </div>
     );
   }
